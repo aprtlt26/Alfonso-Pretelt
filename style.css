@@ -1,0 +1,48 @@
+body {
+    padding-top: 20px;
+    margin: 0;
+    font-family: Arial, sans-serif;}
+  
+  .container {
+    display: flex;
+    height: 100vh;
+    margin-top: 50px;}
+  
+.sidebar {
+    width: 200px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);}
+  
+  
+.title {
+    text-align: center;
+    margin-bottom: auto;
+padding-block: 50px;}
+  
+.menu a {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+
+   
+  }
+  .contac{
+display: block;
+flex: auto;
+    padding-top: 50px;
+  }
+
+  p{ 
+    display: flex;
+
+    color: rgb(0, 0, 0);
+    border:-0;
+  font-size: small;
+
+}
+
+em{
+    width: 500px;
+
+}
