@@ -1,50 +1,90 @@
 body {
-    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    background-color: rgb(245, 245, 245);
+    font-family:'Roboto Slab', serif;
+    line-height: 1.5;
     margin: 0;
-    font-family: Arial, sans-serif;}
-  
-  .container {
-    display: flex;
-    height: 100vh;
-    margin-top: 50px;}
-  
-.sidebar {
-    width: 200px;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);}
-  
-  
-.title {
+    padding: 0;
+    
+
+  }
+  h1 {
     text-align: center;
-    margin-bottom: auto;
-padding-block: 50px;}
+    font-family:'Roboto Slab', serif;
+
+
+    
+  }
   
-.menu a {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 18px;
 
+  
+  
+  h1, h2, h3, h4, h5, h6 {
+    align-items: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;}
+
+  
+
+
+header {
+  display: block;
+  block-size: auto;
+  background-color: #556b2f;
+  color: #fff;
+  
+}
+
+.logo {
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  max-width: 100%;
+  height: auto;
+}
+
+.logo img {
+  max-width: 100%;
+  height: auto;
+}
    
+  /* Estilos de encabezado */
+  header {
+    background-color: rgb(245, 245, 245);
+    color: rgb(171, 202, 154);
+    padding: 20px;}
+  
+    .spacer {
+      height: 50px;}
+  /* Estilos responsivos */
+  @media only screen and (min-width: 768px) {
+    body {
+      align-items: center;
+      
+    }
+    
+     h2, h3, h4, h5, h6 {
+      font-size: smaller;
+    }}
+
+  a {
+    display: inline-block;
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: small;
   }
-  .contac{
-display: block;
-flex: auto;
-    padding-top: 50px;
-  }
+  
 
-  p{ 
-    display: flex;
-
-    color: rgb(0, 0, 0);
-    border:-0;
-  font-size: small;
-
-}
-
-em{
-    width: 500px;
-
-}
-  .spacer {
-    height: 100px;}
+  
