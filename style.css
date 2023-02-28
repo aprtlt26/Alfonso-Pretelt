@@ -27,10 +27,10 @@ body {
 }
 
 
-
 .contac {
   display: block;
   flex: auto;
+  padding: 5px;
 }
 
 p {
@@ -42,17 +42,19 @@ p {
   opacity: 0; /* Establece la opacidad inicial en 0 */
   transition: opacity 1s ease; /* Aplica una transición suave de 1 segundo a la opacidad */
   text-decoration: none;
+  
     
 }
 
-a {
-  text-decoration: none; /* Quita el subrayado */
-  color: #000000; /* Establece el color del enlace */
-  font-family: "Courier New", Courier, monospace;
+section a{
+  color: #2288b1; /* color original del enlace */
+  transition: color 0.3s ease-in-out; /* animación al cambiar el color */
 }
 
-a:hover {
-  color: #00ff44; /* Cambia el color del enlace cuando se coloca el cursor sobre él */
-  text-decoration: underline; /* Agrega una línea de subrayado cuando se coloca el cursor sobre el enlace */
-}
 
+
+ section a:hover {
+  color: #cdd417; /* nuevo color del enlace al pasar el cursor */
+  text-decoration: none; /* quita el subrayado */
+
+}
