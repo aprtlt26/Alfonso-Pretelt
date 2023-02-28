@@ -1,34 +1,36 @@
 body {
-  padding-top: 5px;
+  padding-top: 60px;
   margin: 0;
-  padding-inline-end: 10px;
-  text-decoration: none;
 }
 
 .container {
   display: flex;
   height: 100vh;
-  margin-top: 50px;
   font-family: "Courier New", Courier, monospace;
 }
 
-.img {
-  margin-block-end: 50px;
+
+.images {
+  padding: auto;
+  display: flex;
+  padding-top: 120px;
+}
+
+.images img {
+  margin-right: 5px;
 }
 
 .title {
   text-align: center;
   margin-bottom: auto;
-  padding-block: 50px;
+  padding-top: 50px;
 }
-
 
 
 
 .contac {
   display: block;
   flex: auto;
-  padding-top: 50px;
 }
 
 p {
@@ -49,7 +51,7 @@ a {
   font-family: "Courier New", Courier, monospace;
 }
 
-
 a:hover {
   color: #00ff44; /* Cambia el color del enlace cuando se coloca el cursor sobre él */
+  text-decoration: underline; /* Agrega una línea de subrayado cuando se coloca el cursor sobre el enlace */
 }
