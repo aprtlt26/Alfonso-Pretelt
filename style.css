@@ -1,47 +1,55 @@
 body {
-    padding-top: 5px;
-    margin: 0;
-    font-family: Arial, sans-serif;
+  padding-top: 5px;
+  margin: 0;
+  padding-inline-end: 10px;
+  text-decoration: none;
 }
-    
-  
-  .container {
-    display: flex;
-    height: 100vh;
-    margin-top: 50px;}
-  
+
+.container {
+  display: flex;
+  height: 100vh;
+  margin-top: 50px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.img {
+  margin-block-end: 50px;
+}
 
 .title {
-    text-align: center;
-    margin-bottom: auto;
-padding-block: 50px;}
-  
-.menu a {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 18px;
-
-   
-  }
-  .contac{
-display: block;
-flex: auto;
-    padding-top: 50px;
-  }
-
-  p{ 
-    display: flex;
-
-    color: rgb(0, 0, 0);
-    border:-0;
-  font-size: small;
-
+  text-align: center;
+  margin-bottom: auto;
+  padding-block: 50px;
 }
 
-em{
-    width: 500px;
 
+
+
+.contac {
+  display: block;
+  flex: auto;
+  padding-top: 50px;
 }
 
-.spacer {
-      height: 50px;}
+p {
+  display: flex;
+  color: rgb(0, 0, 0);
+  border: -0;
+  font-size: smaller;
+  font-family: "Courier New", Courier, monospace;
+  opacity: 0; /* Establece la opacidad inicial en 0 */
+  transition: opacity 1s ease; /* Aplica una transición suave de 1 segundo a la opacidad */
+  text-decoration: none;
+    
+}
+
+a {
+  text-decoration: none; /* Quita el subrayado */
+  color: #000000; /* Establece el color del enlace */
+  font-family: "Courier New", Courier, monospace;
+}
+
+
+a:hover {
+  color: #00ff44; /* Cambia el color del enlace cuando se coloca el cursor sobre él */
+}
