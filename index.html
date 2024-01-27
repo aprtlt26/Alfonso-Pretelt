@@ -12,15 +12,15 @@
     <div class="container">
 
   </head>
-  <body>
- <header> 
- 
-  <div class="col-md-6">
-    
+  <body > 
+    <div class="flex-center">
+
     <h3 > <em  style="font-size:larger" class="title">Alfonso Pretelt</em></h3>
 
-    <div class="images">  
-<img src=img/310673608_10159136771998321_1020557556481978356_n.jpeg> <img src=img/310990544_10159136772058321_3478326722295829648_n.jpeg>
+    <div class="imagen">  
+<img src=img/310673608_10159136771998321_1020557556481978356_n.jpeg> 
+<section></section>
+<img src=img/310990544_10159136772058321_3478326722295829648_n.jpeg>
 </div>
 </header>
 
@@ -34,16 +34,15 @@
         <section id="about-me">
 
           
-          <h4> About me</h4>
 
           <p id="texto-escritura-automatica">
           <div>
-            Bogotá Colombia. 1987.
+           <span>  Bogotá Colombia. 1987. </span>
            </div>
-            Multimedia artist with multiple interests in the scientific, sound and plastic fields.
+          <span> Multimedia artist with multiple interests in the scientific, sound and plastic fields.
             Experimental, electroacoustic composer and video artist.
             Psychologist with interest in the artistic and transpersonal field.
-            Audiovisual and Web developer.  </p>
+            Audiovisual and Web developer.  </span>
                      
       
 <div>
@@ -65,7 +64,7 @@
           <h4>Web Develop </h4>
 
           <h6> [Content Creator & Digital Marketing] </h6>
-          <a href="https://creadordigital.netlify.app/"target="_blank">* Content Creator & Digital Marketing </a>
+          <a href="https://vitalspherestudio.netlify.app/"target="_blank">* Content Creator & Digital Marketing </a>
           <div>
           <h6> [interactive art and psychology] </h6>
           <a href="https://aprtlt26.github.io/Mandala/"target="_blank">* Interactive Paint Meditation </a>
@@ -98,30 +97,36 @@
         <a href="https://www.instagram.com/p/CjWIDbapE5H/"target="_blank">* Workshop, art science and technology </a>
 
       </section>
-<SEction></SEction>
+
+      <section></section>
+      <section></section>
+      <section></section>
+      <div></div>
       <div>
 
       </div>
-        <section id="Sound-Desing-and-score-film Music">
-          <h4>Sound Desing and score film Music</h2>
-            <div></div>
+      <section id="Sound-Design">
+        <h4>Sound Design and Score Film Music</h4>
+  
+        <div id="sound-images" class="images">
+          <img src="jodo.jpeg" alt="Teatro Jodorowsky. Edición de sonido">
+  
+          <img src="jodok.jpeg" alt="">
+  
+          <img src="cuerp.jpeg" alt="">
+  
+          <img src="bosques.jpeg" alt="">
+        </div>
+      </section>
+          </div>
+<div class= "flex-center"> 
 
-            <img src="jodo.jpeg" alt="Teatro Jodorowsky. Edición de sonido" style="max-width: 180px; height: auto;">
-            <p>Teatro Jodorowsky. Edición de sonido</p>
-        </div>
-        <div>
-            <img src="jodok.jpeg" alt="" style="max-width: 180px; height: auto;">
-            <p>Teatro Jodorowsky. Edición de sonido</p>
-        </div>
-        <div>
-            <img src="cuerp.jpeg" alt="" style="max-width: 180px; height: auto;">
-            <p>ESCAC FILMS. Banda sonora, edición de sonido</p>
-        </div>
-        <div>
-            <img src="bosques.jpeg" alt="" style="max-width: 180px; height: auto;">
-            <p>Celula FILMS. Banda sonora, edición de sonido.</p>
-        </div>
-        <div>
+<div></div>
+  <section></section>
+  <section></section>
+  <section></section>
+  <div></div>
+
         <section id="contact">
           <h4>Contact</h4>
           <p>aprtlt26@gmail.com</p> 
@@ -136,7 +141,6 @@
 
         </section>
 
-        <P> PortafolioAlfonsoPretelt PDF</P>
         <a href="PortafolioAlfonsoPretelt.pdf" download>Descargar PDF</a>
 
         <section>
@@ -144,17 +148,16 @@
         </section>
 <div>
 </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
 <section>
 
 </section>
 
-<p><small>Desing and Develop by Alfonso Pretelt </a></small></p>
 
 <div class="pie"></div>
+
+
 
 </div>
 
@@ -162,7 +165,40 @@
 
       </div>
     </div>
-  </body>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const textElements = document.querySelectorAll('.typing');
+        textElements.forEach((textElement) => {
+          const textoCompleto = textElement.textContent;
+          textElement.textContent = '';
+  
+          let index = 0;
+  
+          function mostrarTexto() {
+            textElement.textContent += textoCompleto.charAt(index);
+            index++;
+  
+            if (index < textoCompleto.length) {
+              setTimeout(mostrarTexto, 50); // Ajusta el valor de 50 según la velocidad que desees
+            }
+          }
+  
+          mostrarTexto();
+        });
+      });
+    </script>
+    
+
+  
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
 </html>
 
-
+  </body>
+</html>
