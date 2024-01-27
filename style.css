@@ -25,13 +25,12 @@ body {
 .imagen img {
   max-width: 100%;
   height: auto;
-  margin-right: 40px; /* Ajusta el espacio entre las imágenes */
+  margin-right: 40px; 
 }
 
 
 
 
-/* Estilo específico para la sección Sound Design */
 #sound-images {
   display: flex;
   justify-content: center;
@@ -44,7 +43,7 @@ body {
 }
 
 #sound-images img:hover {
-  transform: scale(2.15); /* Ajusta el valor según el nivel de zoom que desees */
+  transform: scale(2.15); 
 }
 
 .title {
@@ -84,14 +83,19 @@ span.typing {
   }
 }
 section a{
-  color: #3aedd2; /* color original del enlace */
-  transition: color 0.3s ease-in-out; /* animación al cambiar el color */
+  color: #3aedd2; 
+  transition: color 0.3s ease-in-out; 
 }
 
 
 
  section a:hover {
-  color: #cfd60b; /* nuevo color del enlace al pasar el cursor */
-  text-decoration: none; /* quita el subrayado */
+  color: #cfd60b; 
+  text-decoration: none; 
 
+}
+
+
+.spacer {
+  height: 50px; 
 }
