@@ -3,21 +3,48 @@ body {
   margin: 0;
 }
 
+.flex-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 .container {
   display: flex;
-  height: 100vh;
+  flex-direction: column;
+  align-items: center;
   font-family: "Courier New", Courier, monospace;
 }
 
-
-.images {
-  padding: auto;
+.imagen {
   display: flex;
-  padding-top: 120px;
+  justify-content: center;
+  align-items: center;
 }
 
-.images img {
-  margin-right: 5px;
+.imagen img {
+  max-width: 100%;
+  height: auto;
+  margin-right: 40px; /* Ajusta el espacio entre las imágenes */
+}
+
+
+
+
+/* Estilo específico para la sección Sound Design */
+#sound-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;}
+
+#sound-images img {
+  width: 180px;
+  height: auto;
+  margin-right: 10px;
+}
+
+#sound-images img:hover {
+  transform: scale(2.15); /* Ajusta el valor según el nivel de zoom que desees */
 }
 
 .title {
@@ -26,35 +53,45 @@ body {
   padding-top: 50px;
 }
 
-
 .contac {
   display: block;
   flex: auto;
-  padding: 5px;
+  padding: 10px;
 }
 
-p {
-  display: flex;
-  color: rgb(0, 0, 0);
-  border: -0;
+span.typing {
+  display: inline-block;
+  border-right: 4px solid;
   font-size: smaller;
-  font-family: "Courier New", Courier, monospace;
-  opacity: 0; /* Establece la opacidad inicial en 0 */
-  transition: opacity 1s ease; /* Aplica una transición suave de 1 segundo a la opacidad */
-  text-decoration: none;
-  
-    
+  font-family: "Courier New", Courier, monospace, "roboto";
+  opacity: 0;
+  white-space: nowrap;
+  width: 0;
+  animation: typing 2s steps(12), blink 5s infinite step-end alternate;
+  overflow: hidden;
+  margin: 20px auto;
 }
 
+@keyframes typing {
+  from {
+    width: 0
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
 section a{
-  color: #2288b1; /* color original del enlace */
+  color: #3aedd2; /* color original del enlace */
   transition: color 0.3s ease-in-out; /* animación al cambiar el color */
 }
 
 
 
  section a:hover {
-  color: #cdd417; /* nuevo color del enlace al pasar el cursor */
+  color: #cfd60b; /* nuevo color del enlace al pasar el cursor */
   text-decoration: none; /* quita el subrayado */
 
 }
