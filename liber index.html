@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página con Pago PayPal</title>
+</head>
+<body>
+
+    <!-- Contenido protegido -->
+    <div id="contenido" style="display:none;">
+        <h1>Contenido Protegido</h1>
+        <p>¡Gracias por tu pago! Aquí está el contenido que has desbloqueado.</p>
+    </div>
+
+    <!-- Botón de Pago de PayPal -->
+    <div id="paypal-button-container"></div>
+
+    <!-- Script de PayPal -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID"></script>
+
+    <script>
+        // Renderizar el botón de PayPal
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                // Configurar la transacción de PayPal
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '10.00' // Precio en dólares
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                // Acciones después de la aprobación del pago
+                document.getElementById('contenido').style.display = 'block';
+            }
+        }).render('#paypal-button-container');
+    </script>
+
+</body>
+</html>
