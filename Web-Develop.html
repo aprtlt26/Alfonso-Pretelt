@@ -10,14 +10,14 @@
     <meta name="author" content="alfonsopretelt">
     <meta name="robots" content="web-develop">
     <meta name="google" content="notranslate">
-        <meta property="og:image" content="rostro.jpg">
+    <meta property="og:image" content="rostro.jpg">
 
     <meta name="format-detection" content="telephone=no">
-<script>
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-    });
-</script>
+    <script>
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+    </script>
 
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -52,7 +52,7 @@
             color: #333;
             font-size: 18px;
             font-family: Arial, sans-serif;
-            
+
         }
 
         #video-container {
@@ -60,7 +60,7 @@
             margin-top: 20px;
             width: 55%;
             max-width: 800px;
-            margin: 60px auto; 
+            margin: 60px auto;
         }
 
         #video-container video {
@@ -71,7 +71,7 @@
             margin: 0 20px;
             font-size: 2.5em;
             color: #000000;
-            text-decoration: none; 
+            text-decoration: none;
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
         }
@@ -83,12 +83,12 @@
 
         }
 
-        img{
-
-
+        img {
+            display: block;
+            margin: 0 auto;
         }
+
         footer {
-        
             text-align: center;
             position: fixed;
             bottom: 0;
@@ -103,22 +103,37 @@
         p {
             text-align: justify;
             font-size: small;
-            max-width: 400px; 
+            max-width: 400px;
         }
+
         a {
-    text-decoration: none;
-    color: rgb(164, 249, 73);
-    margin: 2;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
+            text-decoration: none;
+            color: rgb(164, 249, 73);
+            margin: 2;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
 
-a:hover
- {
-    color:  rgb(179, 179, 179) ;
-    text-decoration: none;
+        a:hover {
+            color: rgb(179, 179, 179);
+            text-decoration: none;
+        }
 
- }
-
+        /* Reglas de estilo para pantallas móviles */
+        @media screen and (max-width: 576px) {
+            #menu {
+                flex-direction: column;
+                align-items: flex-end;
+            }
+            #menu a {
+                margin: 10px 0;
+            }
+            #video-container {
+                width: 90%;
+            }
+            img {
+                max-width: 80%;
+            }
+        }
     </style>
 </head>
 
@@ -129,7 +144,7 @@ a:hover
     </header>
 
     <div id="menu" class="container">
-        <a href="Works-Projects.html" >Works Projects</a>
+        <a href="Works-Projects.html">Works Projects</a>
         <a href="about.html">About</a>
         <a href="CV.html">CV</a>
         <a href="Web-Develop.html">Web Develop</a>
@@ -139,37 +154,33 @@ a:hover
 
     <div class="container">
 
-            <div style="text-align: center;  padding-top: 100px">
-        <img src="tarot.png" alt="t" height="100">
-        <img src="tsz.jpg" alt="" height="100">
-        
-        <p style="display: flex; align-items: center;">
+        <div style="text-align: center; padding-top: 100px">
+            <img src="tarot.png" alt="t" height="100">
+            <img src="tsz.jpg" alt="" height="100">
 
-      
+            <p style="display: flex; align-items: center;">
 
-
-​  <h2> Interactive art & Pedagogy </h2>
-<a href="https://aprtlt26.github.io/Mandala/"target="_blank">* Interactive Paint Meditation </a>
-<div>
-</div>
-<a href="https://soundtarot.com/"target="_blank">* Interactive tarot sound Meditation  </a>
-<div></div>
-<a href="https://ideofxnica.netlify.app/"target="_blank">* Ideofónica  </a>
+                <h2> Interactive art & Pedagogy </h2>
+                <a href="https://aprtlt26.github.io/Mandala/" target="_blank">* Interactive Paint Meditation </a>
+                <div>
+                </div>
+                <a href="https://soundtarot.com/" target="_blank">* Interactive tarot sound Meditation </a>
+                <div></div>
+                <a href="https://ideofxnica.netlify.app/" target="_blank">* Ideofónica </a>
 
 
-    </p>
-      
-            
-             
+            </p>
 
-                <footer class="container text-center mt-4">
-                    <p class="small">®Alfonso Pretelt all rights Reserved</p>
-                </footer>
 
-    <!-- Bootstrap JS y Popper.js (opcional, pero necesario para algunos componentes de Bootstrap) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+            <footer class="container text-center mt-4">
+                <p class="small">®Alfonso Pretelt all rights Reserved</p>
+            </footer>
+
+            <!-- Bootstrap JS y Popper.js (opcional, pero necesario para algunos componentes de Bootstrap) -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
