@@ -13,10 +13,10 @@
     <meta name="format-detection" content="telephone=no">
 
     <script>
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-    });
-</script>
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+    </script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -52,103 +52,106 @@
             font-family: Arial, sans-serif;
         }
 
-
-     
         #video-container {
             text-align: center;
             margin-top: 20px;
             width: 55%;
             max-width: 800px;
-            margin-top: 60px;
-            
+            margin: 60px auto;
         }
 
         #video-container video {
             width: 100%;
-            margin: 2;
         }
 
         h4 {
             margin: 0 20px;
             font-size: 2.5em;
             color: #333;
-            text-decoration: none; 
+            text-decoration: none;
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
         }
 
         footer {
             padding-top: 200px;
+            text-align: center;
         }
 
         p {
-        padding: auto;
+            padding: auto;
             text-align: justify;
             font-size: small;
-            max-width: 600px; 
-               }
-        
-
-        a{
-            margin-top: 20px;
-
-            
+            max-width: 600px;
         }
-        
-        img{
+
+        a {
+            margin-top: 20px;
+            text-decoration: none;
+            color: rgb(164, 249, 73);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        a:hover {
+            color: rgb(179, 179, 179);
+        }
+
+        img {
             padding: 7px;
             margin-bottom: 50px;
+            display: block;
+            margin: 0 auto;
+            max-width: 80%;
         }
 
+        /* Reglas de estilo para pantallas móviles */
+        @media screen and (max-width: 576px) {
+            #menu {
+                flex-direction: column;
+                align-items: flex-end;
+            }
+            #menu a {
+                margin: 10px 0;
+            }
+            img {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 
 <body>
     <header class="container">
         <a href="index.html" style="text-decoration: none" >
-            <h4 id="back-to-top">Alfonso Pretelt</h4></a>
+            <h4 id="back-to-top">Alfonso Pretelt</h4>
+        </a>
     </header>
 
     <div id="menu" class="container">
-        <a href="Works-Projects.html" >Works Projects</a>
+        <a href="Works-Projects.html">Works Projects</a>
         <a href="about.html">About</a>
         <a href="CV.html">CV</a>
         <a href="Web-Develop.html">Web Develop</a>
         <a href="Contact.html">Contact</a>
     </div>
+
     <div class="container">
-        <div></div>
-
-        <a href="https://aprtlt.wixsite.com/aprtlt"   style="color: rgb(128, 255, 0);text-decoration: none; margin: 20px; margin-bottom: 50px;
-        " target="_blank">Art Music Film</a>
-
-<div>
-
-</div>
-        <div class="container">
-
+        <div style="text-align: center; padding-top: 100px">
+            <img src="cub.gif" alt="GIF Vertical" height="100">
+            <img src="tv.jpeg" alt="GIF Vertical" height="100">
+            <img src="Ojos.gif" alt="GIF Vertical" height="100">
+            <img src="Oracle.gif" alt="GIF Vertical" height="100">
+            <img src="cod.jpeg" alt="GIF Vertical" height="120">
+        </div>
         <p style="display: flex; align-items: center;">
-            <div style="text-align: center;">
-        <img src="cub.gif" alt="GIF Vertical" height="100">
-        <img src="tv.jpeg" alt="GIF Vertical" height="100">
-        <img src="Ojos.gif" alt="GIF Vertical" height="100">
-        <img src="Oracle.gif" alt="GIF Vertical" height="100">
-        <img src="cod.jpeg" alt="GIF Vertical" height="120">
-
-
-
+            His work with sound focuses on electroacoustic composition, modular synthesis and microsound. Musically, he places himself at the avant-garde of modular electronics, noise and ambient-drone.
+        </p>
+        <p style="display: flex; align-items: center;">
+            As for video, he has explored different technological formats, searching for an aesthetic that always visually relates sound or the absence of it with the narrative or story to be told. He also uses code generation for image and sound.
+        </p>
+        <p style="display: flex; align-items: center;">
+            He manages to merge his multiple knowledge in the pedagogy of archetypes and symbolic figures of the tarot, from psychoanalytic psychology and creation, seeking to erode in the unconscious the meanings of archetypes whose language is already there, interaction with images awakens this language In us.
+        </p>
     </div>
-        
-            <p style="display: flex; align-items: center;">
-                His work with sound focuses on electroacoustic composition, modular synthesis and microsound. Musically, he places himself at the avant-garde of modular electronics, noise and ambient-drone. </p>
-
-                <p style="display: flex; align-items: center;">
-                    As for video, he has explored different technological formats, searching for an aesthetic that always visually relates sound or the absence of it with the narrative or story to be told. 
-            He also uses code generation for image and sound</p>
-            
-            <p style="display: flex; align-items: center;">
-                He manages to merge his multiple knowledge in the pedagogy of archetypes and symbolic figures of the tarot, from psychoanalytic psychology and creation, seeking to erode in the unconscious the meanings of archetypes whose language is already there, interaction with images awakens this language In us.
-    </p>
 
     <footer class="container text-center mt-4">
         <p class="small">®Alfonso Pretelt all rights Reserved</p>
