@@ -11,7 +11,6 @@
     <meta name="robots" content="index,">
     <meta name="google" content="notranslate">
     <meta property="og:image" content="rostro.jpg">
-
     <meta name="format-detection" content="telephone=no">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -51,7 +50,8 @@
         #video-container {
             text-align: center;
             margin-top: 20px;
-            width: 100%; /* Cambiado para ocupar todo el ancho disponible */
+            width: 100%;
+            overflow: hidden; /* Añadido para ocultar los controles en dispositivos móviles */
         }
 
         #video-container video {
@@ -85,7 +85,7 @@
 
 <body>
     <header class="container">
-        <a href="index.html" style="text-decoration: none" target="_blank">
+        <a href="inicio.html" style="text-decoration: none" target="_blank">
             <h4 id="back-to-top">Alfonso Pretelt</h4>
         </a>
     </header>
@@ -99,7 +99,7 @@
     </div>
 
     <div id="video-container" class="container">
-        <video src="bgcat.mp4" autoplay loop muted></video>
+        <video src="bgcat.mp4" autoplay loop muted playsinline></video>
     </div>
 
     <footer class="container text-center mt-4">
@@ -113,4 +113,3 @@
 </body>
 
 </html>
-
