@@ -10,7 +10,7 @@
     <meta name="author" content="alfonsopretelt">
     <meta name="robots" content="index,">
     <meta name="google" content="notranslate">
-        <meta property="og:image" content="rostro.jpg">
+    <meta property="og:image" content="rostro.jpg">
 
     <meta name="format-detection" content="telephone=no">
 
@@ -33,17 +33,14 @@
         }
 
         #menu {
-
             display: flex;
             background-color: #fff;
             padding: 20px;
             color: #333;
             align-items: center;
-            
         }
 
         #menu a {
-            
             margin: 0 20px;
             text-decoration: none;
             color: #333;
@@ -54,10 +51,7 @@
         #video-container {
             text-align: center;
             margin-top: 20px;
-            width: 55%;
-            max-width: 800px;
-            margin-top: 60px;
-
+            width: 100%; /* Cambiado para ocupar todo el ancho disponible */
         }
 
         #video-container video {
@@ -68,24 +62,36 @@
             margin: 0 20px;
             font-size: 2.5em;
             color: #333;
-            text-decoration: none; 
+            text-decoration: none;
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
         }
-        footer{
+
+        footer {
             padding-top: 70px;
+        }
+
+        /* Reglas de estilo para pantallas móviles */
+        @media screen and (max-width: 576px) {
+            #menu {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            #menu a {
+                margin: 10px 0;
+            }
         }
     </style>
 </head>
 
 <body>
     <header class="container">
-        <a href="inicio.html" style="text-decoration: none" target="_blank">
-            <h4 id="back-to-top">Alfonso Pretelt</h4></a>
+        <a href="index.html" style="text-decoration: none" target="_blank">
+            <h4 id="back-to-top">Alfonso Pretelt</h4>
+        </a>
     </header>
 
     <div id="menu" class="container">
-        <a href="Works-Projects.html" >Works Projects</a>
+        <a href="Works-Projects.html">Works Projects</a>
         <a href="about.html">About</a>
         <a href="CV.html">CV</a>
         <a href="Web-Develop.html">Web Develop</a>
@@ -107,3 +113,4 @@
 </body>
 
 </html>
+
