@@ -10,7 +10,7 @@
     <meta name="author" content="alfonsopretelt">
     <meta name="robots" content="About">
     <meta name="google" content="translate">
-    <meta property="og:image" content ="tsz.jpg">
+    <meta property="og:image" content="tsz.jpg">
     <link rel="icon" href="rostro.jpg" type="image/x-icon">
     <script>
         document.addEventListener('contextmenu', function (e) {
@@ -21,7 +21,6 @@
     <title>About</title>
     <style>
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
         }
 
@@ -34,7 +33,6 @@
         }
 
         #menu {
-            display: flex;
             background-color: #fff;
             padding: 20px;
             color: #333;
@@ -49,8 +47,9 @@
             font-family: Arial, sans-serif;
         }
 
-             #menu a:hover {
-    color: #c7c6c6; }
+        #menu a:hover {
+            color: #c7c6c6;
+        }
 
         footer p {
             padding-top: 20px;
@@ -62,27 +61,16 @@
             margin: 20px auto;
         }
 
-         h4 {
+        h4 {
             margin: 0 20px;
             font-size: 2.5em;
             color: #333;
             text-decoration: none;
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;}
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
 
         h4:hover {
-             color: hsl(73, 100%, 81%)}
-
-}
-
-        /* Reglas de estilo para pantallas móviles */
-        @media screen and (max-width: 576px) {
-            #menu {
-                flex-direction: column;
-                align-items: flex-end;
-            }
-            #menu a {
-                margin: 10px 0;
-            }
+            color: hsl(73, 100%, 81%);
         }
     </style>
 </head>
@@ -94,29 +82,49 @@
         </a>
     </header>
 
-    <div id="menu" class="container">
-        <a href="Works-Projects.html">Works Projects</a>
-        <a href="about.html">About</a>
-        <a href="CV.html">CV</a>
-        <a href="New-Media.html">New Media</a>
-        <a href="Contact.html">Contact</a>
-    </div>
+    <nav id="menu" class="navbar navbar-light navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Menu</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Works-Projects.html">Works Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="CV.html">CV</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="New-Media.html">New Media</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <div class="container">
-        <p class="container text-justify">
-            Alfonso Pretelt is musician and audiovisual artist, specialized in sound and video art. at the University of Barcelona, and sonology at Royal Conservatoire The Hague.
-            He studied music theory and piano with the Russian teachers Irina Litvin, Irina Sachli, and Dimitro Riesnik.
-            He has studied electroacoustic composition with Alejandro Iglesias Rossi, Jose Manuel Berenguer and Ricardo Mandolini. I have studied sound art & video with Barbara Held, Carmen Pardo and Jose Manuel Berenguer. He studied Sonology with: Joel Ryan, Peter Pabon, Kess Tasselar
+        <p class="text-justify">
+            Alfonso Pretelt is a musician and audiovisual artist, specialized in sound and video art, studying at the University of Barcelona, and sonology at the Royal Conservatoire The Hague.
+            He studied music theory and piano with Russian teachers Irina Litvin, Irina Sachli, and Dimitro Riesnik.
+            He has studied electroacoustic composition with Alejandro Iglesias Rossi, Jose Manuel Berenguer, and Ricardo Mandolini. He studied sound art & video with Barbara Held, Carmen Pardo, and Jose Manuel Berenguer. He studied Sonology with: Joel Ryan, Peter Pabon, Kess Tasselar.
             His studies in cinematography and psychology complement his vision as a creator and post-artist.
         </p>
-        <p class="container text-justify">
-            He is the director of Ideofónica, a magazine of Latin American sound art and auralities. Web developer and content creator. He has been a teacher and workshop leader in sound and video art at the Artka foundation, ASAB, Bogotá Planetarium, datasketch and ckaweb.
+        <p class="text-justify">
+            He is the director of Ideofónica, a magazine of Latin American sound art and auralities. Web developer and content creator. He has been a teacher and workshop leader in sound and video art at the Artka foundation, ASAB, Bogotá Planetarium, datasketch, and ckaweb.
         </p>
-        <p class="container text-justify">
+        <p class="text-justify">
             Since 2012, I have premiered sound works, experimental shorts & videos pieces at numerous festivals in Europe and Latin America. I have concentrated on acoustic research, experimental music composition, and audiovisual development. I promote deep listening experiences and pedagogies.
             Tarotist: I strengthened my studies of tarot and psychomagic collaborating with Jodorowsky as a musician and assistant in psychomagic theater in Argentina and Mexico 2013 – 201.
-            His works, experimental shorts & videos have been presented at numerous festivals in Europe, Latin America and Asia,
-            <a href="https://aprtlt.wixsite.com/aprtlt/cv"> CV+</a>
+            His works, experimental shorts & videos have been presented at numerous festivals in Europe, Latin America, and Asia.
+            <a href="https://aprtlt.wixsite.com/aprtlt/cv">CV+</a>
         </p>
     </div>
 
@@ -130,4 +138,3 @@
 </body>
 
 </html>
-
