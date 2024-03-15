@@ -1,66 +1,459 @@
-<!DOCTYPE html>
-<html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.6.1/RecordRTC.min.js"></script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Alfonso Pretelt Artista">
-    <meta name="keywords" content="palabras clave, separadas, por, comas">
-    <meta name="author" content="alfonsopretelt">
-    <meta name="robots" content="index,">
-       <meta name="google" content="translate">
-    <meta property="og:image" content ="rostro.jpg">
-    <link rel="icon" href="rostro.jpg" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
-    <title>Alfonso Pretelt</title>
+// Configuración de Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyARA9tqBfkiFK80XcaWtS1ar6yglfmEh3g",
+authDomain: "artepsique-9ced7.firebaseapp.com",
+projectId: "artepsique-9ced7",
+storageBucket: "artepsique-9ced7.appspot.com",
+messagingSenderId: "269569252943",
+appId: "1:269569252943:web:b185a96dee1ff30ab2d43a"
+};
+document.addEventListener('DOMContentLoaded', () => {
 
-    <style>
-        body {
-            margin: 0;
-            font-family:"Anta", sans-serif;
+// Inicializa Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-        }
+    onAuthStateChanged(auth, user => {
+if (user) {
+// Si el usuario está autenticado, muestra el contenido de la página
+document.body.style.display = "block";
+// Aquí puedes incluir más lógica, como cargar datos del usuario, etc.
+} else {
+// Si el usuario no está autenticado, redirige a la página de login
+window.location.href = 'index.html';
+}
+});
 
-        header {
-            background-color: #fff;
-            padding: 20px;
-            color: #333;
-            text-align: left;
-            margin-top: 30px;
-        }
 
-        #menu {
-            display: flex;
-            background-color: #fff;
-            padding: 20px;
-            color: #333;
-            align-items: center;
-        }
 
-        #menu a {
-            margin: 0 20px;
-            text-decoration: none;
-            color: #333;
-            font-size: 18px;
-            font-family: Arial, sans-serif;
-        }
+    
+document.addEventListener('contextmenu', function(e) {
+e.preventDefault();
+alert('El clic derecho está desactivado en esta página.');
+}, false);
 
-        #menu a:hover {
-    color: #ff0000; 
+
+
+
+
+onAuthStateChanged(auth, user => {
+document.getElementById('loading').style.display = 'none';
+if (user) {
+document.body.style.display = "block";
+} else {
+window.location.href = 'index.html';
+}
+});
+
+
+
+const logoutButton = document.getElementById('logout-btn');
+
+logoutButton.addEventListener('click', () => {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+        // Cierre de sesión exitoso
+        console.log('Usuario ha cerrado sesión');
+        window.location.href = 'https://arteypsique.com'; // Redirecciona a la página de inicio de sesión o a donde prefieras
+    }).catch((error) => {
+        // Ha ocurrido un error
+        console.error('Error al cerrar sesión', error);
+    });
+});
+});
+
+
+</script>
+
+<style>
+
+   
+body {
+font-family: "Anta", sans-serif;
+margin: 20px;
+background-color: #000000;
+background-image: url('bar.gif');
+background-size: 40%;
+background-position: center;
 }
 
-        form {
+/* Ajustes para dispositivos pequeños (menos de 768px) */
+@media (max-width: 768px) {
+#text-container {
+    padding: 20px;
+    font-size: 14px; /* Aumenta la legibilidad */
+}
+
+.navbar-toggler {
+    margin: 0 auto; /* Centra el botón del menú */
+}
+
+.navbar-nav {
+    text-align: center;
+}
+
+footer {
+    padding: 10px 20px; /* Ajuste de padding para el footer */
+    font-size: 14px; /* Tamaño de texto adecuado para lectura */
+}
+}
+
+/* Ajustes para tabletas (entre 768px y 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+#text-container {
+    max-width: 90%; /* Ajusta el ancho máximo para aprovechar mejor el espacio */
+}
+}
+
+/* Estilos adicionales para mejorar la accesibilidad y la interacción */
+.nav-link, .navbar-brand, footer a {
+touch-action: manipulation; /* Mejora la respuesta táctil en dispositivos móviles */
+}
+
+.hover-word:hover, .word-hover:hover, #menu-links a:hover, #logout-btn:hover, footer a:hover {
+color: #3bc0ac; /* Cambia el color al hacer hover para mejorar la interactividad */
+}
+
+
+         .anta-regular {
+font-family: "Anta", sans-serif;
+font-weight: 400;
+font-style: normal;
+}
+
+ 
+
+#header {
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+left: 0;
+z-index: 1050; /* Eleva el z-index para que esté sobre otros elementos */
+position: fixed;
+
+
+}
+
+
+#navbar {
+display: flex; /* Usa Flexbox para el diseño */
+justify-content: center; /* Centra los elementos horizontalmente */
+align-items: center; /* Centra los elementos verticalmente */
+color: #fbfbfb !important; /* Color de texto blanco */
+border: 2px dashed #5d626b; /* Borde personalizado */
+margin-right: auto; /* Centra el navbar ajustando automáticamente el margen derecho */
+margin-left: auto;
+position: fixed;
+background-color:  transparent;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+
+
+}
+
+
+
+#navbar-brand {
+display: flex; /* Usa Flexbox para el diseño */
+justify-content: center; /* Centra los elementos horizontalmente */
+align-items: center; 
+font-size: 1.1rem; /* Tamaño de la fuente */
+margin-top: 2px;
+padding: 8px;
+background-color:  transparent;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+
+}
+
+    
+    #navbar.navbar-expand-lg.navbar-light.bg-light {
+padding: 5px;
+        display: flex;
+        justify-content: center; /* Centra los elementos horizontalmente */
+align-items: center; 
+background-color: transparent; 
+border: 2px dashed #c4d49c;
+z-index: 1050; /* Eleva el z-index para que esté sobre otros elementos */
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+
+}
+    .navbar-nav .nav-link {
+        font-size: 1rem; 
+        color: #3bc0ac; 
+        transition: color 0.3s; 
+        margin: 0 15px; 
+    }
+
+    .navbar-nav .nav-link:hover {
+        color: #55d1ba; 
+        border: 2px dashed  #c4d49c
+
+    }
+   
+
+@media (max-width: 768px) {
+.navbar {
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Asegura que el texto también esté centrado */
+    background-color: transparent; 
+
+}
+
+.navbar-brand {
+    width: 100%; /* Ocupa todo el ancho disponible para asegurar el centrado */
+    display: block; /* Trata el elemento como un bloque para mejor manejo del centrado */
+    background-color: transparent; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+
+}
+
+/* Asegúrate de que todos los elementos del navbar estén centrados en dispositivos móviles */
+.navbar-nav,
+.navbar-toggler {
+    justify-content: center;
+    width: 100%; /* Ocupa todo el ancho para elementos internos también */
+
+}
+}
+/* Para asegurar que el navbar se expanda adecuadamente en dispositivos grandes */
+@media (min-width: 992px) {
+.navbar {
+    justify-content: center; /* Mantiene el contenido centrado en dispositivos grandes */
+    z-index: 1;
+}
+}
+
+    .navbar-toggler {
+        border: 2px dashed  #c4d49c;
+
+    }
+
+    .navbar-toggler-icon {
+        background-color: transparent; 
+        border: 2px dashed  #c4d49c
+
+    }
+
+    .navbar-toggler:focus {
+        outline:auto; 
+    }
+
+      .navbar-collapse {
+        background-color: transparent;
+
+        border: 2px dashed  #c4d49c
+
+    }
+
+    .navbar-collapse .navbar-nav .nav-link {
+        padding: 15px 0; 
+    }
+
+    .navbar-collapse .navbar-nav .nav-link:last-child {
+        border-bottom: none; 
+    }
+
+    
+    @media screen and (max-width: 576px) {
+.navbar-nav {
+    font-size: 0.9rem;
+    margin: 10px 15px;
+    width: 80%; /* Hace que la barra de menú use todo el ancho disponible */
+    text-align: center; /* Centra el texto de los enlaces */
+align-items: center;
+background-color:  transparent;
+
+
+}
+
+.navbar {
+    width: 80%; /* Asegura que el elemento navbar también ocupe todo el ancho */
+    text-align: center; /* Centra el texto de los enlaces */
+    background-color:  transparent;
+    
+
+    
+}
+
+.navbar-collapse {
+    width: 80%; /* Hace que el contenido colapsable de la navbar ocupe todo el ancho */
+    text-align: center; /* Centra el texto de los enlaces */
+    background-color:  transparent;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+
+
+}
+
+.navbar-toggler {
+    margin-right: 0; /* Elimina el margen derecho para alinear el toggler a la derecha */
+    text-align: center; /* Centra el texto de los enlaces */
+;
+
+}
+
+.navbar-nav .nav-link {
+    text-align: center; /* Centra el texto de los enlaces */
+}
+}
+
+
+
+    #menu-links a {
+        color: #767676; 
+        text-decoration: none;
+        margin: 0 20px; 
+        background-color:  transparent;
+
+    }
+
+    #menu-links a:hover {
+     border: 2px dashed  #c4d49c      
+      }
+
+    #header img {
+        width: 75px;
+        height: auto;
+        margin-right: 10px;
+    }
+
+    img[src="Capa%2031@3x.png"] {
+        display: none;
+    }
+
+    .section {
+        padding: 20px; 
+        text-align: center;
+    }
+
+    /* Estilos para la barra de menú */
+.navbar {
+background-color: transparent !important; /* Hace la barra de menú transparente */
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave */
+}
+
+/* Estilos para el menú desplegable en versión móvil */
+.navbar-collapse {
+background-color: rgba(255, 255, 255, 0.8); /* Semi-transparente con sombra */
+box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2); /* Sombra más notoria */
+}
+
+/* Ajusta la transparencia del botón del menú desplegable para mejor coherencia visual */
+.navbar-toggler {
+background-color: rgba(255, 255, 255, 0.5); /* Semi-transparente */
+border-color: rgba(255, 255, 255, 0.5); /* Ajusta el color del borde del botón */
+}
+.navbar-toggler-icon {
+background-image: url("mago.gif"); /* Asegúrate de usar tu propia imagen SVG aquí */
+}
+
+
+    #text-container {
+max-width: 800px; /* Ancho máximo para pantallas grandes */
+margin: auto; /* Centra el contenedor */
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+padding: 30px;
+background-color: rgb(249, 249, 249);
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+border-radius: 10px;
+font-size: 80%;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+#text-container {
+    max-width: 90%; /* Ajusta el ancho máximo para pantallas pequeñas */
+    padding: 15px; /* Reduce el padding para más espacio */
+    font-size: 16px; /* Ajusta el tamaño de la fuente para mejor legibilidad */
+}
+}
+
+#text-container:hover{
+color: #3bc0ac;
+}
+
+
+
+
+#logout-btn{
+color: gray;
+background-color: #fff;
+border: none;
+
+}
+#logout-btn:hover{
+border: 2px dashed  #c4d49c
+}
+
+footer {
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+background-color: transparent; /* Color de fondo del footer */
+
+box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1); /* Sombra suave (opcional) */
+
+
+color: rgb(103, 103, 103); /* Color del texto */
+text-align: center; /* Centra el texto horizontalmente */
+padding: 5px 0; /* Añade un poco de espacio dentro del footer */
+}
+
+footer a {
+color: #515151; /* Color de los enlaces */
+text-decoration: none; /* Elimina el subrayado de los enlaces */
+
+}
+
+footer a:hover {
+color: #00f7b5;
+text-decoration: none; /* Elimina el subrayado de los enlaces */
+
+}
+
+#text-container{
+color: rgb(121, 121, 121);
+}
+.word-hover:hover {
+color: #75fa00; /* Cambia el color al pasar el mouse */
+cursor: pointer;
+/* Agrega aquí más estilos si necesitas */
+}
+form {
+
+    color: #34cfb8;
             display: flex;
             flex-direction: column;
             max-width: 400px;
             margin: auto;
-            padding-top: 70px;
+            padding-top: 150px;
         }
 
         label {
@@ -78,13 +471,16 @@
             padding: 8px;
             margin: 5px 0;
             box-sizing: border-box;
+            border: 2px dashed #c2f700;
+            background-color: #767676;
         }
 
         button {
             background-color: #000000;
-            color: white;
+            border: 2px dashed #c2f700;
+
+            color: rgb(107, 39, 255);
             padding: 10px;
-            border: none;
             cursor: pointer;
         }
 
@@ -99,29 +495,57 @@
         h4 {
             margin: 0 20px;
             font-size: 2.5em;
-            color: #333;
+            color: #a5a3a3;
             text-decoration: none;
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
-  h4:hover {
-             color: hsl(73, 100%, 81%)}
+  
+</style>
 
-    </style>
+</style>
 </head>
 
 <body>
-    <header class="container">
-        <a href="index.html" style="text-decoration: none">
-            <h4 id="back-to-top">Alfonso Pretelt</h4>
-        </a>
+
+<header id="header">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" style="color: #c4d49c;" href="about.html">ARTE & PSIQUE</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div id="menu-links" class="navbar-nav">
+                <a class="nav-link" href="Aprendizaje.html">Curso</a>
+                
+<a class="nav-link" href="opensoundt.html" target="_blank">Tarot FQ</a>
+<a class="nav-link" href="collage.html">Collage</a>
+
+<button id="logout-btn">Cerrar Sesión</button>
+
+            </div>
+        </nav>
+
+
+
     </header>
 
-    <div id="menu" class="container">
-        <a href="Works-Projects.html">Works</a>
-        <a href="about.html">About</a>
-        <a href="CV.html">CV</a>
-        <a href="New-Media.html">Web Media</a>
-        <a href="Contact.html">Contact</a>
+
+    <div id="loading" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: rgb(255, 255, 255); color: rgb(0, 255, 21); z-index: 1000;">
+        Cargando...
+    <img src="collagetarot.gif" alt="">        </div>
+   
+    <div>
+
+    </div>
+
+    <section>
+    </section>
+    
+    <div style="text-align: center;">
+        <a href="index.html">
+        </a>
     </div>
 
     <div class="container">
@@ -153,5 +577,6 @@
 </body>
 
 </html>
+
 
 
