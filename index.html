@@ -6,154 +6,166 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Alfonso Pretelt Artista">
-    <meta name="keywords" content="Alfonsopretelt, artesonoro, videoarte, experimental, artecolombia">
+    <meta name="keywords" content="palabras clave, separadas, por, comas">
     <meta name="author" content="alfonsopretelt">
     <meta name="robots" content="index,">
-    <meta name="google" content="translate">
-    <meta property="og:image" content ="img.jpg">
-    <link rel="icon" href="rostro.jpg" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <meta name="google" content="notranslate">
+    <meta name="format-detection" content="telephone=no">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 
-
-
-      <script>
-        document.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
-        });
-    </script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <title>Alfonso Pretelt</title>
 
     <style>
-        body {
-            margin: 0;
-            font-family:"Anta", sans-serif;
-                        overflow: hidden;
-
-        }
-
-        .anta-regular {
-  font-family: "Anta", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
+      
 
         header {
-            background-color: #fff;
+            background-color: #020202;
             padding: 20px;
             color: #333;
             text-align: left;
             margin-top: 30px;
+            background-color:#b8b8b8 transparent;
+
         }
 
         #menu {
+
             display: flex;
-            background-color: #fff;
-            padding: 20px;
-            color: #333;
+            background-color:#b8b8b8 transparent;
+border-radius: 10px;         
+   padding: 20px;
+            color: #f0e4e4;
             align-items: center;
+            box-shadow: #2a2a2a;
+
+        }
+        #menu:hover{
+            color: #d3ff96;
+
         }
 
         #menu a {
+            
             margin: 0 20px;
             text-decoration: none;
-            color: #333;
+            color: #e2e2e2;
             font-size: 18px;
             font-family: Arial, sans-serif;
+
         }
 
-      
+        #video-container {
+            text-align: center;
+            margin-top: 20px;
+            width: 55%;
+            max-width: 800px;
+            margin-top: 60px;
+
+        }
+
+        #video-container video {
+            width: 100%;
+        }
+
         h4 {
             margin: 0 20px;
             font-size: 2.5em;
-            color: #333;
-            text-decoration: none;
+            color: #b8b8b8;
+            text-decoration: none; 
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+        }
+        h4:hover{
+            color: #c3ff00;
+
         }
 
-        h4:hover {
-             color: hsl(73, 100%, 81%)}
+        #p5-canvas canvas {
+    position: absolute; /* Posiciona fijamente el lienzo */
+    top: 0;
+    left: 0;
+    z-index: -1; /* Asegura que el lienzo quede detrás de todo el contenido */
+}
 
-        footer {
-            padding-top: 70px;
-        }
+body, html {
+    height: 100%; /* Asegura que el cuerpo y html ocupen toda la altura de la ventana */
+    margin: 0;
+    overflow-x: hidden; /* Evita el desbordamiento horizontal */
+    background-color: black;
+}
 
-        /* Reglas de estilo para pantallas móviles */
-        @media screen and (max-width: 576px) {
-            #menu {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            #menu a {
-                margin: 10px 0;
-            }
-        }
+footer {
+    position: relative; /* Asegura que el footer se mantenga visible */
+    z-index: 10; /* Posiciona el footer por encima del lienzo */
+    /* Otros estilos de footer */
+}
+
+
+      
     </style>
 </head>
+<div class="container" id="int"> 
 
 <body>
     <header class="container">
-        <a href="index.html" style="text-decoration: none">
-            <h4 id="back-to-top">Alfonso Pretelt</h4>
-        </a>
+        <a href="inicio.html" style="text-decoration: none" target="_blank">
+            <h4 id="back-to-top">Alfonso Pretelt</h4></a>
     </header>
 
     <div id="menu" class="container">
-        <a href="Works-Projects.html">Works</a>
+        <a href="Works-Projects.html" >Works Projects</a>
         <a href="about.html">About</a>
         <a href="CV.html">CV</a>
-        <a href="New-Media.html">Web Media</a>
+        <a href="Web-Develop.html">Web Develop</a>
         <a href="Contact.html">Contact</a>
     </div>
 
-  <script>
+ 
+
+    
+    <script>
         let angle = 1;
         let circleSize = 500;
         let spinning = true;
-
+    
         function setup() {
             createCanvas(windowWidth, windowHeight);
             stroke(255);
             noFill();
             strokeWeight(1);
         }
-
+    
         function draw() {
             background(0);
             translate(width / 2, height / 2);
-
+    
             if (spinning) {
                 angle += 1;
-
+    
             }
-
+    
     
         let circleSize = map(mouseX, 0, width, 10, 800);
-
+    
             for (let i = 0; i < 800; i++) {
                 let offset = TWO_PI / 200 * i;
                 let x = cos(angle + offset) * 500;
-                let y = sin(angle + offset) * 100;
+                let y = sin(angle + offset) * 300;
+                
 
-
-                ellipse(x, y, x,  circleSize, circleSize);
+    
+    
+                ellipse(x, y, y,    circleSize, circleSize);
             }
         }
-
+    
         function mousePressed() {
             spinning = !spinning;
         }
     </script>
-
-    <footer class="container text-center mt-4">
-        <p class="small">®Alfonso Pretelt all rights Reserved</p>
-    </footer>
-
     <!-- Bootstrap JS y Popper.js (opcional, pero necesario para algunos componentes de Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
