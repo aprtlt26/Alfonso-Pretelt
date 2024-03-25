@@ -31,6 +31,8 @@
         body {
             margin: 0;
             font-family:"Anta", sans-serif;
+                        overflow: hidden;
+
         }
 
         .anta-regular {
@@ -63,17 +65,7 @@
             font-family: Arial, sans-serif;
         }
 
-        #video-container {
-            text-align: center;
-            margin-top: 20px;
-            width: 100%;
-            overflow: hidden; /* Añadido para ocultar los controles en dispositivos móviles */
-        }
-
-        #video-container video {
-            width: 100%;
-        }
-
+      
         h4 {
             margin: 0 20px;
             font-size: 2.5em;
@@ -117,9 +109,44 @@
         <a href="Contact.html">Contact</a>
     </div>
 
-    <div id="video-container" class="container">
-        <img src="bgcat.gif" ></video>
-    </div>
+  <script>
+        let angle = 1;
+        let circleSize = 500;
+        let spinning = true;
+
+        function setup() {
+            createCanvas(windowWidth, windowHeight);
+            stroke(255);
+            noFill();
+            strokeWeight(1);
+        }
+
+        function draw() {
+            background(0);
+            translate(width / 2, height / 2);
+
+            if (spinning) {
+                angle += 1;
+
+            }
+
+    
+        let circleSize = map(mouseX, 0, width, 10, 800);
+
+            for (let i = 0; i < 800; i++) {
+                let offset = TWO_PI / 200 * i;
+                let x = cos(angle + offset) * 500;
+                let y = sin(angle + offset) * 100;
+
+
+                ellipse(x, y, x,  circleSize, circleSize);
+            }
+        }
+
+        function mousePressed() {
+            spinning = !spinning;
+        }
+    </script>
 
     <footer class="container text-center mt-4">
         <p class="small">®Alfonso Pretelt all rights Reserved</p>
