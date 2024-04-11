@@ -222,6 +222,56 @@ let shadowOffset = 5;
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        
+    <script>
+        // Función que inicializa y reproduce el ruido verde de fondo
+        function iniciarRuidoVerde() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+            // Crear un buffer de ruido blanco
+            const bufferSize = audioContext.sampleRate * 2; // 2 segundos de buffer
+            const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+            let output = noiseBuffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                output[i] = Math.random() * 2 - 1; // Llenar el buffer con ruido blanco
+            }
+        
+            // Crear fuente de audio a partir del buffer
+            const whiteNoiseSource = audioContext.createBufferSource();
+            whiteNoiseSource.buffer = noiseBuffer;
+            whiteNoiseSource.loop = true;
+        
+            // Crear un filtro
+            const filter = audioContext.createBiquadFilter();
+            filter.type = 'lowpass'; // Tipo de filtro
+            filter.frequency.value = 500; // Frecuencia de corte del filtro
+        
+            // Crear un nodo de ganancia para controlar el volumen
+            const gainNode = audioContext.createGain();
+            gainNode.gain.value = 0.3; // Configurar el volumen inicial
+        
+            // Conectar todo
+            whiteNoiseSource.connect(filter);
+            filter.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+        
+            // Iniciar la reproducción
+            whiteNoiseSource.start(0);
+        
+            return audioContext;
+        }
+        
+        // Asegurarse de que el audio comience con la primera interacción del usuario
+        let audioContextInitialized = false; // Estado para controlar la inicialización
+        document.addEventListener('click', function startAudioContext() {
+            if (!audioContextInitialized) {
+                iniciarRuidoVerde();
+                audioContextInitialized = true; // Marcar el contexto de audio como inicializado
+                document.removeEventListener('click', startAudioContext); // Remover el manejador de eventos después del primer uso
+            }
+        });
+        </script>
 </body>
 
 </html>
