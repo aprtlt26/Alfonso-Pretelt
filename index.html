@@ -1,20 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Alfonso Pretelt Artista">
-    <meta name="keywords" content="palabras clave, separadas, por, comas">
+    <meta name="keywords" content=" alfonsopretelt, sound, art, interactive_desing">
     <meta name="author" content="alfonsopretelt">
-    <meta name="robots" content="index,">
-    <meta name="google" content="notranslate">
-    <meta name="format-detection" content="telephone=no">
+    <meta name="robots" content="collage">
+    <meta name="google" content="translate">
+    <meta property="og:type" content="www.alfonsopretelt.com">
+    <meta property="og:url" content="https://www.alfonsopretelt.com">
+    <meta property="og:title" content="artist multimedia developer ">
+    <meta property="og:description" content="Alfonso Pretwlt">
+    <meta property="og:image" content="lemt.jpeg">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 
+    <title>ART & PSYCHE</title>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.6.1/RecordRTC.min.js"></script>
+
+  
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
 
     <title>Alfonso Pretelt</title>
 
@@ -22,12 +37,14 @@
       
 
         header {
-            background-color: #020202;
+            background-color: #02020200;
             padding: 20px;
-            color: #333;
+            color: #00000000;
             text-align: left;
             margin-top: 30px;
-            background-color:#b8b8b8 transparent;
+            z-index: 200;
+            font-family: "Anta", sans-serif;
+
 
         }
 
@@ -51,9 +68,14 @@ border-radius: 10px;
             
             margin: 0 20px;
             text-decoration: none;
-            color: #e2e2e2;
+            color: #e5ffae;
             font-size: 18px;
-            font-family: Arial, sans-serif;
+            font-family: "Anta", sans-serif;
+
+        }
+        #menu a :hover {
+            color: #aec1ff;
+
 
         }
 
@@ -75,15 +97,15 @@ border-radius: 10px;
             font-size: 2.5em;
             color: #b8b8b8;
             text-decoration: none; 
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-family: "Anta", sans-serif;
 
         }
         h4:hover{
-            color: #c3ff00;
+            color: #daf18f;
 
         }
 
-        #p5-canvas canvas {
+        #p5-container {
     position: absolute; /* Posiciona fijamente el lienzo */
     top: 0;
     left: 0;
@@ -91,10 +113,15 @@ border-radius: 10px;
 }
 
 body, html {
+    display: flex;
     height: 100%; /* Asegura que el cuerpo y html ocupen toda la altura de la ventana */
     margin: 0;
+    margin-left: 0;
+    margin-right: 0;
     overflow-x: hidden; /* Evita el desbordamiento horizontal */
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0);
+    font-family: "Anta", sans-serif;
+
 }
 
 footer {
@@ -111,7 +138,7 @@ footer {
 
 <body>
     <header class="container">
-        <a href="index.html" style="text-decoration: none" target="_blank">
+        <a href="inicio.html" style="text-decoration: none" target="_blank">
             <h4 id="back-to-top">Alfonso Pretelt</h4></a>
     </header>
 
@@ -119,77 +146,78 @@ footer {
         <a href="Works-Projects.html" >Works Projects</a>
         <a href="about.html">About</a>
         <a href="CV.html">CV</a>
-        <a href="new-media.html">Web Media</a>
+        <a href="Web-Develop.html">Web Develop</a>
         <a href="Contact.html">Contact</a>
     </div>
 
  
+    <script> 
 
-  <script>
-
-
-        let angle = 1;
-        let circleSize = 300;
-        let spinning = false;
-        let isMoving = false;
-        
+    let angle = 1;
+    let circleSize = 500;
+    let spinning = true;
+    let isMoving = false;
+    
 
 
-        function setup() {
-            let cnv = createCanvas(windowWidth, windowHeight ); 
-  cnv.parent('p5-container');            stroke(255);
-            noFill();
-            strokeWeight(0.4);
-        }
-
-        function draw() {
-            background(0);
-            translate(width / 2, height / 2);
-
-            if (isMoving) {
-        let velocidad = map(frecuenciaActual, 100, 2200, 0.3, 50); // Ejemplo de mapeo
-        angle += velocidad;
+    function setup() {
+        let cnv = createCanvas(windowWidth, windowHeight ); 
+cnv.parent('p5-container');            
+stroke(255);
+        noFill();
+        strokeWeight(0.4);
     }
-    let circleSize = map(mouseX, 0, width, 10, 800);
 
-    for (let i = 0; i < 600; i++) {
-        let offset = TWO_PI / 600 * i;
-        let x = cos(angle + offset) * circleSize;
-        let y = sin(angle + offset) * circleSize;
-        ellipse(x, y, x, y, x, circleSize, circleSize);
- 
+    function draw() {
+        background(0);
+        translate(width / 2, height / 2);
 
+        if (spinning) {
+            angle += 0.05; // Incrementa el ángulo gradualmente
         
-        
-let shadowOffset = 5;
-        strokeWeight(0.8);
-        stroke(0, 0, 0, 50); 
-        ellipse(x + shadowOffset, y + shadowOffset, circleSize, circleSize);
-
-        stroke(255, 255, 255, 40);
-        for (let j = 2; j < 10; j++) {
-            ellipse(x, y, circleSize / j, circleSize / j);
-        }        strokeWeight(0.1);
-        stroke(255); 
-        
-        if (i % 20 == 0) { 
-            let dSize = 1; 
-            strokeWeight(dSize);
-            stroke(255, 255, 255, 140); 
-            point(x, y, x, y, x,y,); 
-        }
-
-        
-
-        function mousePressed() {
-            spinning = !spinning;
-        }
-
-    }
 }
-        
 
+for (let i = 0; i < 600; i++) {
+    let offset = TWO_PI / 600 * i;
+    let x = cos(angle + offset) * circleSize;
+    let y = sin(angle + offset) * circleSize;
+    ellipse(x, y, x, y, x, circleSize, circleSize);
+
+
+    
+    
+let shadowOffset = 5;
+    strokeWeight(0.8);
+    stroke(0, 0, 0, 50); 
+    ellipse(x + shadowOffset, y + shadowOffset, circleSize, circleSize);
+
+    stroke(255, 255, 255, 40);
+    for (let j = 2; j < 10; j++) {
+        ellipse(x, y, circleSize / j, circleSize / j);
+    }        strokeWeight(0.1);
+    stroke(255); 
+    
+    if (i % 20 == 0) { 
+        let dSize = 1; 
+        strokeWeight(dSize);
+        stroke(255, 255, 255, 140); 
+        point(x, y, x, y, x,y,); 
+    }
+
+    
+
+    function mousePressed() {
+        spinning = !spinning; // Alterna el estado de spinning cada vez que se hace clic
+    }
+
+}
+}
     </script>
+    
+    <div id="p5-container">
+
+        <div id="p5-canvas"></div>
+    
     <!-- Bootstrap JS y Popper.js (opcional, pero necesario para algunos componentes de Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -197,3 +225,4 @@ let shadowOffset = 5;
 </body>
 
 </html>
+
