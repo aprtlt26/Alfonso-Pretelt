@@ -188,18 +188,7 @@ let shadowOffset = 5;
     }
 }
         
-document.addEventListener('DOMContentLoaded', function() {
-    const navbarToggler = document.querySelector('.navbar-toggler');
-    const navbarMenu = document.querySelector('.navbar-collapse');
 
-    document.querySelectorAll('#navbarNav .nav-link').forEach(item => {
-        item.addEventListener('click', function() {
-            if (navbarMenu.classList.contains('show')) {
-                navbarToggler.click();
-            }
-        });
-    });
-});
     </script>
     <!-- Bootstrap JS y Popper.js (opcional, pero necesario para algunos componentes de Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
