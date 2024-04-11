@@ -125,46 +125,81 @@ footer {
 
  
 
-    
-    <script>
+  <script>
+
+
         let angle = 1;
-        let circleSize = 500;
-        let spinning = true;
-    
+        let circleSize = 300;
+        let spinning = false;
+        let isMoving = false;
+        
+
+
         function setup() {
-            createCanvas(windowWidth, windowHeight);
-            stroke(255);
+            let cnv = createCanvas(windowWidth, windowHeight ); 
+  cnv.parent('p5-container');            stroke(255);
             noFill();
-            strokeWeight(1);
+            strokeWeight(0.4);
         }
-    
+
         function draw() {
             background(0);
             translate(width / 2, height / 2);
-    
-            if (spinning) {
-                angle += 1;
-    
-            }
-    
-    
-        let circleSize = map(mouseX, 0, width, 100, 800);
-    
-            for (let i = 0; i < 800; i++) {
-                let offset = TWO_PI / 200 * i;
-                let x = cos(angle + offset) * 500;
-                let y = sin(angle + offset) * 300;
-                
 
-    
-    
-                ellipse(x, y, y,    circleSize, circleSize);
-            }
+            if (isMoving) {
+        let velocidad = map(frecuenciaActual, 100, 2200, 0.3, 50); // Ejemplo de mapeo
+        angle += velocidad;
+    }
+    let circleSize = map(mouseX, 0, width, 10, 800);
+
+    for (let i = 0; i < 600; i++) {
+        let offset = TWO_PI / 600 * i;
+        let x = cos(angle + offset) * circleSize;
+        let y = sin(angle + offset) * circleSize;
+        ellipse(x, y, x, y, x, circleSize, circleSize);
+ 
+
+        
+        
+let shadowOffset = 5;
+        strokeWeight(0.8);
+        stroke(0, 0, 0, 50); 
+        ellipse(x + shadowOffset, y + shadowOffset, circleSize, circleSize);
+
+        stroke(255, 255, 255, 40);
+        for (let j = 2; j < 10; j++) {
+            ellipse(x, y, circleSize / j, circleSize / j);
+        }        strokeWeight(0.1);
+        stroke(255); 
+        
+        if (i % 20 == 0) { 
+            let dSize = 1; 
+            strokeWeight(dSize);
+            stroke(255, 255, 255, 140); 
+            point(x, y, x, y, x,y,); 
         }
-    
+
+        
+
         function mousePressed() {
             spinning = !spinning;
         }
+
+    }
+}
+        
+document.addEventListener('DOMContentLoaded', function() {
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarMenu = document.querySelector('.navbar-collapse');
+
+    document.querySelectorAll('#navbarNav .nav-link').forEach(item => {
+        item.addEventListener('click', function() {
+            if (navbarMenu.classList.contains('show')) {
+                navbarToggler.click();
+            }
+        });
+    });
+});
     </script>
     <!-- Bootstrap JS y Popper.js (opcional, pero necesario para algunos componentes de Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
