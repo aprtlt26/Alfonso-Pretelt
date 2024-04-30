@@ -21,7 +21,7 @@
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #000000;
-            background-image:image(cod.jpeg)
+           
         }
 
         header {
@@ -67,8 +67,16 @@
 
         h4 {
             margin: 0 20px;
-            font-size: 2em;
+            font-size: 1em;
             color: #f3f3f3;
+            text-decoration: none;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+        }
+        h5 {
+            margin: 0 20px;
+            font-size: 2em;
+            color: #c9c9c9;
             text-decoration: none;
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
@@ -80,11 +88,17 @@
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
         }
+
+        h5:hover{
+            color: #f6f6f6;
+
+
+        }
  h3{
     color: #646c6c;
             margin-top: 50px;
             font-family: 'Courier New', Courier, monospace;
-            font-size: 26px;
+            font-size: 20px;
         
  }
  h3:hover{
@@ -132,14 +146,14 @@
 <body>
     <header class="container">
         <a href="index.html" style="text-decoration: none" target="_blank">
-            <h4 id="back-to-top">Alfonso Pretelt</h4></a>
+            <h5 id="back-to-top">Alfonso Pretelt</h5></a>
     </header>
 
     <div id="menu" class="container">
         <a href="Works-Projects.html" target="_blank">Works Projects</a>
         <a href="about.html" target="_blank">About</a>
         <a href="CV.html" target="_blank">CV</a>
-        <a href="new-media.html" target="_blank">Web Media</a>
+        <a href="Web-Develop.html" target="_blank">Web Develop</a>
         <a href="Contact.html" target="_blank">Contact</a>
     </div>
 
@@ -151,18 +165,19 @@
         </h3>
         <div class="row">
             <div class="col-lg-8">
-                <img  src="pla.JPG" class="img-fluid"  alt="Imagen destacada">
+
                 <img  src="cod.jpeg" class="img-fluid"  alt="Imagen destacada">
-                <img  src="sonif.JPG" class="img-fluid"  alt="Imagen destacada">
+                <img  src="pla.JPG" class="img-fluid"  alt="Imagen destacada">
                 <img  src="taller.png" class="" style="width: 50%;"  alt="Imagen destacada">
                 <img  src="tal.JPG" class="" style="width: 50%;"  alt="Imagen destacada">
+                <div class="container">
+
                 <img  src="a.jpeg" class="" style="width: 50%;"  alt="Imagen destacada">
                 <img  src="b.jpeg" class="" style="width: 50%;"  alt="Imagen destacada">
 
 
-
               
-
+            </div>
 
 
             </div>
@@ -171,16 +186,26 @@
                 <video src="sonificación.mp4" controls class="w-100"></video>
 
 
-                <H4>                    SONIFICACIÓN DE DATOS AMBIENTALES
+                <H4>      SONIFICACIÓN DE DATOS AMBIENTALES
                 </H4>
                 <div></div>
                 <p></p>
         <p style="color: #384141;"> Datos de Fuentes hídricas, suelos y humedales de Bogotá volcados en audiovisual por medio de lenguajes de programación y softwere libre como Supercollider y P5. </p>
 
                 <video src="taller.mp4" controls class="mb-2 w-100"></video>
-                <video src="tallerplanet.mp4" controls class="w-100"></video>
                 <video src="dat.mp4" controls class="w-100"></video>
 
+                <p style="color: #384141;">Data sonification is a fascinating process that involves converting data into sound and visuals to make information more accessible, especially in fields where visual analysis alone may be limited or inadequate. This can be particularly useful in environments where the data is complex or spans long periods of time, such as in environmental studies, traffic monitoring, or even in the financial sector to analyze market trends.
+</p>
+                    <p style="color: #384141;">   Key Concepts of Sonification
+                    Transformation of Data into Sound:
+                    
+                    Direct Mapping: Data values are mapped directly to sound frequencies. For example, in a temperature data set, higher temperatures could be represented with higher pitches.
+                    <p style="color: #384141;">    Parameter Modeling: The data modulates sound parameters such as timbre, dynamics, rhythm, or volume. For example, wind speed data could control the speed of a beat or the intensity of an ambient sound.</p>
+                <img  src="b.jpeg" class="" style="width: 50%;"  alt="Imagen destacada">
+                <img  src="a.jpeg" class="" style="width: 50%;"  alt="Imagen destacada">
+
+                <video src="tallerplanet.mp4" controls class="w-100"></video>
 
 
             </div>
@@ -194,7 +219,7 @@
     
 
             <footer class="container text-center mt-4">
-                <p class="small">®Alfonso Pretelt 2022</p>
+                <p class="small">®Alfonso Pretelt all rights Reserved</p>
             </footer>
 
             <!-- Bootstrap JS y Popper.js (opcional, pero necesario para algunos componentes de Bootstrap) -->
