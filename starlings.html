@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulación de Vuelo de Estorninos en Domo</title>
+    <style>
+        body { 
+            margin: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            background: radial-gradient(circle, #022, #001); 
+        }
+        canvas { 
+            border-radius: 50%; 
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+    </style>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+</head>
+<body>
+    <script>
+        class Quadtree {
+            constructor(boundary, capacity) {
+                this.boundary = boundary;
+                this.capacity = capacity;
+                this.boids = [];
+                this.divided = false;
+            }
+
+            insert(boid) {
+                if (!this.contains(boid.position)) return false;
+                if (this.boids.length < this.capacity) {
+                    this.boids.push(boid);
+                    return true;
+                }
+                if (!this.divided) {
+                    this.subdivide();
+                }
+                return (this.northeast.insert(boid) || this.northwest.insert(boid) ||
+                        this.southeast.insert(boid) || this.southwest.insert(boid));
+            }
+
+            contains(position) {
+                return (position.x >= this.boundary.x - this.boundary.width &&
+                        position.x < this.boundary.x + this.boundary.width &&
+                        position.y >= this.boundary.y - this.boundary.height &&
+                        position.y < this.boundary.y + this.boundary.height);
+            }
+
+            subdivide() {
+                let hw = this.boundary.width / 2;
+                let hh = this.boundary.height / 2;
+                let x = this.boundary.x;
+                let y = this.boundary.y;
+                this.northeast = new Quadtree({x: x + hw, y: y - hh, width: hw, height: hh}, this.capacity);
+                this.northwest = new Quadtree({x: x - hw, y: y - hh, width: hw, height: hh}, this.capacity);
+                this.southeast = new Quadtree({x: x + hw, y: y + hh, width: hw, height: hh}, this.capacity);
+                this.southwest = new Quadtree({x: x - hw, y: y + hh, width: hw, height: hh}, this.capacity);
+                this.divided = true;
+            }
+
+            query(range, found = []) {
+                if (!this.intersects(range)) return found;
+                for (let boid of this.boids) {
+                    if (this.contains(boid.position)) found.push(boid);
+                }
+                if (this.divided) {
+                    this.northeast.query(range, found);
+                    this.northwest.query(range, found);
+                    this.southeast.query(range, found);
+                    this.southwest.query(range, found);
+                }
+                return found;
+            }
+
+            intersects(range) {
+                return !(range.x > this.boundary.x + this.boundary.width || range.x < this.boundary.x ||
+                         range.y > this.boundary.y + this.boundary.height || range.y < this.boundary.y);
+            }
+        }
+
+        class Boid {
+            constructor() {
+                this.position = createVector(random(width), random(height));
+                this.velocity = p5.Vector.random2D();
+                this.velocity.setMag(random(2, 8));
+                this.acceleration = createVector();
+                this.maxForce = 3;
+                this.maxSpeed = 8;
+                this.perceptionRadius = 80;
+                this.osc = new p5.Oscillator('sine');
+                this.osc.freq(this.velocity.mag() * 100 + 20);
+                this.osc.amp(0.2);
+                this.osc.pan(this.position.x / width * 2 - 1);
+                this.osc.start();
+                this.noise = new p5.Noise('pink'); // Pink noise for a softer sound
+                this.noise.start();
+                this.noise.amp(0); // Start with no sound
+            }
+
+            updateOscillator() {
+                // Actualización de la frecuencia y la panoramización según la posición
+                this.osc.freq(100 + this.velocity.mag() * 20);
+                this.osc.pan(map(this.position.x, 0, width, -1, 1));
+            }
+            edges() {
+                if (this.position.x > width) this.position.x = 0;
+                if (this.position.x < 0) this.position.x = width;
+                if (this.position.y > height) this.position.y = 0;
+                if (this.position.y < 0) this.position.y = height;
+            }
+  
+            align(boids) {
+                let steering = createVector();
+                let total = 0;
+                for (let other of boids) {
+                    let d = dist(this.position.x, this.position.y, other.position.x, other.position.y);
+                    if (other !== this && d < this.perceptionRadius) {
+                        steering.add(other.velocity);
+                        total++;
+                    }
+                }
+                if (total > 0) {
+                    steering.div(total);
+                    steering.setMag(this.maxSpeed);
+                    steering.sub(this.velocity);
+                    steering.limit(this.maxForce);
+                }
+                return steering;
+            }
+  
+            cohesion(boids) {
+                let steering = createVector();
+                let total = 0;
+                for (let other of boids) {
+                    let d = dist(this.position.x, this.position.y, other.position.x, other.position.y);
+                    if (other !== this && d < this.perceptionRadius) {
+                        steering.add(other.position);
+                        total++;
+                    }
+                }
+  
+                if (total > 0) {
+                    steering.div(total);
+                    steering.sub(this.position);
+                    steering.setMag(this.maxSpeed);
+                    steering.sub(this.velocity);
+                    steering.limit(this.maxForce);
+                }
+                return steering;
+            }
+  
+            separation(boids) {
+                let steering = createVector();
+                let total = 0;
+                for (let other of boids) {
+                    let d = dist(this.position.x, this.position.y, other.position.x, other.position.y);
+                    if (other !== this && d < this.perceptionRadius / 2) {
+                        let diff = p5.Vector.sub(this.position, other.position);
+                        diff.div(d * d);
+                        steering.add(diff);
+                        total++;
+                    }
+                }
+                if (total > 0) {
+                    steering.div(total);
+                    steering.setMag(this.maxSpeed);
+                    steering.sub(this.velocity);
+                    steering.limit(this.maxForce);
+                }
+                return steering;
+            }
+  
+            followMouse() {
+                let mouse = createVector(mouseX, mouseY);
+                let steer = p5.Vector.sub(mouse, this.position);
+                steer.setMag(this.maxSpeed);
+                steer.sub(this.velocity);
+                steer.limit(this.maxForce);
+                return steer;
+            }
+            flock(boids) {
+                let alignment = this.align(boids);
+                let cohesion = this.cohesion(boids);
+                let separation = this.separation(boids);
+                let mouseForce = this.followMouse();
+  
+                this.acceleration.add(alignment);
+                this.acceleration.add(separation);
+                this.acceleration.add(mouseForce); 
+            }
+  
+  
+  
+            update() {
+  
+                
+                this.position.add(this.velocity);
+  this.velocity.add(this.acceleration);
+  this.velocity.limit(this.maxSpeed);
+  
+  this.acceleration.mult(0);
+  this.osc.freq(200 + this.velocity.mag() * 1260);
+  this.osc.amp(0.2);
+  this.osc.pan(this.position.x / width * 2 - 1); 
+  this.osc.freq(this.velocity.mag() * 1000 + 1);
+  this.osc.amp(0.1 * (1 - this.acceleration.mag()));
+  
+  // Actualizar panoramización basada en posición horizontal
+  this.osc.pan(this.position.x / width * 2 - 1);
+  
+  }
+  
+            show() {
+                strokeWeight(1.5);
+                stroke(255);
+                point(this.position.x, this.position.y);
+            }
+        }
+  
+        let flock = [];
+        let pause = false;
+
+        let compressor;
+  
+        let reverb;
+        let noise; // Variable para el ruido granular
+
+  
+        // Definición de las clases Quadtree y Boid como antes
+  
+  function setup() {
+      let canvas = createCanvas(800, 800); // Tamaño representativo del domo
+      canvas.style('border', '1px solid white'); // Estilo opcional para el borde
+      noise = new p5.Noise('brown'); // Usa ruido marrón para un sonido más suave
+      reverb = new p5.Reverb();
+            compressor = new p5.Compressor();
+            compressor.threshold(-24);
+            compressor.ratio(12);
+            compressor.attack(0.003);
+            compressor.release(0.25);
+            for (let i = 0; i < 170; i++) {
+                let b = new Boid();
+                flock.push(b);
+                b.osc.disconnect();
+                b.osc.connect(compressor);
+                compressor.connect(reverb);
+                reverb.process(b.osc, 3, 2);
+                noise.start();
+            noise.amp(0);
+            }
+        }
+
+       
+  
+  let zoom = 0.8; // Nivel inicial de zoom
+  let zoomSpeed = 0.02; // Velocidad de cambio de zoom
+
+
+  function draw() {
+      background(0);
+      let avgX = 0, avgY = 0; // Promedio de posiciones para modulación del ruido
+
+      if (!pause) {
+          quadtree = new Quadtree({x: 0, y: 0, width: width, height: height}, 100); // Ajustar la capacidad según necesidad
+          flock.forEach(boid => {
+              quadtree.insert(boid);
+          });
+  
+          flock.forEach(boid => {
+              boid.edges();
+              let range = {x: boid.position.x, y: boid.position.y, width: 100, height: 100}; // Ajustar el rango de consulta
+              let points = quadtree.query(range, []);
+              boid.flock(points);
+              boid.update();
+              avgX += boid.position.x;
+                    avgY += boid.position.y;
+                    boid.show();
+          });
+          avgX /= flock.length;
+                avgY /= flock.length;
+                let modAmp = map(avgX, 0, width, 0, 1);
+                noise.amp(modAmp, 0.1); // Modula la amplitud del ruido basada en la posición media X
+            } else {
+                flock.forEach(boid => {
+                    boid.show();
+                });
+            }
+        }
+        function mousePressed() {
+            if (pause) {
+                // Resetea a posiciones y velocidades aleatorias
+                flock.forEach(boid => {
+                    boid.position = createVector(random(width), random(height));
+                    boid.velocity = p5.Vector.random2D().setMag(random(2, 4));
+                    boid.osc.amp(0.1);
+                });
+            }
+            pause = !pause; // Toggle pause
+        }
+  
+  
+  </script>
+  </body>
+  </html>
