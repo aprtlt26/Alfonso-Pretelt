@@ -25,7 +25,43 @@
 
 </head>
 <body>
+
+
     <script>
+
+let audioCtx;
+        
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    alert('El clic derecho está desactivado en esta página.');
+  }, false);
+
+ 
+
+
+  document.addEventListener('DOMContentLoaded', (event) => {
+    verificarPermisoMicrofono();
+});
+
+function verificarPermisoMicrofono() {
+    navigator.permissions.query({ name: 'microphone' })
+        .then((permissionStatus) => {
+            // 'prompt' significa que no se ha pedido el permiso todavía
+            if (permissionStatus.state === 'prompt') {
+                solicitarPermisoMicrofono();
+            } else if (permissionStatus.state === 'granted') {
+                alert("El permiso para el micrófono ya ha sido concedido.");
+                // Ya puedes empezar a usar el micrófono
+            } else {
+                alert("El permiso para el micrófono ha sido denegado.");
+                // Aquí puedes guiar al usuario sobre cómo cambiar los permisos del micrófono
+            }
+        })
+        .catch((error) => {
+            console.log('Error al verificar los permisos del micrófono:', error);
+        });
+}
+    
         class Quadtree {
             constructor(boundary, capacity) {
                 this.boundary = boundary;
