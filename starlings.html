@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Simulación de Vuelo de Estorninos en Domo</title>
+    <title>StarlingsAPRTLT</title>
     <style>
         body { 
             margin: 0; 
@@ -10,7 +10,7 @@
             justify-content: center; 
             align-items: center; 
             height: 100vh; 
-            background: radial-gradient(circle, #022, #001); 
+            background: radial-gradient(circle, rgb(26, 26, 26), rgb(0, 0, 0)); 
         }
         canvas { 
             border-radius: 50%; 
@@ -97,13 +97,14 @@
                 this.osc.amp(0.2);
                 this.osc.pan(this.position.x / width * 2 - 1);
                 this.osc.start();
-                this.noise = new p5.Noise('pink'); // Pink noise for a softer sound
+                this.noise = new p5.Noise('pink'); 
                 this.noise.start();
-                this.noise.amp(0); // Start with no sound
+                this.noise.amp(0); 
+                this.osc.pan(map(this.position.x, 0, width, -1, 1, true)); 
             }
+    
 
             updateOscillator() {
-                // Actualización de la frecuencia y la panoramización según la posición
                 this.osc.freq(100 + this.velocity.mag() * 20);
                 this.osc.pan(map(this.position.x, 0, width, -1, 1));
             }
@@ -210,8 +211,9 @@
   this.osc.freq(this.velocity.mag() * 1000 + 1);
   this.osc.amp(0.1 * (1 - this.acceleration.mag()));
   
-  // Actualizar panoramización basada en posición horizontal
-  this.osc.pan(this.position.x / width * 2 - 1);
+
+        this.osc.pan(map(this.position.x, 0, width, -1, 1, true)); 
+    
   
   }
   
@@ -228,15 +230,17 @@
         let compressor;
   
         let reverb;
-        let noise; // Variable para el ruido granular
+        let noise; 
 
   
-        // Definición de las clases Quadtree y Boid como antes
   
   function setup() {
-      let canvas = createCanvas(800, 800); // Tamaño representativo del domo
-      canvas.style('border', '1px solid white'); // Estilo opcional para el borde
-      noise = new p5.Noise('brown'); // Usa ruido marrón para un sonido más suave
+    createCanvas(windowWidth, windowHeight);
+
+      let canvas = createCanvas(800, 800); 
+
+      canvas.style('border', '1px solid white'); 
+      noise = new p5.Noise('brown');
       reverb = new p5.Reverb();
             compressor = new p5.Compressor();
             compressor.threshold(-24);
@@ -257,23 +261,23 @@
 
        
   
-  let zoom = 0.8; // Nivel inicial de zoom
-  let zoomSpeed = 0.02; // Velocidad de cambio de zoom
+  let zoom = 0.8; 
+  let zoomSpeed = 0.02; 
 
 
   function draw() {
       background(0);
-      let avgX = 0, avgY = 0; // Promedio de posiciones para modulación del ruido
+      let avgX = 0, avgY = 0; 
 
       if (!pause) {
-          quadtree = new Quadtree({x: 0, y: 0, width: width, height: height}, 100); // Ajustar la capacidad según necesidad
+          quadtree = new Quadtree({x: 0, y: 0, width: width, height: height}, 100); 
           flock.forEach(boid => {
               quadtree.insert(boid);
           });
   
           flock.forEach(boid => {
               boid.edges();
-              let range = {x: boid.position.x, y: boid.position.y, width: 100, height: 100}; // Ajustar el rango de consulta
+              let range = {x: boid.position.x, y: boid.position.y, width: 100, height: 100}; 
               let points = quadtree.query(range, []);
               boid.flock(points);
               boid.update();
@@ -284,7 +288,7 @@
           avgX /= flock.length;
                 avgY /= flock.length;
                 let modAmp = map(avgX, 0, width, 0, 1);
-                noise.amp(modAmp, 0.1); // Modula la amplitud del ruido basada en la posición media X
+                noise.amp(modAmp, 0.1); 
             } else {
                 flock.forEach(boid => {
                     boid.show();
@@ -293,14 +297,13 @@
         }
         function mousePressed() {
             if (pause) {
-                // Resetea a posiciones y velocidades aleatorias
                 flock.forEach(boid => {
                     boid.position = createVector(random(width), random(height));
                     boid.velocity = p5.Vector.random2D().setMag(random(2, 4));
                     boid.osc.amp(0.1);
                 });
             }
-            pause = !pause; // Toggle pause
+            pause = !pause; 
         }
   
   
