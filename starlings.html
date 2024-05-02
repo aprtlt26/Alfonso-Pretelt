@@ -19,18 +19,48 @@
             border-radius: 50%; 
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
         }
+
+        #playButton {
+            padding: 5px 5px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: #556e7644;
+            color: rgb(141, 141, 141);
+            border: none;
+            border-radius: 5px;
+        }
     </style>
 
    
 
 </head>
+<button id="playButton">sound</button>
+
+<script>
+    let userStarted = false;
+
+    document.getElementById('playButton').addEventListener('click', function() {
+        if (!userStarted) {
+            userStarted = true;
+            getAudioContext().resume().then(() => {
+                console.log('Playback resumed successfully');
+                // Ahora puedes inicializar y reproducir sonidos
+            });
+            // Opcional: Cambiar el texto del botón o esconderlo
+            this.innerHTML = "Sound on!";
+            this.disabled = true;
+        }
+    });
+
+    </script>
+
 <body>
 
 
     <script>
 
-let audioCtx;
-        
+
   document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
     alert('El clic derecho está desactivado en esta página.');
@@ -38,29 +68,6 @@ let audioCtx;
 
  
 
-
-  document.addEventListener('DOMContentLoaded', (event) => {
-    verificarPermisoMicrofono();
-});
-
-function verificarPermisoMicrofono() {
-    navigator.permissions.query({ name: 'microphone' })
-        .then((permissionStatus) => {
-            // 'prompt' significa que no se ha pedido el permiso todavía
-            if (permissionStatus.state === 'prompt') {
-                solicitarPermisoMicrofono();
-            } else if (permissionStatus.state === 'granted') {
-                alert("El permiso para el micrófono ya ha sido concedido.");
-                // Ya puedes empezar a usar el micrófono
-            } else {
-                alert("El permiso para el micrófono ha sido denegado.");
-                // Aquí puedes guiar al usuario sobre cómo cambiar los permisos del micrófono
-            }
-        })
-        .catch((error) => {
-            console.log('Error al verificar los permisos del micrófono:', error);
-        });
-}
     
         class Quadtree {
             constructor(boundary, capacity) {
@@ -280,7 +287,7 @@ function verificarPermisoMicrofono() {
             compressor.ratio(12);
             compressor.attack(0.003);
             compressor.release(0.25);
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 160; i++) {
                 let b = new Boid();
                 flock.push(b);
                 b.osc.disconnect();
