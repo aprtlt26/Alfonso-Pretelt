@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+</head>
     <meta charset="UTF-8">
     <title>StarlingsAPRTLT</title>
     <style>
@@ -17,9 +20,9 @@
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
         }
     </style>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+
+   
+
 </head>
 <body>
     <script>
@@ -84,25 +87,29 @@
         }
 
         class Boid {
-            constructor() {
-                this.position = createVector(random(width), random(height));
-                this.velocity = p5.Vector.random2D();
-                this.velocity.setMag(random(2, 8));
-                this.acceleration = createVector();
-                this.maxForce = 3;
-                this.maxSpeed = 8;
-                this.perceptionRadius = 80;
-                this.osc = new p5.Oscillator('sine');
-                this.osc.freq(this.velocity.mag() * 100 + 20);
-                this.osc.amp(0.2);
-                this.osc.pan(this.position.x / width * 2 - 1);
-                this.osc.start();
-                this.noise = new p5.Noise('pink'); 
-                this.noise.start();
-                this.noise.amp(0); 
-                this.osc.pan(map(this.position.x, 0, width, -1, 1, true)); 
-            }
+    constructor() {
+        this.position = createVector(random(width), random(height));
+        this.velocity = p5.Vector.random2D();
+        this.velocity.setMag(random(2, 8));
+        this.acceleration = createVector();
+        this.maxForce = 3;
+        this.maxSpeed = 8;
+        this.perceptionRadius = 80;
+        this.osc = new p5.Oscillator('sine');
+        this.osc.freq(this.velocity.mag() * 100 + 20);
+        this.osc.amp(0.2);
+        this.adjustPan(); 
+        this.osc.start();
+        this.noise = new p5.Noise('pink'); 
+        this.noise.start();
+        this.noise.amp(0); 
+    }
     
+    adjustPan() {
+        let panValue = map(this.position.x, 0, width, -1, 1);
+        panValue = constrain(panValue, -1, 1); 
+        this.osc.pan(panValue);
+    }
 
             updateOscillator() {
                 this.osc.freq(100 + this.velocity.mag() * 20);
@@ -197,26 +204,16 @@
   
   
   
-            update() {
-  
-                
-                this.position.add(this.velocity);
-  this.velocity.add(this.acceleration);
-  this.velocity.limit(this.maxSpeed);
-  
-  this.acceleration.mult(0);
-  this.osc.freq(200 + this.velocity.mag() * 1260);
-  this.osc.amp(0.2);
-  this.osc.pan(this.position.x / width * 2 - 1); 
-  this.osc.freq(this.velocity.mag() * 1000 + 1);
-  this.osc.amp(0.1 * (1 - this.acceleration.mag()));
-  
 
-        this.osc.pan(map(this.position.x, 0, width, -1, 1, true)); 
-    
-  
-  }
-  
+            update() {
+        this.position.add(this.velocity);
+        this.velocity.add(this.acceleration);
+        this.velocity.limit(this.maxSpeed);
+        this.acceleration.mult(0);
+        this.adjustPan(); 
+        this.osc.freq(200 + this.velocity.mag() * 1260);
+        this.osc.amp(0.1 * (1 - this.acceleration.mag()));
+    }  
             show() {
                 strokeWeight(1.5);
                 stroke(255);
@@ -247,7 +244,7 @@
             compressor.ratio(12);
             compressor.attack(0.003);
             compressor.release(0.25);
-            for (let i = 0; i < 170; i++) {
+            for (let i = 0; i < 100; i++) {
                 let b = new Boid();
                 flock.push(b);
                 b.osc.disconnect();
@@ -308,5 +305,7 @@
   
   
   </script>
-  </body>
+   
+</body>
   </html>
+
