@@ -21,322 +21,217 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.6.1/RecordRTC.min.js"></script>
-
-  
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-       <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
 
-
-   
     <style>
-      
-
-    
-
-        #menu {
-
-            display: flex;
-            background-color:#b8b8b8 transparent;
-border-radius: 10px;         
-   padding: 20px;
-            color: #f0e4e4;
-            align-items: center;
-            box-shadow: #2a2a2a;
-            font-size: 8px;
-
-        }
-        #menu:hover{
-            color: #f0f0f0;
-
-        }
-
-        #menu a {
-            
-            margin: 0 20px;
-            text-decoration: none;
-            color: #e4f5bf;
-            font-size: 15px;
-            font-family: "Anta", sans-serif;
-
-        }
-        #menu a:hover {
-            color: #aec1ff;
-
-
-        }
-
-  
-
-     
-
-        h4 {
-            padding-top: 100px;
-            margin: 0 50px;
-            font-size: 150%;
-            color: #b8b8b8;
-            text-decoration: none; 
-            font-family: roboto, sans-serif;
-
-        }
-        h4:hover{
-            color: #8ebfdc;
-
-        }
-
-
-
-       
-  
-    
         body, html {
             margin: 0;
             padding: 0;
             overflow: hidden;
             background: black;
         }
-  
-    
-    
- footer {
-        width: 100%;
-        padding: 5px 5;
-        text-align: center;
-        background-color: #000000;
-        color: rgb(209, 209, 209);
-        margin-left: -50px;
-        font-size: 16px; /* Tamaño de letra inicial */
-        box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.428); /* Sombra opcional para dar efecto elevado */
-    }
-    
-    
 
+        /* Icono de clic/touch centrado */
+        #click-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffffff;
+            font-size: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
 
-      
+        /* Texto debajo del icono */
+        #click-icon span {
+            font-family: 'Anta', sans-serif;
+            font-size: 20px;
+            color: #ffffff;
+            margin-top: 10px;
+        }
+
+        /* Icono de menú */
+        #menu {
+            display: flex;
+            background-color: #b8b8b8 transparent;
+            border-radius: 10px;
+            padding: 20px;
+            color: #f0e4e4;
+            align-items: center;
+            box-shadow: #2a2a2a;
+            font-size: 8px;
+        }
+        #menu a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: #e4f5bf;
+            font-size: 15px;
+            font-family: "Anta", sans-serif;
+        }
+        #menu a:hover {
+            color: #aec1ff;
+        }
     </style>
 </head>
-
-
-    
 <body>
 
-     
-            <header class="container">
-           
-        
-            <div id="menu" class="container">
-                <a href="Works-Projects.html" >Works Projects</a>
-                <a href="about.html">About</a>
-                <a href="CV.html">CV</a>
-                <a href="New-Media.html">Web-Media</a>
-                <a href="teachings.html">Teachings</a>
-                <a href="Contact.html">Contact</a>
-            </div>
-    
-    </head>
-    
-   
-        <body>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
-            <script>
-                let inc = 0.05;
-                let scl = 10;
-                let cols, rows;
-                let zoff = 0;
-                let particles = [];
-                let flowfield;
-                let maxSpeed = 0.3;
-                let audioStarted = false;
-                let globalReverb, noiseOscillator, lfo;
-        
-                let erasePoint;
-        
-                function setup() {
-                    createCanvas(windowWidth, windowHeight);
-                    cols = floor(width / scl);
-                    rows = floor(height / scl);
-                    flowfield = new Array(cols * rows);
-        
-                    globalReverb = new p5.Reverb();
-                    globalReverb.set(12, 8); 
-        
-                    // Configurar ruido verde más fuerte
-                    noiseOscillator = new p5.Noise('pink');
-                    let lowPassFilter = new p5.LowPass();
-                    lowPassFilter.freq(500); 
-                    noiseOscillator.disconnect();
-                    noiseOscillator.connect(lowPassFilter);
-        
-                    // Aumentar la amplitud base del ruido verde
-                    noiseOscillator.amp(0.5, 1);  // Aumentar la amplitud inicial del ruido verde
-        
-                    lfo = new p5.Oscillator('sine');
-                    lfo.freq(random(1 / 7, 1 / 5)); 
-                    lfo.disconnect();  
-                    lfo.amp(0.8);  // Aumentar la amplitud del LFO para hacer el ruido verde mucho más notable
-                    lfo.start();
-        
-                    for (let i = 0; i < 500; i++) {
-                        particles[i] = new Particle();
-                    }
-        
-                    background(0);
-                }
-        
-                function draw() {
-                    if (!audioStarted) return;
-        
-                    background(0, 10); 
-        
-                    let yoff = 0;
-                    for (let y = 0; y < rows; y++) {
-                        let xoff = 0;
-                        for (let x = 0; x < cols; x++) {
-                            let index = x + y * cols;
-                            let angle = noise(xoff, yoff, zoff) * TWO_PI;
-                            let v = p5.Vector.fromAngle(angle);
-                            v.setMag(0.5);
-                            flowfield[index] = v;
-                            xoff += inc;
-                        }
-                        yoff += inc;
-                    }
-        
-                    for (let i = 0; i < particles.length; i++) {
-                        particles[i].follow(flowfield);
-                        particles[i].update();
-                        particles[i].edges();
-                        particles[i].show();
-        
-                        if (erasePoint && dist(erasePoint.x, erasePoint.y, particles[i].pos.x, particles[i].pos.y) < 50) {
-                            particles[i].pos = createVector(random(width), random(height)); 
-                        }
-                    }
-        
-                    zoff += 0.003;
-        
-                    // Ajustar la amplitud del ruido verde con LFO más notable
-                    let noiseAmplitude = map(lfo.getAmp(), -1, 1, 0.3, 0.7);  // Aumentar el rango de amplitud para un mayor impacto
-                    noiseOscillator.amp(noiseAmplitude, 0.6);  // Aplicar la amplitud al ruido verde
-        
-                    if (erasePoint) {
-                        fill(0);
-                        noStroke();
-                        ellipse(erasePoint.x, erasePoint.y, 50);
-                    }
-                }
-        
-                function mousePressed() {
-                    if (!audioStarted) {
-                        userStartAudio();  
-                        audioStarted = true;
-                        loop();  
-                    }
-                }
-        
-                function touchMoved() {
-                    erasePoint = createVector(mouseX, mouseY);
-                }
-        
-                function touchEnded() {
-                    erasePoint = null; 
-                }
-        
-                class Particle {
-                    constructor() {
-                        this.pos = createVector(random(width), random(height));
-                        this.vel = createVector(0, 0);
-                        this.acc = createVector(0, 0);
-                        this.maxSpeed = maxSpeed;
-                        this.prevPos = this.pos.copy();
-        
-                        this.baseFreq = random(100, 7000);  
-                        this.oscillator = new p5.Oscillator('sine');
-                        this.oscillator.freq(this.baseFreq);
-                        this.oscillator.amp(0);
-        
-                        this.oscillator.disconnect();
-                        this.oscillator.connect(globalReverb);
-        
-                        this.shouldPlaySound = random(1) < 0.10;  
-                        this.soundDuration = random(5000, 10000);  
-                        this.nextSoundTime = millis() + random(3000, 10000);  
-                    }
-        
-                    follow(vectors) {
-                        let x = floor(this.pos.x / scl);
-                        let y = floor(this.pos.y / scl);
-                        let index = x + y * cols;
-                        let force = vectors[index];
-                        this.applyForce(force);
-                    }
-        
-                    applyForce(force) {
-                        this.acc.add(force);
-                    }
-        
-                    update() {
-                        this.vel.add(this.acc);
-                        this.vel.limit(this.maxSpeed);
-                        this.pos.add(this.vel);
-                        this.acc.mult(0);
-        
-                        let currentTime = millis();
-                        if (this.shouldPlaySound && currentTime >= this.nextSoundTime) {
-                            this.oscillator.start();
-                            this.oscillator.amp(random(0.01, 0.02), 0.2);  // Reducir el volumen de los osciladores aún más
-                            setTimeout(() => {
-                                this.oscillator.amp(0.01, 0.2);  
-                                setTimeout(() => this.oscillator.stop(), 1000);  
-                            }, this.soundDuration - 1000);
-        
-                            this.nextSoundTime = currentTime + random(3000, 10000);  
-                        }
-                    }
-        
-                    show() {
-                        stroke(255, 50);  
-                        strokeWeight(1);
-        
-                        line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
-                        this.prevPos = this.pos.copy();
-        
-                        noFill();
-                        stroke(255, 20);
-                        strokeWeight(3);
-                        ellipse(this.pos.x, this.pos.y, 10);  
-                    }
-        
-                    edges() {
-                        if (this.pos.x > width) this.pos.x = 0;
-                        if (this.pos.x < 0) this.pos.x = width;
-                        if (this.pos.y > height) this.pos.y = 0;
-                        if (this.pos.y < 0) this.pos.y = height;
-                        this.prevPos = this.pos.copy();
-                    }
-                }
-        
-                noLoop();  
-            </script>
-    
-  
-   
-    
-        
-   
-    
-    <!-- Bootstrap JS y Popper.js (opcional, pero necesario para algunos componentes de Bootstrap) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Icono que indica tocar la pantalla -->
+    <div id="click-icon">
+        <i class='bx bx-hand-pointer'></i> <!-- Icono de Bootstrap Icons -->
+        <span>Haz clic o toca la pantalla</span>
+    </div>
 
-    
+    <header class="container">
+        <div id="menu" class="container">
+            <a href="Works-Projects.html">Works Projects</a>
+            <a href="about.html">About</a>
+            <a href="CV.html">CV</a>
+            <a href="New-Media.html">Web-Media</a>
+            <a href="teachings.html">Teachings</a>
+            <a href="Contact.html">Contact</a>
+        </div>
+    </header>
 
-</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+    <script>
+        // Ocultar el icono de clic cuando se hace clic o se toca en la pantalla
+        document.addEventListener('click', function () {
+            document.getElementById('click-icon').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('click-icon').style.display = 'none';
+            }, 500); // Después de la animación, ocultamos completamente el icono
+        });
+
+        let inc = 0.05;
+        let scl = 10;
+        let cols, rows;
+        let zoff = 0;
+        let particles = [];
+        let flowfield;
+        let maxSpeed = 0.3;
+        let audioStarted = false;
+        let globalReverb, noiseOscillator, lfo;
+
+        function setup() {
+            createCanvas(windowWidth, windowHeight);
+            cols = floor(width / scl);
+            rows = floor(height / scl);
+            flowfield = new Array(cols * rows);
+
+            globalReverb = new p5.Reverb();
+            globalReverb.set(12, 8); 
+
+            noiseOscillator = new p5.Noise('pink');
+            let lowPassFilter = new p5.LowPass();
+            lowPassFilter.freq(500); 
+            noiseOscillator.disconnect();
+            noiseOscillator.connect(lowPassFilter);
+            noiseOscillator.amp(0.5, 1);
+
+            lfo = new p5.Oscillator('sine');
+            lfo.freq(random(1 / 7, 1 / 5));
+            lfo.disconnect();
+            lfo.amp(0.8); 
+            lfo.start();
+
+            for (let i = 0; i < 500; i++) {
+                particles[i] = new Particle();
+            }
+
+            background(0);
+        }
+
+        function draw() {
+            if (!audioStarted) return;
+            background(0, 10); 
+
+            let yoff = 0;
+            for (let y = 0; y < rows; y++) {
+                let xoff = 0;
+                for (let x = 0; x < cols; x++) {
+                    let index = x + y * cols;
+                    let angle = noise(xoff, yoff, zoff) * TWO_PI;
+                    let v = p5.Vector.fromAngle(angle);
+                    v.setMag(0.5);
+                    flowfield[index] = v;
+                    xoff += inc;
+                }
+                yoff += inc;
+            }
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].follow(flowfield);
+                particles[i].update();
+                particles[i].edges();
+                particles[i].show();
+            }
+
+            zoff += 0.003;
+        }
+
+        function mousePressed() {
+            if (!audioStarted) {
+                userStartAudio();  
+                audioStarted = true;
+                loop();
+            }
+        }
+
+        class Particle {
+            constructor() {
+                this.pos = createVector(random(width), random(height));
+                this.vel = createVector(0, 0);
+                this.acc = createVector(0, 0);
+                this.maxSpeed = maxSpeed;
+                this.prevPos = this.pos.copy();
+            }
+
+            follow(vectors) {
+                let x = floor(this.pos.x / scl);
+                let y = floor(this.pos.y / scl);
+                let index = x + y * cols;
+                let force = vectors[index];
+                this.applyForce(force);
+            }
+
+            applyForce(force) {
+                this.acc.add(force);
+            }
+
+            update() {
+                this.vel.add(this.acc);
+                this.vel.limit(this.maxSpeed);
+                this.pos.add(this.vel);
+                this.acc.mult(0);
+            }
+
+            show() {
+                stroke(255, 50);  
+                strokeWeight(1);
+                line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
+                this.prevPos = this.pos.copy();
+            }
+
+            edges() {
+                if (this.pos.x > width) this.pos.x = 0;
+                if (this.pos.x < 0) this.pos.x = width;
+                if (this.pos.y > height) this.pos.y = 0;
+                if (this.pos.y < 0) this.pos.y = height;
+                this.prevPos = this.pos.copy();
+            }
+        }
+    </script>
 </body>
 </html>
 
