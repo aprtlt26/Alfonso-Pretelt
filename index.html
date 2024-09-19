@@ -112,7 +112,18 @@ border-radius: 10px;
         box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.428); /* Sombra opcional para dar efecto elevado */
     }
     
-    
+    #clickIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px; /* Tamaño del ícono */
+    color: #ffffff;  /* Color del ícono */
+    opacity: 0.7;    /* Transparencia */
+    pointer-events: none; /* No interferir con el clic en la página */
+    z-index: 10;  /* Asegurarse de que esté por encima de otros elementos */
+}
+
 
 
       
@@ -140,6 +151,7 @@ border-radius: 10px;
     
    
         <body>
+
             <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
     <script>
@@ -389,9 +401,14 @@ border-radius: 10px;
     </script>
   
    
-    
+    <div id="clickIcon">
+    <i class='bx bx-hand-pointer'></i> <!-- Ícono de mano de Boxicons -->
+</div>
         
-   
+   document.addEventListener('click', function() {
+    document.getElementById('clickIcon').style.display = 'none';
+});
+
     
     <!-- Bootstrap JS y Popper.js (opcional, pero necesario para algunos componentes de Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
