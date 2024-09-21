@@ -6,117 +6,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="About">
-    <meta name="keywords" content="palabras clave, separadas, por, comas">
+    <meta name="keywords" content="Artesonoro, experimental, alfonsopretelt,tarot">
     <meta name="author" content="alfonsopretelt">
-    <meta name="robots" content="About">
+    <meta name="robots" content="Interactive">
     <meta name="google" content="translate">
-    <meta property="og:image" content="tsz.jpg">
-    <link rel="icon" href="rostro.jpg" type="image/x-icon">
+    <meta property="og:type" content="lemt.jpeg">
+    <meta property="og:url" content="https://arteypsique.com/tarot_syntheziser">
+    <meta property="og:title" content="Tarot Synthesizer">
+    <meta property="og:description" content="Art Media">
+    <meta property="og:image" content="lemt.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+
+    <meta name="format-detection" content="telephone=no">
+
     <script>
         document.addEventListener('contextmenu', function (e) {
             e.preventDefault();
         });
     </script>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>About</title>
+
+    <title>Interactive Art Media</title>
+
     <style>
         body {
-            font-family:"Anta", sans-serif;
-            
+            margin: 0;
+            font-family: "Anta", sans-serif;
+            background-color: #000000;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 30px;
+        }
+
+        .anta-regular {
+            font-family: "Anta", sans-serif;
+            font-weight: 400;
+            font-style: normal;
         }
 
         header {
-            background-color: #fff;
+            background-color: #000000;
             padding: 20px;
-            color: #000000;
+            color: #d4d4d4;
             text-align: left;
-            margin-top: 30px;
         }
 
         #menu {
-            background-color: #fff;
+            display: flex;
+            background-color: #000000;
             padding: 20px;
-            color: #333;
+            color: #d4d4d4;
+            text-shadow: 0 0 10px #efffca;
             align-items: center;
         }
 
         #menu a {
             margin: 0 20px;
             text-decoration: none;
-            color: #333;
-            font-size: 18px;
-            font-family: Arial, sans-serif;
+            color: #d1d1d1;
+            font-size: 12px;
+            font-family: "Anta", sans-serif;
         }
-        .anta-regular {
-  font-family: "Anta", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
 
         #menu a:hover {
-            color: #c7c6c6;
-        }
-
-        footer p {
-            padding-top: 20px;
-        }
-
-        p {
-            text-align: justify;
-            font-size: small;
-            margin: 20px auto;
+            color: #efffca;
         }
 
         h4 {
             margin: 0 20px;
-            font-size: 2.5em;
-            color: #333;
+            font-size: 1.5em;
+            color: #c9eff4;
+            text-shadow: 0 0 30px #efffca;
             text-decoration: none;
+            font-family: 'Anta';
         }
 
         h4:hover {
             color: hsl(73, 100%, 81%);
+        }
+
+        /* Botón de menú para móviles */
+        #menuButton {
+            display: none;
+            background-color: #000000;
+            color: #d4d4d4;
+            text-shadow: 0 0 30px #efffca;
+
+            border: none;
+            padding: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        footer {
+            padding-top: 200px;
+        }
+
+        p {
+            margin-top: 70px;
+            text-align: justify;
+            font-size: small;
+            margin: 20px auto;
+            color: #d4d4d4;
+            text-shadow: 0 0 30px #efffca;
+        }
+
+        img {
+            margin-right: 20px;
+            border: 10px solid #000000;
+            margin-bottom: 30px;
+            margin: 20px;
+            display: block;
+            margin: 0 auto;
+            max-width: 70%;
+        }
+
+        /* Reglas de estilo para pantallas móviles */
+        @media screen and (max-width: 576px) {
+            #menu {
+                display: none;
+                flex-direction: column;
+                align-items: flex-end;
+                padding: 0;
+                
+            }
+
+            #menuButton {
+                display: block;
+                margin-bottom: 20px;
+                text-shadow: 0 0 30px #efffca;
+
+            }
+
+            #menu a {
+                margin: 10px 0;
+                padding: 10px;
+                width: 100%;
+                text-align: center;
+                background-color: #101010;
+                color: #d1d1d1;
+                text-shadow: 0 0 30px #efffca;
+
+            }
+
+            img {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
 
 <body>
     <header class="container">
-        <a href="index.html" style="text-decoration: none">
-            <h4 id="back-to-top">Alfonso Pretelt</h4>
-        </a>
+        <a href="inicio.html"  style="text-decoration: none" target="_blank">
+            <h4 id="back-to-top">Alfonso Pretelt</h4></a>
     </header>
 
-    <nav id="menu" class="navbar navbar-light navbar-expand-lg">
-        <div class="container">
-       
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="Works-Projects.html">Works</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                
-                    <li class="nav-item">
-                        <a class="nav-link" href="New-Media.html">Web Media</a>
-                    </li>
-                         <li class="nav-item">
-                        <a class="nav-link" href="teachings.html">Teachings</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Contact.html">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div id="menu" class="container">
+        <a href="about.html">About</a>
+        <a href="Web-Develop.html">Art Media</a>
+        <a href="Contact.html">Contact</a>
+    </div>
 
     <div class="container">
         <p class="text-justify">
@@ -133,24 +187,25 @@ Programmer: from audio processing by code in contemporary music, I have reached 
             
             </p>
 
-        <p <p class="text-justify">  Psychologist: After my studies in arts, music and sound, I have completed an undergraduate degree in psychology, seeking to enhance my perspective on the field of science or other holistic contexts.
+        <p  class="text-justify">  Psychologist: After my studies in arts, music and sound, I have completed an undergraduate degree in psychology, seeking to enhance my perspective on the field of science or other holistic contexts.
 I strengthened my studies of tarot and psychomagic by collaborating with Jodorowsky as a musician and assistant in psychomagic theater in Argentina and Mexico 2013-2014.     </p>
 
-          <p <p class="text-justify">
+          <p  class="text-justify">
             Since 2011, his works, experimental shorts and videos have been presented in numerous festivals in Europe and Latin America and Asia. CV+ 
             
          
             <a href="https://aprtlt.wixsite.com/aprtlt/cv">CV+</a>
         </p>
-    </div>
 
-    <footer class="container text-center mt-4">
-        <p class="small">®Alfonso Pretelt all rights Reserved</p>
-    </footer>
+                <footer class="container text-center mt-4">
+                    <p class="small">®Alfonso Pretelt all rights Reserved</p>
+                </footer>
 
+    <!-- Bootstrap JS y Popper.js (opcional, pero necesario para algunos componentes de Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
+
