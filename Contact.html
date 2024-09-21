@@ -19,34 +19,81 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: "Anta", sans-serif;
+            background-color: #000000;
+
+        }
+
+        .anta-regular {
+            font-family: "Anta", sans-serif;
+            font-weight: 400;
+            font-style: normal;
         }
 
         header {
-            background-color: #fff;
+            background-color: #000000;
             padding: 20px;
-            color: #333;
+            color: #d4d4d4;
             text-align: left;
-            margin-top: 30px;
         }
 
         #menu {
-
             display: flex;
-            background-color: #fff;
+            background-color: #000000;
             padding: 20px;
-            color: #333;
+            color: #d4d4d4;
+            text-shadow: 0 0 10px #efffca;
             align-items: center;
-            
         }
 
         #menu a {
-            
             margin: 0 20px;
             text-decoration: none;
-            color: #333;
-            font-size: 18px;
-            font-family: Arial, sans-serif;
+            color: #d1d1d1;
+            font-size: 12px;
+            font-family: "Anta", sans-serif;
+        }
+
+        #menu a:hover {
+            color: #efffca;
+        }
+
+        h4 {
+            margin: 0 20px;
+            font-size: 1.5em;
+            color: #c9eff4;
+            text-shadow: 0 0 30px #efffca;
+            text-decoration: none;
+        }
+
+        h4:hover {
+            color: hsl(73, 100%, 81%);
+        }
+
+        /* Botón de menú para móviles */
+        #menuButton {
+            display: none;
+            background-color: #000000;
+            color: #d4d4d4;
+            text-shadow: 0 0 30px #efffca;
+
+            border: none;
+            padding: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        footer {
+            padding-top: 200px;
+        }
+
+        p {
+            margin-top: 70px;
+            text-align: justify;
+            font-size: small;
+            margin: 20px auto;
+            color: #fefefe;
+            text-shadow: 0 0 20px #f1f1f1;
         }
 
         form {
@@ -54,6 +101,11 @@
     flex-direction: column;
     max-width: 400px; /* Ajusta el ancho máximo según tus preferencias */
     margin: auto;
+    text-shadow: 0 0 20px #fefffc;
+    color: #e3fbfd;
+    font-size: small;
+
+
 }
 
 label {
@@ -63,6 +115,9 @@ label {
 textarea {
     height: 150px; /* Ajusta la altura según tus preferencias */
     resize: vertical; /* Permite redimensionar verticalmente */
+    text-shadow: 0 0 10px #fdfdfc;
+    
+
 }
 
 input,
@@ -71,6 +126,16 @@ textarea {
     padding: 8px;
     margin: 5px 0;
     box-sizing: border-box;
+    border-style: dashed;
+    background-color: #000000; /* Color de fondo verde */
+    text-shadow: 0 0 20px #e7e8e4;
+    color: #b4b4b2;
+    font-size: small;
+    box-shadow: 
+    
+                0 0 10px #daf0ff; /* Efecto de brillo fuerte */
+
+
 }
 
 button {
@@ -79,10 +144,14 @@ button {
     padding: 10px;
     border: none;
     cursor: pointer;
+    border-style: dashed;
+    box-shadow: 
+                0 0 30px #cae9ff; /* Efecto de brillo fuerte */
+
 }
 
 button:hover {
-    background-color: #34cfb8; /* Cambio de color al pasar el ratón */
+    background-color: #bbbbbb; /* Cambio de color al pasar el ratón */
 }
 
         
@@ -94,15 +163,7 @@ form{
 }
 
 
-        h4 {
-            margin: 0 20px;
-            font-size: 2.5em;
-            color: #333;
-            text-decoration: none; 
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
-            
-        }
+      
         footer{
             padding-top: 70px;
         }
@@ -111,15 +172,16 @@ form{
 
 <body>
     <header class="container">
-        <a href="index.html" style="text-decoration: none" target="_blank">
+        <a href="inicio.html" style="text-decoration: none" target="_blank">
             <h4 id="back-to-top">Alfonso Pretelt</h4></a>
     </header>
 
     <div id="menu" class="container">
-        <a href="Works-Projects.html" >Works</a>
+        <a href="Works-Projects.html" >Works Projects</a>
         <a href="about.html">About</a>
         <a href="CV.html">CV</a>
-        <a href="New-Media.html">Web Media</a>
+        <a href="Web-Develop.html">Web Develop</a>
+        <a href="Contact.html">Contact</a>
     </div>
 
     
@@ -159,8 +221,6 @@ form{
 
 </html>
 
-
-</html>
 
 
 
