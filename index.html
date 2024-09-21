@@ -21,46 +21,69 @@
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
 
     <style>
-        #menu {
+        body {
+            margin: 0;
+            background-color: #000000;
             display: flex;
-            background-color: #b8b8b8 transparent;
-            border-radius: 10px;
-            padding: 20px;
-            color: #f0e4e4;
-            align-items: center;
-            box-shadow: #2a2a2a;
-            font-size: 8px;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 30px;
+            font-family: "Anta", sans-serif;
+
         }
 
-        #menu:hover {
-            color: #f0f0f0;
+      
+
+        header {
+            background-color: #000000;
+            padding: 20px;
+            color: #d4d4d4;
+            text-align: left;
+            margin-right: 30px;
+            font-family: 'Anta';
+
+        }
+
+        .anta-regular {
+            font-family: "Anta", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        /* Estilos del menú */
+        #menu {
+            display: flex;
+            background-color: #000000;
+            padding: 20px;
+            color: #d4d4d4;
+            text-shadow: 0 0 10px #efffca;
+            align-items: center;
+            margin-left: -35px;
+
         }
 
         #menu a {
             margin: 0 20px;
             text-decoration: none;
-            color: #e4f5bf;
-            font-size: 15px;
-            font-family: "Anta", sans-serif;
+            color: #d1d1d1;
+            font-size: 12px;
+            font-family: Arial, sans-serif;
         }
 
         #menu a:hover {
-            color: #aec1ff;
+            color: #efffca;
         }
-
         h4 {
-            padding-top: 100px;
-            margin: 0 50px;
-            font-size: 150%;
-            color: #b8b8b8;
-            text-decoration: none;
-            font-family: roboto, sans-serif;
+            margin: 0 20px;
+            font-size: 1.5em;
+            color: #c9d9f4;
+            text-shadow: 0 0 30px #cae1ff;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         h4:hover {
             color: #8ebfdc;
         }
-
         body, html {
             margin: 0;
             padding: 0;
@@ -78,37 +101,53 @@
             box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.428);
         }
 
+
         #clickIcon {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 60px;
-            color:  #b8b8b8 transparent;
+            font-size: 12px;
+            color: #b8b8b8;
             opacity: 0.8;
             pointer-events: none;
             z-index: 10;
+        }
+
+        @media (min-width: 768px) {
+            #menu {
+                display: flex;
+                flex-direction: row;
+            }
+            #menuButton {
+                display: none;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <header class="container">
-        <div id="menu" class="container">
+    <header>
+
+        <a href="index.html" style="text-decoration: none">
+            <h4 style="font-family: Anta ;" id="back-to-top">A-PRTLT</h4></a>
+    
+        <header class="container">
+         
+        <button id="menuButton">☰ Menú</button>
+        <div id="menu">
             <a href="Works-Projects.html">Works Projects</a>
             <a href="about.html">About</a>
             <a href="CV.html">CV</a>
-            <a href="New-Media.html">Web-Media</a>
+            <a href="New-Media.html">-Media</a>
             <a href="teachings.html">Teachings</a>
             <a href="Contact.html">Contact</a>
         </div>
     </header>
 
-    <!-- Ícono de mano en el centro de la pantalla -->
-    <div id="clickIcon">
-        <i class='bx bx-hand-pointer'></i>
-    </div>
+    <!-- Mensaje "clic" pequeño en el centro -->
+    <div id="clickIcon">clic</div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
@@ -348,5 +387,7 @@
     </script>
 </body>
 </html>
+
+
 
 
