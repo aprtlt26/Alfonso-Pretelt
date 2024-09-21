@@ -95,7 +95,6 @@
             background-color: #000000;
             color: #d4d4d4;
             text-shadow: 0 0 30px #efffca;
-
             border: none;
             padding: 10px;
             font-size: 20px;
@@ -137,14 +136,12 @@
                 flex-direction: column;
                 align-items: flex-end;
                 padding: 0;
-                
             }
 
             #menuButton {
                 display: block;
                 margin-bottom: 20px;
                 text-shadow: 0 0 30px #efffca;
-
             }
 
             #menu a {
@@ -155,11 +152,22 @@
                 background-color: #101010;
                 color: #d1d1d1;
                 text-shadow: 0 0 30px #efffca;
-
             }
 
             img {
                 max-width: 100%;
+            }
+
+            /* El texto del primer párrafo se moverá debajo de la imagen en móviles */
+            #paragraph1 {
+                display: block;
+                flex-direction: column;
+                align-items: flex-start;
+                margin-top: 20px;
+            }
+
+            #paragraph1 a {
+                margin: 10px 0;
             }
         }
     </style>
@@ -251,4 +259,5 @@
 </body>
 
 </html>
+
 
