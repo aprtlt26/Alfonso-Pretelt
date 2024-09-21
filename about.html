@@ -6,106 +6,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="About">
-    <meta name="keywords" content="artesonoro,alfonsopretelt,video,experimental,tarot">
+    <meta name="keywords" content="Artesonoro, experimental, alfonsopretelt,tarot">
     <meta name="author" content="alfonsopretelt">
-    <meta property="" content="bgcat.mp4">
-    <meta name="robots" content="About">
-   <meta name="google" content="translate">
-    <meta property="og:image" content ="tarot.png">
-    <link rel="icon" href="rostro.jpg" type="image/x-icon">
+    <meta name="robots" content="Interactive">
+    <meta name="google" content="translate">
+    <meta property="og:type" content="lemt.jpeg">
+    <meta property="og:url" content="https://arteypsique.com/tarot_syntheziser">
+    <meta property="og:title" content="Tarot Synthesizer">
+    <meta property="og:description" content="Art Media">
+    <meta property="og:image" content="lemt.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+
+    <meta name="format-detection" content="telephone=no">
+
     <script>
         document.addEventListener('contextmenu', function (e) {
             e.preventDefault();
         });
     </script>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>About</title>
+
+    <title>Interactive Art Media</title>
+
     <style>
         body {
             margin: 0;
-            font-family:"Anta", sans-serif;
+            font-family: "Anta", sans-serif;
+            background-color: #000000;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 30px;
         }
 
         .anta-regular {
-  font-family: "Anta", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
+            font-family: "Anta", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
 
         header {
-            background-color: #fff;
+            background-color: #000000;
             padding: 20px;
-            color: #000000;
+            color: #d4d4d4;
             text-align: left;
-            margin-top: 30px;
         }
 
         #menu {
             display: flex;
-            background-color: #fff;
+            background-color: #000000;
             padding: 20px;
-            color: #333;
+            color: #d4d4d4;
+            text-shadow: 0 0 10px #efffca;
             align-items: center;
         }
 
         #menu a {
             margin: 0 20px;
             text-decoration: none;
-            color: #333;
-            font-size: 18px;
-            font-family: Arial, sans-serif;
+            color: #d1d1d1;
+            font-size: 12px;
+            font-family: "Anta", sans-serif;
         }
 
-     #menu a:hover {
-    color: #c7c6c6; }
-        
-        #video-container {
-            text-align: center;
-            margin-top: 20px;
-            width: 55%;
-            max-width: 800px;
-            margin-top: 60px;
-        }
-
-        #video-container video {
-            width: 100%;
-            margin: 8px;
+        #menu a:hover {
+            color: #efffca;
         }
 
         h4 {
             margin: 0 20px;
-            font-size: 2.5em;
-            color: #333;
+            font-size: 1.5em;
+            color: #c9eff4;
+            text-shadow: 0 0 30px #efffca;
             text-decoration: none;
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-family: 'Anta';
         }
 
-        
+        h4:hover {
+            color: hsl(73, 100%, 81%);
+        }
 
-h4:hover {
-             color: hsl(73, 100%, 81%)}
-        
+        /* Botón de menú para móviles */
+        #menuButton {
+            display: none;
+            background-color: #000000;
+            color: #d4d4d4;
+            border: none;
+            padding: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
         footer {
             padding-top: 200px;
         }
 
         p {
-                        margin-top: 20px;
-
             margin-top: 70px;
             text-align: justify;
             font-size: small;
             margin: 20px auto;
+            color: #d4d4d4;
+            text-shadow: 0 0 30px #efffca;
         }
 
         img {
-
-                                    margin-right: 20px;
-  border: 10px solid #FFF;
+            margin-right: 20px;
+            border: 10px solid #000000;
             margin-bottom: 30px;
             margin: 20px;
             display: block;
@@ -116,52 +126,116 @@ h4:hover {
         /* Reglas de estilo para pantallas móviles */
         @media screen and (max-width: 576px) {
             #menu {
+                display: none;
                 flex-direction: column;
                 align-items: flex-end;
+                padding: 0;
             }
+
+            #menuButton {
+                display: block;
+                margin-bottom: 20px;
+            }
+
             #menu a {
                 margin: 10px 0;
+                padding: 10px;
+                width: 100%;
+                text-align: center;
+                background-color: #222;
+                color: #d1d1d1;
             }
-            img {
-                            margin-right: 20px;
 
-                max-width: 50%;
+            img {
+                max-width: 100%;
             }
         }
     </style>
 </head>
 
 <body>
-    <header class="container">
-        <a href="index.html" style="text-decoration: none">
-            <h4 id="back-to-top">Alfonso Pretelt</h4>
-        </a>
-    </header>
-
-    <div id="menu" class="container">
-        <a href="Works-Projects.html">Works</a>
-        <a href="CV.html">CV</a>
-        <a href="New-Media.html">Web Media</a>
-        <a href="teachings.html">Teachings</a>
-        <a href="Contact.html">Contact</a>
-        
-    </div>
     <div class="container">
-        <p style="display: flex; align-items: center;">
-            <img src="est.gif" alt="est.png" height="320" margin: 10px auto; border: 10px solid #FFF;>
-            I questions the interface and posture of the cyborg in its contemporary condition, turning techno-spiritual and techno-emotional contexts into the interaction with the machine.
-            My interests in the multiple possibilities of sound and perceptual forms have led me on a transpersonal quest to materialize spirit and spiritualize consciousness.
-            I have concentrated on acoustic research, experimental music composition, and audiovisual development. I promote deep listening experiences and pedagogies.
-        </p>
-    </div>
+        <header class="container">
+            <a href="index.html" style="text-decoration: none">
+                <h4 id="back-to-top">Alfonso Pretelt</h4>
+            </a>
+        </header>
 
-    <footer class="container text-center mt-4">
-        <p class="small">®Alfonso Pretelt all rights Reserved</p>
-    </footer>
+        <!-- Botón de menú para móviles -->
+        <button id="menuButton" onclick="toggleMenu()">☰</button>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <div id="menu" class="container">
+            <a href="Works-Projects.html">Works</a>
+            <a href="CV.html">CV</a>
+            <a href="New-Media.html">Art Media</a>
+            <a href="teachings.html">Teachings</a>
+            <a href="Contact.html">Contact</a>
+        </div>
+
+        <div class="container" id="autoTextContainer">
+            <div class="container">
+                <p id="paragraph1" style="display: flex; align-items: center;">
+                    <img src="est.gif" alt="" height="320" margin: 10px auto; border: 10px solid #FFF;>
+                    <a href="https://aprtlt.wixsite.com/aprtlt" style="color: rgb(176, 174, 221);  text-decoration: none; margin: 20px; margin-bottom: 50px;" target="_blank">Art Music Film</a>
+                </p>
+                <p id="paragraph2" style="display: flex; align-items: center;"></p>
+                <p id="paragraph3" style="display: flex; align-items: center;"></p>
+                <p id="paragraph4" style="display: flex; align-items: center;"></p>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <img src="cub.gif" alt="GIF Vertical" height="100">
+            <img src="tv.jpeg" alt="GIF Vertical" height="100">
+            <img src="Ojos.gif" alt="GIF Vertical" height="100">
+            <img src="Oracle.gif" alt="GIF Vertical" height="100">
+            <footer class="container text-center mt-4">
+                <p class="small">®Alfonso Pretelt all rights Reserved</p>
+            </footer>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <script>
+            const paragraphs = [
+                "I question the interface and posture of the cyborg in its contemporary condition, turning techno-spiritual and techno-emotional contexts into the interaction with the machine. My interests in the multiple possibilities of sound and perceptual forms have led me on a transpersonal quest to materialize spirit and spiritualize consciousness. I have concentrated on acoustic research, experimental music composition, and audiovisual development. I promote deep listening experiences and pedagogies.",
+                "His work with sound focuses on electroacoustic composition, modular synthesis and microsound. Musically, he places himself at the avant-garde of modular electronics, noise and ambient-drone.",
+                "As for video, he has explored different technological formats, searching for an aesthetic that always visually relates sound or the absence of it with the narrative or story to be told. He also uses code generation for image and sound.",
+                "He manages to merge his multiple knowledge in the pedagogy of archetypes and symbolic figures of the tarot, from psychoanalytic psychology and creation, seeking to erode in the unconscious the meanings of archetypes whose language is already there, interaction with images awakens this language in us."
+            ];
+
+            let currentParagraph = 0;
+            let index = 0;
+
+            function typeWriter() {
+                const paragraphId = `paragraph${currentParagraph + 1}`;
+                const currentText = paragraphs[currentParagraph];
+                
+                if (index < currentText.length) {
+                    document.getElementById(paragraphId).innerHTML += currentText.charAt(index);
+                    index++;
+                    setTimeout(typeWriter, 5);  // Ajusta la velocidad de escritura
+                } else if (currentParagraph < paragraphs.length - 1) {
+                    currentParagraph++;
+                    index = 0;
+                    setTimeout(typeWriter, 500);  // Pausa entre párrafos
+                }
+            }
+
+            window.onload = typeWriter;
+
+            function toggleMenu() {
+                const menu = document.getElementById('menu');
+                if (menu.style.display === 'flex') {
+                    menu.style.display = 'none';
+                } else {
+                    menu.style.display = 'flex';
+                }
+            }
+        </script>
+
 </body>
 
 </html>
