@@ -29,7 +29,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-    <title> Interactive Art Media</title>
+    <title>Interactive Art Media</title>
 
     <style>
         body {
@@ -38,8 +38,8 @@
             background-color: #000000;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; 
-        margin: 30px;
+            min-height: 100vh;
+            margin: 30px;
         }
 
         .anta-regular {
@@ -56,14 +56,15 @@
             margin-right: 30px;
         }
 
+        /* Estilos del menú */
         #menu {
             display: flex;
             background-color: #000000;
             padding: 20px;
             color: #d4d4d4;
+            text-shadow: 0 0 10px #efffca;
             align-items: center;
             margin-left: -35px;
-
         }
 
         #menu a {
@@ -82,13 +83,10 @@
             margin: 0 20px;
             font-size: 2em;
             color: #c9eff4;
-            text-shadow: 
-            0 0 30px #efffca; 
+            text-shadow: 0 0 30px #efffca;
             text-decoration: none;
             font-family: 'Anta';
             margin-left: -75px;
-            
-
         }
 
         h4:hover {
@@ -97,14 +95,11 @@
 
         h2 {
             font-size: 1.5em;
-
-    color: #d4d2d294;
-    text-shadow: 
-        0 0 20px #efffca,   /* Luz más amplia */
-        0 0 30px #efffca;  /* Luz más intensa */
-    margin-top: 50px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
+            color: #d4d2d294;
+            text-shadow: 0 0 20px #efffca, 0 0 30px #efffca;
+            margin-top: 50px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
 
         img {
             display: block;
@@ -113,13 +108,13 @@
         }
 
         .container-content {
-            flex: 1; /* Asegura que esta sección tome el espacio restante y empuje el footer hacia abajo */
-            margin-bottom: 50px; /* Añade un margen para evitar que el contenido toque el footer */
+            flex: 1;
+            margin-bottom: 50px;
         }
 
         footer {
             text-align: center;
-            padding-top: 20px; /* Ajusta el espacio superior del footer */
+            padding-top: 20px;
         }
 
         footer p {
@@ -145,19 +140,56 @@
             color: rgb(179, 179, 179);
         }
 
-        /* Reglas de estilo para pantallas móviles */
+        /* Estilos para móviles */
         @media screen and (max-width: 576px) {
             #menu {
+                display: none; /* Ocultar el menú en versión móvil */
+            }
+
+            #menu.mobile-visible {
+                display: flex;
                 flex-direction: column;
-                align-items: flex-end;
+                background-color: #000000;
+                padding: 10px;
+                align-items: flex-start;
             }
 
             #menu a {
                 margin: 10px 0;
+                font-size: 14px;
             }
 
             img {
                 max-width: 80%;
+            }
+
+            /* Botón de menú para móviles */
+            #menu-toggle {
+                display: block;
+                background-color: transparent;
+                border: none;
+                color: #efffca;
+                font-size: 24px;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                z-index: 1000;
+                cursor: pointer;
+            }
+
+            #menu-toggle span {
+                display: block;
+                width: 30px;
+                height: 3px;
+                margin: 5px 0;
+                background-color: #efffca;
+            }
+        }
+
+        /* Esconder el botón de menú en pantallas grandes */
+        @media screen and (min-width: 577px) {
+            #menu-toggle {
+                display: none;
             }
         }
     </style>
@@ -168,6 +200,13 @@
         <a href="index.html" style="text-decoration: none">
             <h4 id="back-to-top">Alfonso Pretelt</h4></a>
     </header>
+
+    <!-- Botón de menú para móviles -->
+    <button id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
     <div id="menu" class="container">
         <a href="Works-Projects.html">Works</a>
@@ -183,10 +222,8 @@
             <p onclick="mostrarContenido('art')">Sound Visualization</p>
             <p onclick="mostrarContenido('game')">Interactive Sound Game</p>
             <p onclick="mostrarContenido('therapeutic')">Sound Frequencies PsychoTherapy</p>
-
             <p onclick="mostrarContenido('children')">Interactive Learning For Children</p>
             <p onclick="mostrarContenido('Marketing')">Game for Marketing</p>
-
         </div>
 
         <!-- Sección de contenido central -->
@@ -200,6 +237,13 @@
     </footer>
 
     <script>
+        // Función para manejar el menú desplegable en móviles
+        const menuToggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
+        menuToggle.addEventListener('click', function() {
+            menu.classList.toggle('mobile-visible');
+        });
+
         function mostrarContenido(tipo) {
             const contentArea = document.getElementById('content-area');
             contentArea.innerHTML = ''; // Limpiamos el área de contenido
@@ -214,7 +258,6 @@
                     <img src="5d.webp" alt="">
                     <img src="6d.webp" alt="">
                     <img src="8d.webp" alt="">
-
                 `;
             } else if (tipo === 'game') {
                 contentArea.innerHTML = `
@@ -237,10 +280,7 @@
                     <iframe src="https://juegosapopizza.netlify.app/" width="100%" height="900" frameborder="0"></iframe>
                 `;
             }
-        
-
-    
-            }
+        }
     </script>
 
     <!-- Bootstrap JS y Popper.js (opcional, pero necesario para algunos componentes de Bootstrap) -->
@@ -250,5 +290,6 @@
 </body>
 
 </html>
+
 
 
