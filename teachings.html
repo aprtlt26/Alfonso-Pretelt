@@ -6,118 +6,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="About">
-    <meta name="keywords" content="palabras clave, separadas, por, comas">
+    <meta name="keywords" content="Artesonoro, experimental, alfonsopretelt,tarot">
     <meta name="author" content="alfonsopretelt">
-    <meta name="robots" content="About">
-    <meta name="google" content="notranslate">
+    <meta name="robots" content="Interactive">
+    <meta name="google" content="translate">
+    <meta property="og:type" content="lemt.jpeg">
+    <meta property="og:url" content="https://arteypsique.com/tarot_syntheziser">
+    <meta property="og:title" content="Tarot Synthesizer">
+    <meta property="og:description" content="Art Media">
+    <meta property="og:image" content="lemt.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+
     <meta name="format-detection" content="telephone=no">
+
+    <script>
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+    </script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-    <title>teachings</title>
+    <title>Interactive Art Media</title>
 
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: "Anta", sans-serif;
             background-color: #000000;
-           
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 30px;
+        }
+
+        .anta-regular {
+            font-family: "Anta", sans-serif;
+            font-weight: 400;
+            font-style: normal;
         }
 
         header {
             background-color: #000000;
             padding: 20px;
-            color: #ffffff;
+            color: #d4d4d4;
             text-align: left;
-            margin-top: 30px;
+            margin-right: 30px;
         }
 
+        /* Estilos del menú en el header */
         #menu {
             display: flex;
             background-color: #000000;
             padding: 20px;
-            color: #919191;
+            color: #d4d4d4;
+            text-shadow: 0 0 10px #efffca;
             align-items: center;
         }
 
         #menu a {
             margin: 0 20px;
             text-decoration: none;
-            color: #333;
-            font-size: 18px;
-            font-family: Arial, sans-serif;
-            
+            color: #d1d1d1;
+            font-size: 12px;
+            font-family: "Anta", sans-serif;
+        }
+        h4 {
+            margin: 0 20px;
+            font-size: 1.5em;
+            color: #c9eff4;
+            text-shadow: 0 0 30px #efffca;
+            text-decoration: none;
+            font-family: 'Anta';
+        }
 
+        h4:hover {
+            color: hsl(73, 100%, 81%);
         }
 
         #menu a:hover {
-    color: #c7c6c6; }
-
-        #video-container {
-            text-align: center;
-            margin-top: 20px;
-            width: 55%;
-            max-width: 800px;
-            margin: 60px auto;
+            color: #efffca;
         }
 
-        #video-container video {
-            width: 100%;
-        }
-
-        h4 {
-            margin: 0 20px;
-            font-size: 1em;
-            color: #f3f3f3;
-            text-decoration: none;
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
-        }
-        h5 {
-            margin: 0 20px;
-            font-size: 2em;
-            color: #c9c9c9;
-            text-decoration: none;
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
-        }
-
-        h2 {
+        h3 {
             color: #646c6c;
             margin-top: 50px;
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
-        }
-
-        p{
-            color: #384141;
-
-        }
-
-        p:hover{
-            color: #c8c5c5;
-
-        }
-
-        h5:hover{
-            color: #f6f6f6;
-
-
-        }
- h3{
-    color: #646c6c;
-            margin-top: 50px;
             font-family: 'Courier New', Courier, monospace;
-            font-size: 20px;
-        
- }
- h3:hover{
-    color: #d9d9d9;
-           }
-     
+            font-size: 11px;
+            text-shadow: 0 0 20px #fff7f7;
+            cursor: pointer;
+        }
+
+        p {
+            color: #384141;
+        }
+
+        p:hover {
+            color: #cacaca;
+            text-shadow: 0 0 20px #fff7f7;
+        }
+
+        img {
+            filter: grayscale(100%);
+            transition: filter 0.5s ease;
+        }
+
+        img:hover {
+            filter: grayscale(0%);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .visible {
+            display: block;
+        }
 
         footer {
-
             text-align: center;
             position: fixed;
             bottom: 0;
@@ -128,115 +136,111 @@
         footer p {
             padding-top: 250px;
         }
-
-       
-
-        a {
-            text-decoration: none;
-            color: rgb(164, 249, 73);
-            margin: 2;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        }
-
-        a:hover {
-            color: rgb(179, 179, 179);
-            text-decoration: none;
-
-        }
-
-        .img-fluid {
-        width: 100%; /* o puedes especificar un ancho fijo, por ejemplo 600px */
-        height: auto; /* mantiene la proporción de la imagen */
-    }
-
-
     </style>
 </head>
 
 <body>
+    <!-- Menú original del header -->
     <header class="container">
         <a href="index.html" style="text-decoration: none" target="_blank">
-            <h5 id="back-to-top">Alfonso Pretelt</h5></a>
+            <h4 id="back-to-top">Alfonso Pretelt</h4></a>
     </header>
 
     <div id="menu" class="container">
-        <a href="Works-Projects.html" target="_blank">Works Projects</a>
         <a href="about.html" target="_blank">About</a>
         <a href="CV.html" target="_blank">CV</a>
-        <a href="new-media.html" target="_blank">Web-Media</a>
+        <a href="web-media.html" target="_blank">Art Media</a>
         <a href="Contact.html" target="_blank">Contact</a>
     </div>
 
-
-    
+    <!-- Menú con los títulos de las secciones -->
     <div class="container">
-        <h3>  WORKSHOP: Arte, Ciencia y tecnología en la Gestión del conocimiento.
-{Datasketch, Planetario de Bogotá} Encuentros NERD 2022
-        </h3>
+        <h3 onclick="showSection('workshop')">Workshop: Arte, Ciencia y Tecnología</h3>
+        <h3 onclick="showSection('masterclass')">Masterclass Música Concreta</h3>
+        <h3 onclick="showSection('asab')">Masterclass Arte Sonoro ASAB</h3>
+    </div>
+
+    <!-- Sección Workshop -->
+    <div class="container visible" id="workshop">
+        <h3>WORKSHOP: Arte, Ciencia y tecnología en la Gestión del conocimiento.</h3>
         <div class="row">
             <div class="col-lg-8">
-
-                <img  src="cod.jpeg" class="img-fluid"  alt="Imagen destacada">
-                <img  src="pla.JPG" class="img-fluid"  alt="Imagen destacada">
-                <img  src="taller.png" class="" style="width: 50%;"  alt="Imagen destacada">
-                <img  src="tal.JPG" class="" style="width: 50%;"  alt="Imagen destacada">
+                <img src="cod.jpeg" class="img-fluid" alt="Imagen destacada">
+                <img src="pla.JPG" class="img-fluid" alt="Imagen destacada">
+                <img src="taller.png" class="img-fluid" style="width: 50%;" alt="Imagen destacada">
+                <img src="tal.JPG" class="img-fluid" style="width: 50%;" alt="Imagen destacada">
                 <div class="container">
-
-                <img  src="a.jpeg" class="" style="width: 50%;"  alt="Imagen destacada">
-                <img  src="b.jpeg" class="" style="width: 50%;"  alt="Imagen destacada">
-
-
-              
-            </div>
-
-
+                    <img src="a.jpeg" class="img-fluid" style="width: 50%;" alt="Imagen destacada">
+                    <img src="b.jpeg" class="img-fluid" style="width: 50%;" alt="Imagen destacada">
+                    <img src="a.jpeg" class="img-fluid" style="width: 80%;" alt="Imagen destacada">
+                    <img src="b.jpeg" class="img-fluid" style="width: 150%;" alt="Imagen destacada">
+                </div>
             </div>
             <div class="col-lg-4">
-
                 <video src="sonificación.mp4" controls class="w-100"></video>
-
-
-                <H4>      SONIFICACIÓN DE DATOS AMBIENTALES
-                </H4>
-                <div></div>
-                <p></p>
-        <p > Datos de Fuentes hídricas, suelos y humedales de Bogotá volcados en audiovisual por medio de lenguajes de programación y softwere libre como Supercollider y P5. </p>
-
+                <h4>Taller arte ciencia y tecnología: Sonificación de Datos.</h4>
+                <p>Datos de Fuentes hídricas, suelos y humedales de Bogotá volcados en audiovisual por medio de lenguajes de programación y software libre como Supercollider y P5.</p>
                 <video src="taller.mp4" controls class="mb-2 w-100"></video>
                 <video src="dat.mp4" controls class="w-100"></video>
-
-                <p >Data sonification is a fascinating process that involves converting data into sound and visuals to make information more accessible, especially in fields where visual analysis alone may be limited or inadequate. This can be particularly useful in environments where the data is complex or spans long periods of time, such as in environmental studies, traffic monitoring, or even in the financial sector to analyze market trends.
-</p>
-                    <p >   Key Concepts of Sonification
-                    Transformation of Data into Sound:
-                    
-                    Direct Mapping: Data values are mapped directly to sound frequencies. For example, in a temperature data set, higher temperatures could be represented with higher pitches.
-                    <p >    Parameter Modeling: The data modulates sound parameters such as timbre, dynamics, rhythm, or volume. For example, wind speed data could control the speed of a beat or the intensity of an ambient sound.</p>
-                <img  src="b.jpeg" class="" style="width: 50%;"  alt="Imagen destacada">
-                <img  src="a.jpeg" class="" style="width: 50%;"  alt="Imagen destacada">
-
-                <video src="tallerplanet.mp4" controls class="w-100"></video>
-
-
+                <p>Data sonification is a fascinating process that involves converting data into sound and visuals to make information more accessible, especially in fields where visual analysis alone may be limited or inadequate. This can be particularly useful in environments where the data is complex or spans long periods of time, such as in environmental studies, traffic monitoring, or even in the financial sector to analyze market trends.</p>
+                <p>Key Concepts of Sonification</p>
+                <p>Direct Mapping: Data values are mapped directly to sound frequencies. For example, in a temperature data set, higher temperatures could be represented with higher pitches.</p>
+                <p>Parameter Modeling: The data modulates sound parameters such as timbre, dynamics, rhythm, or volume. For example, wind speed data could control the speed of a beat or the intensity of an ambient sound.</p>
             </div>
         </div>
     </div>
 
-<div></div>
-<section></section>
+    <!-- Sección Masterclass Música Concreta -->
+    <div class="container hidden" id="masterclass">
+        <h3>Masterclass Música Concreta & Escuchas Contemporáneas</h3>
+        <p>Master Class en la cual se trata de forma ontológica, histórica y práctica, el cómo la música concreta transformó nuestra relación con el sonido y cómo estas prácticas han evolucionado en el arte sonoro actual.</p>
+        <p>El legado de Pierre Schaeffer, John Cage, Pauline Oliveros y Murray Schafer son algunos referentes a estudiar en este repaso histórico sobre la transformación de la escucha en el tiempo.</p>
+        <img src="classmaster.webp" class="img-fluid" alt="Imagen destacada">
+        Duitama Boyacá. Festival FORMA.
+        <img src="classmaster1.webp" class="img-fluid" alt="Imagen destacada">
+        Duitama Boyacá. Festival FORMA.
 
+        <img src="perfoclass.webp" class="img-fluid" alt="Imagen destacada">
+    </div>
 
-    
+    <!-- Sección Masterclass Arte Sonoro ASAB -->
+    <div class="container hidden" id="asab">
+        <h3>Masterclass Arte Sonoro ASAB</h3>
+        <p>¿Cómo llegamos al arte sonoro? 
+            <p>¿Existe el "arte sonoro" en nuestro territorio? </p>
+            
+            <p> ¿Cómo llegamos al arte sonoro?</p>
+<p> ¿Existe el "arte sonoro" en nuestro territorio?</p>
+<p> ¿Cómo se dan las fronteras que co-habitan en el arte sonoro?</p>
+<p> ¿Que es la escucha profunda?</p>
+<p> ruido - silencio - escultura</p>
+<p>Estas son algunas de las preguntas que abordamos en este taller de introducción y creación en el arte sonoro y la música experimental.</p></p>
+        <img src="mast.webp" class="img-fluid" alt="Imagen destacada">
+        <img src="mastr.webp" class="img-fluid" alt="Imagen destacada">
+    </div>
 
-            <footer class="container text-center mt-4">
-                <p class="small">®Alfonso Pretelt</p>
-            </footer>
+    <footer class="container text-center mt-4">
+        <p class="small">®Alfonso Pretelt</p>
+    </footer>
 
-            <!-- Bootstrap JS y Popper.js (opcional, pero necesario para algunos componentes de Bootstrap) -->
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function showSection(sectionId) {
+            // Ocultar todas las secciones
+            var sections = document.querySelectorAll('.container.hidden, .container.visible');
+            sections.forEach(function(section) {
+                section.classList.add('hidden');
+                section.classList.remove('visible');
+            });
+
+            // Mostrar la sección seleccionada
+            document.getElementById(sectionId).classList.remove('hidden');
+            document.getElementById(sectionId).classList.add('visible');
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
-
