@@ -48,19 +48,19 @@
             font-style: normal;
         }
 
+   
         header {
-                        display: flex;
-
+            display: flex;
             background-color: #000000;
             padding: 20px;
             color: #d4d4d4;
             text-align: left;
-            margin-right: 30px;
+            font-family: 'Anta';
+
         }
 
         /* Estilos del menú */
         #menu {
-            display: flex;
             background-color: #000000;
             padding: 20px;
             color: #d4d4d4;
@@ -81,7 +81,7 @@
         }
 
         h4 {
-            margin: 0 20px;
+
             font-size: 1.5em;
             color: #c9eff4;
             text-shadow: 0 0 30px #efffca;
@@ -104,7 +104,16 @@
         img {
             display: block;
             margin: 0 auto;
-            max-width: 60%;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Estilo para organizar las imágenes en 3 por fila */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); /* Ajuste automático */
+            gap: 10px; /* Espacio entre las imágenes */
+            justify-items: center;
         }
 
         .container-content {
@@ -160,6 +169,7 @@
             }
 
             img {
+                display: flex;
                 max-width: 80%;
             }
 
@@ -201,7 +211,6 @@
         <a href="index.html" style="text-decoration: none">
             <h4 id="back-to-top">a-prtlt</h4></a>
 
-
     <!-- Botón de menú para móviles -->
     <button id="menu-toggle">
         <span></span>
@@ -209,14 +218,14 @@
         <span></span>
     </button>
 
-           
     <div id="menu" class="container">
         <a href="about.html">About</a>
         <a href="CV.html">CV</a>
         <a href="teachings.html">Teachings</a>
         <a href="Contact.html">Contact</a>
     </div>
- </header>
+</header>
+
     <div class="container">
 
     <div class="container-content">
@@ -253,33 +262,38 @@
 
             if (tipo === 'art') {
                 contentArea.innerHTML = `
-                    <h3>Real-Time Visualized Sound</h3>
-                    <img src="1d.webp" alt="">
-                    <img src="2d.webp" alt="">
-                    <img src="3d.webp" alt="">
-                    <img src="4d.webp" alt="">
-                    <img src="5d.webp" alt="">
-                    <img src="6d.webp" alt="">
-                    <img src="8d.webp" alt="">
+                    <h2>Real-Time Visualized Sound-Interactive Installation - Audio Reactive - Gesture Reactive</h2>
+                 
+
+
+                    <div class="grid-container">
+                        <img src="1d.webp" alt="">
+                        <img src="2d.webp" alt="">
+                        <img src="3d.webp" alt="">
+                        <img src="4d.webp" alt="">
+                        <img src="cod.jpeg" alt="">
+                        <img src="6d.webp" alt="">
+                        <img src="7d.webp" alt="">
+                    </div>
                 `;
             } else if (tipo === 'game') {
                 contentArea.innerHTML = `
-                    <h3>Interactive Sound Game</h3>
+                    <h2>Interactive Sound Game</h2>
                     <iframe src="https://arteypsique.com/lematworld.html" width="100%" height="900" frameborder="0"></iframe>
                 `;
             } else if (tipo === 'therapeutic') {
                 contentArea.innerHTML = `
-                    <h3>Sound Therapeutic Device</h3>
+                    <h2>Sound Therapeutic Device</h2>
                     <iframe src="https://meditative.netlify.app/" width="100%" height="900" frameborder="0"></iframe>
                 `;
             } else if (tipo === 'children') {
                 contentArea.innerHTML = `
-                    <h3>Interactive Learning For Children</h3>
+                    <h2>Interactive Learning For Children</h2>
                     <iframe src="https://librodigitalaprtlt.netlify.app/collage.html" width="100%" height="900" frameborder="0"></iframe>
                 `;
             } else if (tipo === 'Marketing') {
                 contentArea.innerHTML = `
-                    <h3>Game for Marketing</h3>
+                    <h2>Game for Marketing</h2>
                     <iframe src="https://juegosapopizza.netlify.app/" width="100%" height="900" frameborder="0"></iframe>
                 `;
             }
