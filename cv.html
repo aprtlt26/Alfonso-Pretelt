@@ -21,12 +21,6 @@
 
     <meta name="format-detection" content="telephone=no">
 
-    <script>
-        document.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
-        });
-    </script>
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <title>Interactive Art Media</title>
@@ -36,16 +30,11 @@
             margin: 0;
             font-family: "Anta", sans-serif;
             background-color: #000000;
+            color: #d4d4d4;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
             margin: 30px;
-        }
-
-        .anta-regular {
-            font-family: "Anta", sans-serif;
-            font-weight: 400;
-            font-style: normal;
         }
 
         header {
@@ -90,35 +79,18 @@
             color: hsl(73, 100%, 81%);
         }
 
-        /* Botón de menú para móviles */
-        #menuButton {
-            display: none;
-            background-color: #000000;
-            color: #d4d4d4;
-            text-shadow: 0 0 30px #efffca;
-
-            border: none;
-            padding: 10px;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        footer {
-            padding-top: 200px;
-        }
-
         p {
-            margin-top: 70px;
+            margin-top: 20px;
             text-align: justify;
             font-size: small;
             margin: 20px auto;
             color: #d4d4d4;
             text-shadow: 0 0 30px #efffca;
+            opacity: 0;
         }
 
-        p:hover{
-            color: #bbe1fb;
-
+        p.typing {
+            opacity: 1;
         }
 
         img {
@@ -131,34 +103,24 @@
             max-width: 70%;
         }
 
+        .blinking {
+    animation: blink 4s infinite; /* Aumenta el tiempo a 3s para un parpadeo más lento */
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1; /* Comienza visible */
+    }
+    50% {
+        opacity: 0.5; /* Aumenta el valor a 0.5 para que no desaparezca por completo, será un parpadeo más tenue */
+    }
+    100% {
+        opacity: 1; /* Vuelve a ser visible */
+    }
+}
+
         /* Reglas de estilo para pantallas móviles */
         @media screen and (max-width: 576px) {
-            #menu {
-                display: none;
-                flex-direction: column;
-                align-items: flex-end;
-                padding: 0;
-                
-            }
-
-            #menuButton {
-                display: block;
-                margin-bottom: 20px;
-                text-shadow: 0 0 30px #efffca;
-
-            }
-
-            #menu a {
-                margin: 10px 0;
-                padding: 10px;
-                width: 100%;
-                text-align: center;
-                background-color: #101010;
-                color: #d1d1d1;
-                text-shadow: 0 0 30px #efffca;
-
-            }
-
             img {
                 max-width: 100%;
             }
@@ -168,52 +130,70 @@
 
 <body>
     <header class="container">
-     <a href="index.html" style="text-decoration: none">
+        <a href="index.html" style="text-decoration: none">
             <h4 id="back-to-top">a-prtlt</h4></a>
-    
 
+        <div id="menu" class="container">
+            <a href="about.html">About</a>
+            <a href="new-media.html">Art Media</a>
+            <a href="teachings.html">Teachings</a>
+            <a href="Contact.html">Contact</a>
+        </div>
+    </header>
 
-    <div id="menu" class="container">
-        <a href="about.html">About</a>
-        <a href="new-media.html">Art Media</a>
-        <a href="teachings.html">Teachings</a>
-        <a href="Contact.html">Contact</a>
+    <div class="container">
+        <!-- Parrafos que mostrará el texto -->
+        <p id="typewriter1" class="text-justify"></p>
+        <p id="typewriter2" class="text-justify"></p>
+        <p id="typewriter3" class="text-justify"></p>
+        <p id="typewriter4" class="text-justify"></p>
+        <p id="typewriter5" class="text-justify"></p>
+
+        <img src="perfoclass.webp" alt="">
+
+        <footer class="container text-center mt-4">
+            <p class="small">®Alfonso Pretelt all rights Reserved</p>
+        </footer>
     </div>
 
-            </header>
-    <div class="container">
-        <p class="text-justify">
-           Alfonso Pretelt is a musician and audiovisual artist, specialized in sound and video art, studying at the University of Barcelona, and sonology at the Royal Conservatory of The Hague. He started in music with the piano and voice from the age of 7. He studied music theory and piano with the Russian teachers Irina Litvin, Irina Sachli and Dimitro Riesnik. (Autonomous University of Bucaramanga) he has studied electroacoustic composition with Alejandro Iglesias Rossi (Argentine), José Manuel Berenguer and Ricardo Mandolini. He has studied sound and video art with Barbara Held, Carmen Pardo and José Manuel Berenguer. He studied Sonology with: Joel Ryan, Peter Pabon, Kess Tasselar. (Europe) his studies in cinematography and psychology complement his vision of him as a creator and post-artist.
-        </p>
-        <p class="text-justify">
-He is founder and director of Ideofónica, a platform for Latin American sound art and auralities. He has been a teacher and workshop leader of sound art, video art and contemporary music.    </p>
-        
-        <p class="text-justify">
-I have focused on acoustic research, experimental musical composition and audiovisual development. I promote deep listening experiences and decentralized education.      
-            <p class="text-justify">
-Programmer: from audio processing by code in contemporary music, I have reached frontend and backend web programming, strengthening the field of interactivity, data and creative programming.
-            
-            </p>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const texts = [
+                `Alfonso Pretelt is a musician and audiovisual artist, specialized in sound and video art, studying at the University of Barcelona, and sonology at the Royal Conservatory of The Hague. He started in music with the piano and voice from the age of 7. He studied music theory and piano with the Russian teachers Irina Litvin, Irina Sachli and Dimitro Riesnik. (Autonomous University of Bucaramanga) he has studied electroacoustic composition with Alejandro Iglesias Rossi (Argentine), José Manuel Berenguer and Ricardo Mandolini.`,
+                `He has studied sound and video art with Barbara Held, Carmen Pardo and José Manuel Berenguer. He studied Sonology with: Joel Ryan, Peter Pabon, Kess Tasselar. His studies in cinematography and psychology complement his vision as a creator and post-artist.`,
+                `He is founder and director of Ideofónica, a platform for Latin American sound art and auralities. He has been a teacher and workshop leader of sound art, video art and contemporary music.`,
+                `I have focused on acoustic research, experimental musical composition and audiovisual development. I promote deep listening experiences and decentralized education.`,
+                `Psychologist: After my studies in arts, music and sound, I have completed an undergraduate degree in psychology, seeking to enhance my perspective on the field of science or other holistic contexts. I strengthened my studies of tarot and psychomagic by collaborating with Jodorowsky as a musician and assistant in psychomagic theater in Argentina and Mexico 2013-2014.`
+            ];
 
-        <p  class="text-justify">  Psychologist: After my studies in arts, music and sound, I have completed an undergraduate degree in psychology, seeking to enhance my perspective on the field of science or other holistic contexts.
-I strengthened my studies of tarot and psychomagic by collaborating with Jodorowsky as a musician and assistant in psychomagic theater in Argentina and Mexico 2013-2014.     </p>
+            const speed = 5; // Velocidad de escritura
+            let currentParagraph = 0;
+            let index = 0;
 
-          <p  class="text-justify">
-            Since 2011, his works, experimental shorts and videos have been presented in numerous festivals in Europe and Latin America and Asia. CV+ 
-            
-            <img src="perfoclass.webp" alt="">
-         
-            <a href="https://aprtlt.wixsite.com/aprtlt/cv">CV+</a>
-        </p>
+            function typeWriter(paragraphId) {
+    const paragraph = document.getElementById(paragraphId);
+    const text = texts[currentParagraph];
+    
+    if (index < text.length) {
+        paragraph.textContent += text.charAt(index);
+        paragraph.style.opacity = 1;
+        index++;
+        setTimeout(() => typeWriter(paragraphId), speed);
+    } else {
+        paragraph.classList.add('blinking'); // Añade el parpadeo a cada párrafo después de ser escrito
+        currentParagraph++;
+        if (currentParagraph < texts.length) {
+            index = 0; // Reiniciamos el índice para el siguiente párrafo
+            setTimeout(() => typeWriter(`typewriter${currentParagraph + 1}`), 500);
+        }
+    }
+}
 
-                <footer class="container text-center mt-4">
-                    <p class="small">®Alfonso Pretelt all rights Reserved</p>
-                </footer>
 
-    <!-- Bootstrap JS y Popper.js (opcional, pero necesario para algunos componentes de Bootstrap) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            // Inicia el efecto de máquina de escribir en el primer párrafo
+            typeWriter('typewriter1');
+        });
+    </script>
 </body>
 
 </html>
