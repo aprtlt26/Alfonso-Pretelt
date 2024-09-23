@@ -22,7 +22,7 @@
     <meta name="format-detection" content="telephone=no">
 
     <script>
-        document.addEventListener('contextmenu', function (e) {
+        document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
     </script>
@@ -48,7 +48,6 @@
             font-style: normal;
         }
 
-   
         header {
             display: flex;
             background-color: #000000;
@@ -56,7 +55,6 @@
             color: #d4d4d4;
             text-align: left;
             font-family: 'Anta';
-
         }
 
         /* Estilos del menú */
@@ -81,10 +79,9 @@
         }
 
         h4 {
-
             font-size: 1.5em;
             color: #c9eff4;
-            text-shadow: 0 0 15px #efffca;
+            text-shadow: 0 0 30px #efffca;
             text-decoration: none;
             font-family: 'Anta';
         }
@@ -95,222 +92,174 @@
 
         h2 {
             font-size: 1.5em;
-            color: #c9eff4;
-            text-shadow: 0 0 20px #efffca, 0 0 10px #efffca;
+            color: #d4d2d294;
+            text-shadow: 0 0 20px #efffca, 0 0 30px #efffca;
             margin-top: 50px;
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
 
-        img {
-            display: block;
-            margin: 0 auto;
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Estilo para organizar las imágenes en 3 por fila */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); /* Ajuste automático */
-            gap: 10px; /* Espacio entre las imágenes */
-            justify-items: center;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
         }
 
-        .container-content {
-            flex: 1;
-            margin-bottom: 50px;
+        .gallery-item {
+            border: 0.5px solid #2e2e2e;
+            padding: 5px;
+            transition: transform 0.3s ease;
         }
 
-        footer {
-            text-align: center;
-            padding-top: 20px;
+        .gallery-item iframe {
+            width: 100%;
+            height: 300px;
+            cursor: pointer;
         }
 
-        footer p {
-            padding-top: 20px;
-            color: #d1d1d1;
+        .gallery-item.active {
+            grid-column: span 3;
         }
 
-        p {
-            text-align: justify;
-            font-size: small;
-            max-width: 400px;
-            color: #d1d1d1;
+        /* Estilo para iframe ampliado */
+        .expanded-page {
+            position: fixed;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 80%;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 10px;
+            display: none;
         }
 
-        a {
-            text-decoration: none;
-            color: rgb(164, 249, 73);
-            margin: 2;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        .expanded-page iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
-        a:hover {
-            color: rgb(179, 179, 179);
-        }
-
-        @media screen and (max-width: 576px) {
-            #menu {
-                display: none; 
-            }
-
-            #menu.mobile-visible {
-                display: flex;
-                flex-direction: column;
-                background-color: #000000;
-                padding: 10px;
-                align-items: flex-start;
-            }
-
-            #menu a {
-                margin: 10px 0;
-                font-size: 14px;
-            }
-
-            img {
-                display: flex;
-                max-width: 80%;
-            }
-
-            #menu-toggle {
-                display: block;
-                background-color: transparent;
-                border: none;
-                color: #efffca;
-                font-size: 24px;
-                position: absolute;
-                top: 20px;
-                right: 20px;
-                z-index: 1000;
-                cursor: pointer;
-            }
-
-            #menu-toggle span {
-                display: block;
-                width: 30px;
-                height: 3px;
-                margin: 5px 0;
-                background-color: #efffca;
-            }
-        }
-
-        @media screen and (min-width: 577px) {
-            #menu-toggle {
-                display: none;
-            }
+        .expanded-page.active {
+            display: block;
         }
     </style>
 </head>
 
 <body>
-    
+
     <header class="container">
         <a href="index.html" style="text-decoration: none">
-            <h4 id="back-to-top">a-prtlt</h4></a>
+            <h4 id="back-to-top">a-prtlt</h4>
+        </a>
 
-    <button id="menu-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+        <!-- Botón de menú para móviles -->
+        <button id="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-    <div id="menu" class="container">
-        <a href="about.html">About</a>
-        <a href="CV.html">CV</a>
-        <a href="teachings.html">Teachings</a>
-        <a href="Contact.html">Contact</a>
-    </div>
-</header>
+        <div id="menu" class="container">
+            <a href="about.html">About</a>
+            <a href="CV.html">CV</a>
+            <a href="teachings.html">Teachings</a>
+            <a href="Contact.html">Contact</a>
+        </div>
+    </header>
 
     <div class="container">
 
-    <div class="container-content">
-        <div class="menu">
-            <h2>Interactive Art Media</h2>
-            <p onclick="mostrarContenido('art')">Sound Visualization</p>
-            <p onclick="mostrarContenido('therapeutic')">Sound Frequencies PsychoTherapy</p>
-            <p onclick="mostrarContenido('part')">Sound Design</p>
-            <p onclick="mostrarContenido('ambient')">Inmersive</p>
-            <p onclick="mostrarContenido('Sound Design')">Inmersive</p>
+        <div class="container-content">
+            <div class="menu">
+                <h2>Interactive Art Media</h2>
+                <p onclick="mostrarContenido('art')">Sound Visualization</p>
+                <p onclick="mostrarContenido('game')">Interactive Sound Game</p>
+                <p onclick="mostrarContenido('therapeutic')">Sound Frequencies PsychoTherapy</p>
+            </div>
 
-            <p onclick="mostrarContenido('game')">Interactive Sound Game</p>
+            <!-- Sección de contenido central -->
+            <div class="content" id="content-area">
+                <!-- Aquí se mostrará el contenido dinámicamente -->
+            </div>
         </div>
 
-        <div class="content" id="content-area">
+        <footer class="container text-center mt-4">
+            <p class="small">®Alfonso Pretelt all rights Reserved</p>
+        </footer>
+
+        <!-- Contenedor del iframe ampliado -->
+        <div id="expanded-page" class="expanded-page">
+            <iframe id="expanded-iframe" allow="autoplay"></iframe>
         </div>
+
     </div>
 
-    <footer class="container text-center mt-4">
-        <p class="small">®Alfonso Pretelt all rights Reserved</p>
-    </footer>
-
     <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const menu = document.getElementById('menu');
-        menuToggle.addEventListener('click', function() {
-            menu.classList.toggle('mobile-visible');
-        });
+        // Variable para almacenar los iframes activos
+        let activeIframe = null;
 
+        // Función para activar o desactivar el sonido de un iframe
+        function toggleIframe(iframeId, iframeUrl) {
+            const iframe = document.getElementById(iframeId);
+
+            if (iframe.src) {
+                // Si ya está cargado, desactivar
+                iframe.src = '';  // Limpiar el src para detener el sonido
+                activeIframe = null;
+            } else {
+                // Si no está cargado, cargarlo
+                iframe.src = iframeUrl;  // Cargar la URL en el iframe
+                activeIframe = iframeId;  // Marcar este iframe como activo
+            }
+        }
+
+        // Función para mostrar el contenido dinámico
         function mostrarContenido(tipo) {
             const contentArea = document.getElementById('content-area');
-            contentArea.innerHTML = ''; 
+            contentArea.innerHTML = ''; // Limpiamos el área de contenido
 
             if (tipo === 'art') {
                 contentArea.innerHTML = `
-                    <h2> Visualized sound images, immersive experience -</h2>
-                 
-
-
+                <div class="container">
+                    <h2>Interactive Sound Design</h2>
                     <div class="grid-container">
-                        <img src="1d.webp" alt="">
-                        <img src="2d.webp" alt="">
-                        <img src="3d.webp" alt="">
-                        <img src="4d.webp" alt="">
-                        <img src="cod.jpeg" alt="">
-                        <img src="6d.webp" alt="">
-                        <img src="7d.webp" alt="">
+                        <div class="gallery-item" onclick="toggleIframe('iframe1', 'https://ambientbronz.netlify.app')">
+                            <iframe id="iframe1" frameborder="0"></iframe>
+                        </div>
+                        <div class="gallery-item" onclick="toggleIframe('iframe2', 'https://arcano3.netlify.app')">
+                            <iframe id="iframe2" frameborder="0"></iframe>
+                        </div>
+                        <div class="gallery-item" onclick="toggleIframe('iframe3', 'https://partsound.netlify.app')">
+                            <iframe id="iframe3" frameborder="0"></iframe>
+                        </div>
+                        <div class="gallery-item" onclick="toggleIframe('iframe4', 'https://subtle-gecko-095f0a.netlify.app')">
+                            <iframe id="iframe4" frameborder="0"></iframe>
+                        </div>
+                        <div class="gallery-item" onclick="toggleIframe('iframe5', 'https://part33.netlify.app')">
+                            <iframe id="iframe5" frameborder="0"></iframe>
+                        </div>
+                        <div class="gallery-item" onclick="toggleIframe('iframe6', 'https://pagina3.com')">
+                            <iframe id="iframe6" frameborder="0"></iframe>
+                        </div>
                     </div>
-                `;
-           
+                </div>`;
+            } else if (tipo === 'game') {
+                contentArea.innerHTML = `
+                <h2>Interactive Sound Game</h2>
+                <iframe src="https://arteypsique.com/lematworld.html" width="100%" height="900" frameborder="0"></iframe>`;
             } else if (tipo === 'therapeutic') {
                 contentArea.innerHTML = `
-                    <h2>Sound Therapeutic Device</h2>
-                    <iframe src="https://meditative.netlify.app/" width="100%" height="900" frameborder="0"></iframe>
-                `;
-            } else if (tipo === 'part') {
-                contentArea.innerHTML = `
-                    <h2>Visual Sound Design </h2>
-                    <iframe src="https://arcano3.netlify.app/.html" width="100%" height="900" frameborder="0"></iframe>
-                `;
-            } else if (tipo === 'ambient') {
-                contentArea.innerHTML = `
-                    <h2>Inmersive Visual Sound</h2>
-                    <iframe src= "https://ambientbronz.netlify.app/.html" width="100%" height="900" frameborder="0"></iframe>
-                `;
-
-                      } else if (tipo === 'Sound Design') {
-                contentArea.innerHTML = `
-                    <h2>Inmersive Visual Sound</h2>
-                    <iframe src= "https://partsound.netlify.app/" width="100%" height="900" frameborder="0"></iframe>
-                `;
-
-            
-             } else if (tipo === 'game') {
-                contentArea.innerHTML = `
-                    <h2>Interactive Sound Game</h2>
-                    <iframe src= "https://arteypsique.com/lematworld.html" width="100%" height="900" frameborder="0"></iframe>
-                `;
-
+                <h2>Sound Frequencies PsychoTherapy</h2>
+                <iframe src="https://meditative.netlify.app/" width="100%" height="900" frameborder="0"></iframe>`;
             }
         }
+
     </script>
 
+    <!-- Bootstrap JS y Popper.js (opcional, pero necesario para algunos componentes de Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
-
-
-
