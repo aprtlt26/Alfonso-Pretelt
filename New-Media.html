@@ -277,20 +277,26 @@
                 `;
             } else if (tipo === 'part') {
                 contentArea.innerHTML = `
-                    <h2>Sound Design </h2>
+                    <h2>Visual Sound Design </h2>
                     <iframe src="https://arcano3.netlify.app/.html" width="100%" height="900" frameborder="0"></iframe>
                 `;
             } else if (tipo === 'ambient') {
                 contentArea.innerHTML = `
-                    <h2>Inmersive Sound</h2>
+                    <h2>Inmersive Visual Sound</h2>
                     <iframe src= "https://ambientbronz.netlify.app/.html" width="100%" height="900" frameborder="0"></iframe>
+                `;
+
+                      } else if (tipo === 'ambient') {
+                contentArea.innerHTML = `
+                    <h2>Inmersive Visual Sound</h2>
+                    <iframe src= "https://partsound.netlify.app/" width="100%" height="900" frameborder="0"></iframe>
                 `;
 
             
              } else if (tipo === 'game') {
                 contentArea.innerHTML = `
                     <h2>Interactive Sound Game</h2>
-                    <iframe src="https://arteypsique.com/lematworld.html" width="100%" height="900" frameborder="0"></iframe>
+                    <iframe src= "https://arteypsique.com/lematworld.html" width="100%" height="900" frameborder="0"></iframe>
                 `;
 
             }
