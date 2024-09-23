@@ -272,11 +272,7 @@
                         <img src="7d.webp" alt="">
                     </div>
                 `;
-            } else if (tipo === 'game') {
-                contentArea.innerHTML = `
-                    <h2>Interactive Sound Game</h2>
-                    <iframe src="https://arteypsique.com/lematworld.html" width="100%" height="900" frameborder="0"></iframe>
-                `;
+           
             } else if (tipo === 'therapeutic') {
                 contentArea.innerHTML = `
                     <h2>Sound Therapeutic Device</h2>
@@ -289,9 +285,17 @@
                 `;
             } else if (tipo === 'ambient') {
                 contentArea.innerHTML = `
-                    <h2>Game for Marketing</h2>
+                    <h2>Inmersive Sound</h2>
                     <iframe https://ambientbronz.netlify.app/" width="100%" height="900" frameborder="0"></iframe>
                 `;
+
+            
+             } else if (tipo === 'game') {
+                contentArea.innerHTML = `
+                    <h2>Interactive Sound Game</h2>
+                    <iframe src="https://arteypsique.com/lematworld.html" width="100%" height="900" frameborder="0"></iframe>
+                `;
+
             }
         }
     </script>
