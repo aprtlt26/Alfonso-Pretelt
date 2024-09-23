@@ -195,25 +195,36 @@
     </div>
 
     <script>
-        // Variable para almacenar los iframes activos
-        let activeIframe = null;
+        const expandedPage = document.getElementById('expanded-page');
+        const expandedIframe = document.getElementById('expanded-iframe');
 
-        // Función para activar o desactivar el sonido de un iframe
-        function toggleIframe(iframeId, iframeUrl) {
+        // Almacenar el estado de los iframes (si el sonido está activado o no)
+        let iframeStates = {
+            iframe1: false,
+            iframe2: false,
+            iframe3: false,
+            iframe4: false,
+            iframe5: false,
+            iframe6: false
+        };
+
+        // Función para controlar el volumen del iframe (activar/desactivar sonido)
+        function toggleIframeSound(iframeId) {
             const iframe = document.getElementById(iframeId);
-
-            if (iframe.src) {
-                // Si ya está cargado, desactivar
-                iframe.src = '';  // Limpiar el src para detener el sonido
-                activeIframe = null;
+            const state = iframeStates[iframeId];
+            
+            if (state) {
+                // Desactivar sonido
+                iframe.src = iframe.src.replace("?autoplay=1", "") + "?autoplay=0"; // Añadimos autoplay=0
+                iframeStates[iframeId] = false; // Cambiamos el estado a "sonido desactivado"
             } else {
-                // Si no está cargado, cargarlo
-                iframe.src = iframeUrl;  // Cargar la URL en el iframe
-                activeIframe = iframeId;  // Marcar este iframe como activo
+                // Activar sonido
+                iframe.src = iframe.src.replace("?autoplay=0", "") + "?autoplay=1"; // Añadimos autoplay=1
+                iframeStates[iframeId] = true; // Cambiamos el estado a "sonido activado"
             }
         }
 
-        // Función para mostrar el contenido dinámico
+        // Función para mostrar el contenido dinámico sin afectar otras secciones del menú
         function mostrarContenido(tipo) {
             const contentArea = document.getElementById('content-area');
             contentArea.innerHTML = ''; // Limpiamos el área de contenido
@@ -223,23 +234,23 @@
                 <div class="container">
                     <h2>Interactive Sound Design</h2>
                     <div class="grid-container">
-                        <div class="gallery-item" onclick="toggleIframe('iframe1', 'https://ambientbronz.netlify.app')">
-                            <iframe id="iframe1" frameborder="0"></iframe>
+                        <div class="gallery-item" ondblclick="toggleIframeSound('iframe1')">
+                            <iframe id="iframe1" src="https://ambientbronz.netlify.app" allow="autoplay; muted" frameborder="0"></iframe>
                         </div>
-                        <div class="gallery-item" onclick="toggleIframe('iframe2', 'https://arcano3.netlify.app')">
-                            <iframe id="iframe2" frameborder="0"></iframe>
+                        <div class="gallery-item" ondblclick="toggleIframeSound('iframe2')">
+                            <iframe id="iframe2" src="https://arcano3.netlify.app" allow="autoplay; muted" frameborder="0"></iframe>
                         </div>
-                        <div class="gallery-item" onclick="toggleIframe('iframe3', 'https://partsound.netlify.app')">
-                            <iframe id="iframe3" frameborder="0"></iframe>
+                        <div class="gallery-item" ondblclick="toggleIframeSound('iframe3')">
+                            <iframe id="iframe3" src="https://partsound.netlify.app" allow="autoplay; muted" frameborder="0"></iframe>
                         </div>
-                        <div class="gallery-item" onclick="toggleIframe('iframe4', 'https://subtle-gecko-095f0a.netlify.app')">
-                            <iframe id="iframe4" frameborder="0"></iframe>
+                        <div class="gallery-item" ondblclick="toggleIframeSound('iframe4')">
+                            <iframe id="iframe4" src="https://subtle-gecko-095f0a.netlify.app" allow="autoplay; muted" frameborder="0"></iframe>
                         </div>
-                        <div class="gallery-item" onclick="toggleIframe('iframe5', 'https://part33.netlify.app')">
-                            <iframe id="iframe5" frameborder="0"></iframe>
+                        <div class="gallery-item" ondblclick="toggleIframeSound('iframe5')">
+                            <iframe id="iframe5" src="https://part33.netlify.app" allow="autoplay; muted" frameborder="0"></iframe>
                         </div>
-                        <div class="gallery-item" onclick="toggleIframe('iframe6', 'https://pagina3.com')">
-                            <iframe id="iframe6" frameborder="0"></iframe>
+                        <div class="gallery-item" ondblclick="toggleIframeSound('iframe6')">
+                            <iframe id="iframe6" src="https://pagina3.com" allow="autoplay; muted" frameborder="0"></iframe>
                         </div>
                     </div>
                 </div>`;
@@ -254,6 +265,11 @@
             }
         }
 
+        // Para cerrar la página expandida al hacer clic fuera
+        expandedPage.addEventListener('click', function() {
+            expandedPage.classList.remove('active');
+            expandedIframe.src = ""; // Limpiar el iframe
+        });
     </script>
 
     <!-- Bootstrap JS y Popper.js (opcional, pero necesario para algunos componentes de Bootstrap) -->
@@ -263,3 +279,4 @@
 </body>
 
 </html>
+
