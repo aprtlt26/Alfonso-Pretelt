@@ -149,10 +149,9 @@
             color: rgb(179, 179, 179);
         }
 
-        /* Estilos para móviles */
         @media screen and (max-width: 576px) {
             #menu {
-                display: none; /* Ocultar el menú en versión móvil */
+                display: none; 
             }
 
             #menu.mobile-visible {
@@ -173,7 +172,6 @@
                 max-width: 80%;
             }
 
-            /* Botón de menú para móviles */
             #menu-toggle {
                 display: block;
                 background-color: transparent;
@@ -196,7 +194,6 @@
             }
         }
 
-        /* Esconder el botón de menú en pantallas grandes */
         @media screen and (min-width: 577px) {
             #menu-toggle {
                 display: none;
@@ -211,7 +208,6 @@
         <a href="index.html" style="text-decoration: none">
             <h4 id="back-to-top">a-prtlt</h4></a>
 
-    <!-- Botón de menú para móviles -->
     <button id="menu-toggle">
         <span></span>
         <span></span>
@@ -238,9 +234,7 @@
             <p onclick="mostrarContenido('Marketing')">Game for Marketing</p>
         </div>
 
-        <!-- Sección de contenido central -->
         <div class="content" id="content-area">
-            <!-- Aquí se mostrará el contenido dinámicamente -->
         </div>
     </div>
 
@@ -249,7 +243,6 @@
     </footer>
 
     <script>
-        // Función para manejar el menú desplegable en móviles
         const menuToggle = document.getElementById('menu-toggle');
         const menu = document.getElementById('menu');
         menuToggle.addEventListener('click', function() {
@@ -258,11 +251,11 @@
 
         function mostrarContenido(tipo) {
             const contentArea = document.getElementById('content-area');
-            contentArea.innerHTML = ''; // Limpiamos el área de contenido
+            contentArea.innerHTML = ''; 
 
             if (tipo === 'art') {
                 contentArea.innerHTML = `
-                    <h2>Real-Time Visualized Sound-Interactive Installation - Audio Reactive - Gesture Reactive</h2>
+                    <h2> Visualized sound images, immersive experience -</h2>
                  
 
 
@@ -300,7 +293,6 @@
         }
     </script>
 
-    <!-- Bootstrap JS y Popper.js (opcional, pero necesario para algunos componentes de Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
