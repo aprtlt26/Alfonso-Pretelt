@@ -35,7 +35,7 @@
         body {
             margin: 0;
             font-family: "Anta", sans-serif;
-            background-color: #000000;
+            background-color: #0b0b0b;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -48,18 +48,27 @@
             font-style: normal;
         }
 
+        /* Estilo para el header con fade-in */
         header {
             display: flex;
-            background-color: #000000;
+            background-color:#0b0b0b;
             padding: 20px;
             color: #d4d4d4;
             text-align: left;
             font-family: 'Anta';
+            opacity: 0;
+            animation: fadeIn 1s forwards; /* Efecto de fade-in */
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
         }
 
         /* Estilos del menú */
         #menu {
-            background-color: #000000;
+            background-color: #0b0b0b;
             padding: 20px;
             color: #d4d4d4;
             text-shadow: 0 0 10px #efffca;
@@ -91,11 +100,19 @@
         }
 
         h2 {
-            font-size: 0.5em;
-            color: #c9eff4;
-            text-shadow: 0 0 10px #efffca, 0 0 10px #efffca;
-            margin-top: 50px;
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: 0.9em;
+            color: #000000;
+            text-shadow: 0 0 5px #2a2a2a, 0 0 5px #2e2e2e;
+            margin-top: 10px;
+            font-size: 11px;
+        }
+
+        h2:hover {
+            font-size: 0.9em;
+            color: #373737;
+            text-shadow: 0 0 10px #484848, 0 0 10px #a1a39a;
+            margin-top: 10px;
+            font-size: 10px;
         }
 
         .grid-container {
@@ -114,6 +131,10 @@
             width: 100%;
             height: 300px;
             cursor: pointer;
+        }
+
+        .gallery-item.hidden {
+            display: none; /* Ocultar los iframes cuando no están activos */
         }
 
         .gallery-item.active {
@@ -142,6 +163,37 @@
         .expanded-page.active {
             display: block;
         }
+
+        /* Estilos del menú interactivo */
+        #menuAuto {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0); /* Empezar con el texto invisible */
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0); /* Luz inicial oculta */
+            opacity: 0;
+            transition: opacity 1s, text-shadow 1s; /* Transición para desvanecer el menú */
+        }
+
+        #menuAuto.active {
+            opacity: 1;
+            color: rgba(255, 255, 255, 1); /* Hacer el texto visible */
+        }
+
+        #menuAuto.hidden {
+            opacity: 0; /* Ocultar el menú después de que se escribe */
+            text-shadow: 0 0 15px rgba(255, 255, 255, 1); /* Pequeña luz cuando está oculto */
+        }
+
+        /* Efecto de hover para volver a mostrar el menú */
+        #menuAuto.hidden:hover {
+            opacity: 1;
+            color: rgba(200, 200, 200, 1); /* Texto gris opaco */
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8); /* Luz cuando está en hover */
+        }
     </style>
 </head>
 
@@ -151,12 +203,6 @@
         <a href="index.html" style="text-decoration: none">
             <h4 id="back-to-top">a-prtlt</h4>
         </a>
-
-        <!-- Botón de menú para móviles -->
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
 
         <div id="menu" class="container">
             <a href="about.html">About</a>
@@ -168,29 +214,30 @@
 
     <div class="container">
 
-        <div class="container-content">
-            <div class="menu">
-                <h2>Interactive Art Media</h2>
-                <p onclick="mostrarContenido('art')">Sound Visualization</p>
-                <p onclick="mostrarContenido('game')">Interactive Sound Game</p>
-                <p onclick="mostrarContenido('therapeutic')">Sound Frequencies PsychoTherapy</p>
-            </div>
+        <!-- Menú interactivo que se escribe automáticamente -->
+        <div id="menuAuto"></div>
 
-            <!-- Sección de contenido central -->
-            <div class="content" id="content-area">
-                <!-- Aquí se mostrará el contenido dinámicamente -->
-            </div>
+        <!-- Contenido principal -->
+        <div class="menu">
+            <h2 onclick="mostrarContenido('art')">Sound Visualization</h2>
+            <h2 onclick="mostrarContenido('game')">Interactive Sound Game<h2>
+            <h2 onclick="mostrarContenido('therapeutic')">Sound Frequencies PsychoTherapy<h2>
         </div>
 
-        <footer class="container text-center mt-4">
-            <p class="small">®Alfonso Pretelt all rights Reserved</p>
-        </footer>
-
-        <!-- Contenedor del iframe ampliado -->
-        <div id="expanded-page" class="expanded-page">
-            <iframe id="expanded-iframe" allow="autoplay"></iframe>
+        <!-- Sección de contenido central -->
+        <div class="content" id="content-area">
+            <!-- Aquí se mostrará el contenido dinámicamente -->
         </div>
 
+    </div>
+
+    <footer class="container text-center mt-4">
+        <p class="small">®Alfonso Pretelt all rights Reserved</p>
+    </footer>
+
+    <!-- Contenedor del iframe ampliado -->
+    <div id="expanded-page" class="expanded-page">
+        <iframe id="expanded-iframe" allow="autoplay"></iframe>
     </div>
 
     <script>
@@ -207,19 +254,21 @@
             iframe6: false
         };
 
-        // Función para controlar el volumen del iframe (activar/desactivar sonido)
+        // Función para controlar el estado del iframe (activar/desactivar sonido y mostrar/ocultar)
         function toggleIframeSound(iframeId) {
             const iframe = document.getElementById(iframeId);
             const state = iframeStates[iframeId];
             
             if (state) {
-                // Desactivar sonido
-                iframe.src = iframe.src.replace("?autoplay=1", "") + "?autoplay=0"; // Añadimos autoplay=0
-                iframeStates[iframeId] = false; // Cambiamos el estado a "sonido desactivado"
+                // Ocultar el iframe y desactivar el sonido
+                iframe.classList.add('hidden'); // Ocultar iframe
+                iframe.src = ""; // Detener el sonido
+                iframeStates[iframeId] = false; // Cambiar el estado a desactivado
             } else {
-                // Activar sonido
-                iframe.src = iframe.src.replace("?autoplay=0", "") + "?autoplay=1"; // Añadimos autoplay=1
-                iframeStates[iframeId] = true; // Cambiamos el estado a "sonido activado"
+                // Mostrar el iframe y activar el sonido
+                iframe.classList.remove('hidden'); // Mostrar iframe
+                iframe.src = iframe.src.replace("?autoplay=0", "") + "?autoplay=1"; // Activar el sonido
+                iframeStates[iframeId] = true; // Cambiar el estado a activado
             }
         }
 
@@ -231,35 +280,32 @@
             if (tipo === 'art') {
                 contentArea.innerHTML = `
                 <div class="container">
-                    <h2>Interactive Sound Design</h2>
                     <div class="grid-container">
                         <div class="gallery-item" ondblclick="toggleIframeSound('iframe1')">
-                            <iframe id="iframe1" src="https://ambientbronz.netlify.app" allow="autoplay; muted" frameborder="0"></iframe>
+                            <iframe id="iframe1" class="hidden" src="https://ambientbronz.netlify.app" allow="autoplay; muted" frameborder="0"></iframe>
                         </div>
                         <div class="gallery-item" ondblclick="toggleIframeSound('iframe2')">
-                            <iframe id="iframe2" src="https://arcano3.netlify.app" allow="autoplay; muted" frameborder="0"></iframe>
+                            <iframe id="iframe2" class="hidden" src="https://arcano3.netlify.app" allow="autoplay; muted" frameborder="0"></iframe>
                         </div>
                         <div class="gallery-item" ondblclick="toggleIframeSound('iframe3')">
-                            <iframe id="iframe3" src="https://partsound.netlify.app" allow="autoplay; muted" frameborder="0"></iframe>
+                            <iframe id="iframe3" class="hidden" src="https://partsound.netlify.app" allow="autoplay; muted" frameborder="0"></iframe>
                         </div>
                         <div class="gallery-item" ondblclick="toggleIframeSound('iframe4')">
-                            <iframe id="iframe4" src="https://subtle-gecko-095f0a.netlify.app" allow="autoplay; muted" frameborder="0"></iframe>
+                            <iframe id="iframe4" class="hidden" src="https://subtle-gecko-095f0a.netlify.app" allow="autoplay; muted" frameborder="0"></iframe>
                         </div>
                         <div class="gallery-item" ondblclick="toggleIframeSound('iframe5')">
-                            <iframe id="iframe5" src="https://part33.netlify.app" allow="autoplay; muted" frameborder="0"></iframe>
+                            <iframe id="iframe5" class="hidden" src="https://part33.netlify.app" allow="autoplay; muted" frameborder="0"></iframe>
                         </div>
                         <div class="gallery-item" ondblclick="toggleIframeSound('iframe6')">
-                            <iframe id="iframe6" src="https://aprtltgranular.netlify.app/" allow="autoplay; muted" frameborder="0"></iframe>
+                            <iframe id="iframe6" class="hidden" src="https://aprtltgranular.netlify.app/" allow="autoplay; muted" frameborder="0"></iframe>
                         </div>
                     </div>
                 </div>`;
             } else if (tipo === 'game') {
                 contentArea.innerHTML = `
-                <h2>Interactive Sound Game</h2>
                 <iframe src="https://arteypsique.com/lematworld.html" width="100%" height="900" frameborder="0"></iframe>`;
             } else if (tipo === 'therapeutic') {
                 contentArea.innerHTML = `
-                <h2>Sound Frequencies PsychoTherapy</h2>
                 <iframe src="https://meditative.netlify.app/" width="100%" height="900" frameborder="0"></iframe>`;
             }
         }
@@ -269,6 +315,48 @@
             expandedPage.classList.remove('active');
             expandedIframe.src = ""; // Limpiar el iframe
         });
+
+        // Función para manejar el menú interactivo automático
+        let menuText = [
+            "Interactive Art Media",
+            "Sound Visualization",
+            "Interactive Sound Game",
+            "Sound Frequencies PsychoTherapy"
+        ];
+
+        let menuElement;
+        let menuIndex = 0;
+        let charIndex = 0;
+
+        function setupMenu() {
+            menuElement = document.getElementById('menuAuto');
+            writeMenuText();
+        }
+
+        function writeMenuText() {
+            if (menuIndex < menuText.length) {
+                let currentText = menuText[menuIndex];
+
+                if (charIndex < currentText.length) {
+                    menuElement.innerHTML += currentText.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(writeMenuText, 100); // Escribir el siguiente carácter con retraso
+                } else {
+                    menuElement.innerHTML += "<br/>";
+                    menuIndex++;
+                    charIndex = 0;
+                    setTimeout(writeMenuText, 500); // Pausar antes de la siguiente línea
+                }
+            } else {
+                // Al terminar de escribir, aplicar el desvanecimiento
+                setTimeout(() => {
+                    menuElement.classList.add("hidden");
+                }, 1000); // Esperar 2 segundos después de escribir el menú
+            }
+        }
+
+        // Inicializar el menú interactivo
+        document.addEventListener('DOMContentLoaded', setupMenu);
     </script>
 
     <!-- Bootstrap JS y Popper.js (opcional, pero necesario para algunos componentes de Bootstrap) -->
