@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <!-- Meta etiquetas y enlaces -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="About">
     <meta name="keywords" content="Artesonoro, experimental, alfonsopretelt,tarot">
@@ -17,23 +16,20 @@
     <meta property="og:image" content="lemt.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Fuentes -->
     <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
     <meta name="format-detection" content="telephone=no">
 
-    <!-- Deshabilitar clic derecho -->
     <script>
         document.addEventListener('contextmenu', function (e) {
             e.preventDefault();
         });
     </script>
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Interactive Art Media</title>
 
     <style>
-        /* Estilos generales */
+   
         body {
             margin: 0;
             font-family: "Anta", sans-serif;
@@ -51,7 +47,6 @@
             font-style: small;
         }
 
-        /* Estilo para el header con fade-in */
         header {
             display: flex;
             background-color:  #d5d5d5;
@@ -110,7 +105,7 @@
             text-shadow: 0 0 5px #b6b4b4, 0 0 5px #ffffff;
             margin-top: 6px;
             cursor: pointer;
-            opacity: 0; /* Empezar oculto para efecto de tipeo */
+            opacity: 0; 
 
         }
 
@@ -123,13 +118,15 @@
         .grid-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            gap: 5px;
         }
 
         .gallery-item {
-            border: 0.5px solid #9c9b9b;
-            padding: 5px;
+            border: 0.5px solid #9c9b9b00;
+            padding: 10px;
             transition: transform 0.3s ease;
+            width: 100%;
+
         }
 
         .gallery-item video {
@@ -146,7 +143,6 @@
             grid-column: span 3;
         }
 
-        /* Estilo para video ampliado */
         .expanded-page {
             position: fixed;
             top: 5%;
@@ -154,7 +150,7 @@
             width: 90%;
             height: 90%;
             z-index: 1000;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(255, 255, 255, 0);
             padding: 10px;
             display: none;
         }
@@ -170,29 +166,46 @@
         }
 
         .large-video {
-    grid-column: span 1; /* Hace que el contenedor ocupe dos columnas */
+    grid-column: span 1;
 }
 
-/* Estilos para que el video se adapte al contenedor */
+p{
+    font-size: 0.7em;
+    margin-left: 700px;
+}
+
+footer{
+    font-size: 0.7em;
+
+}
+
 #video2 {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Asegura que el video cubra todo el contenedor sin deformarse */
+    object-fit: cover; 
 }
 #video6 {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Asegura que el video cubra todo el contenedor sin deformarse */
+    object-fit: cover; 
 }
 #video3 {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Asegura que el video cubra todo el contenedor sin deformarse */
+    object-fit: cover; 
+    
+}
+
+#video4 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    
 }
 #video5 {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Asegura que el video cubra todo el contenedor sin deformarse */
+    object-fit: cover;
 }
     </style>
 </head>
@@ -214,16 +227,13 @@
 
     <div class="container">
 
-        <!-- Contenido principal -->
         <div class="menu">
             <h2 id="title1" onclick="mostrarContenido('art')"></h2>
             <h2 id="title2" onclick="mostrarContenido('game')"></h2>
             <h2 id="title3" onclick="mostrarContenido('therapeutic')"></h2>
         </div>
 
-        <!-- Sección de contenido central -->
         <div class="content" id="content-area">
-            <!-- Aquí se mostrará el contenido dinámicamente -->
         </div>
 
     </div>
@@ -232,7 +242,6 @@
         <p class="small">®Alfonso Pretelt all rights Reserved</p>
     </footer>
 
-    <!-- Contenedor del video ampliado -->
     <div id="expanded-page" class="expanded-page">
         <video id="expanded-video"  autoplay loop ></video>
     </div>
@@ -241,42 +250,41 @@
         const expandedPage = document.getElementById('expanded-page');
         const expandedVideo = document.getElementById('expanded-video');
 
-        // Función para controlar el estado del video (mostrar/ocultar)
         function toggleVideo(videoId) {
             const video = document.getElementById(videoId);
 
-            // Mostrar el video ampliado
             expandedPage.classList.add('active');
             expandedVideo.src = video.src;
             expandedVideo.play();
         }
 
-        // Función para mostrar el contenido dinámico sin afectar otras secciones del menú
         function mostrarContenido(tipo) {
             const contentArea = document.getElementById('content-area');
-            contentArea.innerHTML = ''; // Limpiamos el área de contenido
+            contentArea.innerHTML = ''; 
 
             if (tipo === 'art') {
                 contentArea.innerHTML = `
                 <div class="container">
+                    <p> Audiovisual objects {materialized entities} digital synthesis and generation - algorithmic composition.</p>
+                
                     <div class="grid-container">
                         <div class="gallery-item">
-                            <video id="video1" src="2.mp4" onclick="toggleVideo('video1')" autoplay loop></video>
+                            <video id="video1" src="2.mp4" onclick="toggleVideo('video1')" autoplay  controls loop></video>
                         </div>
                         <div class="gallery-item large-video">
-        <video id="video2" src="3.mp4" onclick="toggleVideo('video2')" autoplay muted loop></video>
+        <video id="video2" src="3.1.mp4" onclick="toggleVideo('video2')" autoplay autoplay controls loop onloadedmetadata="this.volume=0.9"></video>
     </div>
                         <div class="gallery-item">
-                            <video id="video3" src="33.mp4" onclick="toggleVideo('video3')" autoplay  loop></video>
+                            <video id="video3" src="33.mp4" onclick="toggleVideo('video3')" autoplay controls loop onloadedmetadata="this.volume=0.9"></video>
                         </div>
                         <div class="gallery-item">
-                            <video id="video4" src="4.mp4" onclick="toggleVideo('video4')" autoplay  loop></video>
+                            <video id="video4" src="4.mp4" onclick="toggleVideo('video4')" autoplay controls loop onloadedmetadata="this.volume=0.5"></video>
                         </div>
                         <div class="gallery-item">
-                            <video id="video5" src="5.mp4" onclick="toggleVideo('video5')" autoplay  loop></video>
+                            <video id="video5" src="5.mp4" onclick="toggleVideo('video5')" autoplay   loop></video>
                         </div>
                         <div class="gallery-item">
-                            <video id="video6" src="6.mp4" onclick="toggleVideo('video6')" autoplay loop></video>
+                            <video id="video6" src="6.mp4" onclick="toggleVideo('video6')" autoplay controls loop onloadedmetadata="this.volume=0.3"></video>
                         </div>
                     </div>
                 </div>`;
@@ -289,14 +297,12 @@
             }
         }
 
-        // Para cerrar la página expandida al hacer clic fuera
         expandedPage.addEventListener('click', function () {
             expandedPage.classList.remove('active');
             expandedVideo.pause();
-            expandedVideo.src = ""; // Limpiar el video
+            expandedVideo.src = ""; 
         });
 
-        // Función para manejar el efecto de tipeo en los títulos del menú
         let titles = [
             { id: 'title1', text: 'Sound Visualization' },
             { id: 'title2', text: 'Interactive Sound Game' },
@@ -311,27 +317,23 @@
                 let titleElement = document.getElementById(titles[currentTitleIndex].id);
                 let fullText = titles[currentTitleIndex].text;
 
-                // Mostrar el elemento
                 titleElement.style.opacity = 1;
 
                 if (currentCharIndex < fullText.length) {
                     titleElement.innerHTML += fullText.charAt(currentCharIndex);
                     currentCharIndex++;
-                    setTimeout(typeTitles, 50); // Velocidad de tipeo
+                    setTimeout(typeTitles, 50); 
                 } else {
-                    // Pasar al siguiente título
                     currentTitleIndex++;
                     currentCharIndex = 0;
-                    setTimeout(typeTitles, 200); // Pausa entre títulos
+                    setTimeout(typeTitles, 200); 
                 }
             }
         }
 
-        // Iniciar el efecto de tipeo al cargar la página
         document.addEventListener('DOMContentLoaded', typeTitles);
     </script>
 
-    <!-- Bootstrap JS y Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
