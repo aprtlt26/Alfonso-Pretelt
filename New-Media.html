@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
+    <!-- Meta etiquetas y enlaces -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="About">
     <meta name="keywords" content="Artesonoro, experimental, alfonsopretelt,tarot">
     <meta name="author" content="alfonsopretelt">
@@ -17,25 +17,27 @@
     <meta property="og:image" content="lemt.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fuentes -->
     <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
-
     <meta name="format-detection" content="telephone=no">
 
+    <!-- Deshabilitar clic derecho -->
     <script>
-        document.addEventListener('contextmenu', function(e) {
+        document.addEventListener('contextmenu', function (e) {
             e.preventDefault();
         });
     </script>
 
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
     <title>Interactive Art Media</title>
 
     <style>
+        /* Estilos generales */
         body {
             margin: 0;
             font-family: "Anta", sans-serif;
-            background-color: #0b0b0b;
+            background-color: #d5d5d5;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -44,20 +46,20 @@
 
         .anta-regular {
             font-family: "Anta", sans-serif;
-            font-weight: 400;
-            font-style: normal;
+            font-weight: 100;
+            font-style: small;
         }
 
         /* Estilo para el header con fade-in */
         header {
             display: flex;
-            background-color:#0b0b0b;
+            background-color:  #d5d5d5;
             padding: 20px;
-            color: #d4d4d4;
+            color: #3d3c3c;
             text-align: left;
             font-family: 'Anta';
             opacity: 0;
-            animation: fadeIn 1s forwards; /* Efecto de fade-in */
+            animation: fadeIn 1s forwards;
         }
 
         @keyframes fadeIn {
@@ -68,28 +70,30 @@
 
         /* Estilos del menú */
         #menu {
-            background-color: #0b0b0b;
+            background-color:  #d5d5d5;
             padding: 20px;
-            color: #d4d4d4;
-            text-shadow: 0 0 10px #efffca;
+            color: #7b7878;
+            text-shadow: 0 0 10px #e2e2b8;
             align-items: center;
         }
 
         #menu a {
             margin: 0 20px;
             text-decoration: none;
-            color: #d1d1d1;
+            color: #ffffff;
+            text-shadow: 0 0 10px #e2e2b8;
+
             font-size: 9px;
             font-family: "Anta", sans-serif;
         }
 
         #menu a:hover {
-            color: #efffca;
+            color: #848383;
         }
 
         h4 {
             font-size: 1.5em;
-            color: #c9eff4;
+            color: #aab1b1;
             text-shadow: 0 0 10px #efffca;
             text-decoration: none;
             font-family: 'Anta';
@@ -100,19 +104,19 @@
         }
 
         h2 {
-            font-size: 0.9em;
-            color: #000000;
-            text-shadow: 0 0 5px #2a2a2a, 0 0 5px #2e2e2e;
-            margin-top: 10px;
-            font-size: 11px;
+            font-size: 0.6em;
+            color: #ffffff;
+            text-shadow: 0 0 5px #f0f0f0, 0 0 5px #ffffff;
+            margin-top: 6px;
+            cursor: pointer;
+            opacity: 0; /* Empezar oculto para efecto de tipeo */
+
         }
 
         h2:hover {
-            font-size: 0.9em;
-            color: #373737;
-            text-shadow: 0 0 10px #484848, 0 0 10px #a1a39a;
-            margin-top: 10px;
-            font-size: 10px;
+            color: #bdbbbb;
+            text-shadow: 0 0 5px #f0f0f0, 0 0 5px #ffffff;
+
         }
 
         .grid-container {
@@ -122,39 +126,39 @@
         }
 
         .gallery-item {
-            border: 0.5px solid #2e2e2e;
+            border: 0.5px solid #9c9b9b;
             padding: 5px;
             transition: transform 0.3s ease;
         }
 
-        .gallery-item iframe {
+        .gallery-item video {
             width: 100%;
-            height: 300px;
+            height: auto;
             cursor: pointer;
         }
 
         .gallery-item.hidden {
-            display: none; /* Ocultar los iframes cuando no están activos */
+            display: none;
         }
 
         .gallery-item.active {
             grid-column: span 3;
         }
 
-        /* Estilo para iframe ampliado */
+        /* Estilo para video ampliado */
         .expanded-page {
             position: fixed;
-            top: 10%;
-            left: 10%;
-            width: 80%;
-            height: 80%;
+            top: 5%;
+            left: 5%;
+            width: 90%;
+            height: 90%;
             z-index: 1000;
             background-color: rgba(0, 0, 0, 0.9);
             padding: 10px;
             display: none;
         }
 
-        .expanded-page iframe {
+        .expanded-page video {
             width: 100%;
             height: 100%;
             border: none;
@@ -164,36 +168,31 @@
             display: block;
         }
 
-        /* Estilos del menú interactivo */
-        #menuAuto {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0); /* Empezar con el texto invisible */
-            cursor: pointer;
-            font-family: Arial, sans-serif;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0); /* Luz inicial oculta */
-            opacity: 0;
-            transition: opacity 1s, text-shadow 1s; /* Transición para desvanecer el menú */
-        }
+        .large-video {
+    grid-column: span 1; /* Hace que el contenedor ocupe dos columnas */
+}
 
-        #menuAuto.active {
-            opacity: 1;
-            color: rgba(255, 255, 255, 1); /* Hacer el texto visible */
-        }
-
-        #menuAuto.hidden {
-            opacity: 0; /* Ocultar el menú después de que se escribe */
-            text-shadow: 0 0 15px rgba(255, 255, 255, 1); /* Pequeña luz cuando está oculto */
-        }
-
-        /* Efecto de hover para volver a mostrar el menú */
-        #menuAuto.hidden:hover {
-            opacity: 1;
-            color: rgba(200, 200, 200, 1); /* Texto gris opaco */
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8); /* Luz cuando está en hover */
-        }
+/* Estilos para que el video se adapte al contenedor */
+#video2 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que el video cubra todo el contenedor sin deformarse */
+}
+#video6 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que el video cubra todo el contenedor sin deformarse */
+}
+#video3 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que el video cubra todo el contenedor sin deformarse */
+}
+#video5 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que el video cubra todo el contenedor sin deformarse */
+}
     </style>
 </head>
 
@@ -214,14 +213,11 @@
 
     <div class="container">
 
-        <!-- Menú interactivo que se escribe automáticamente -->
-        <div id="menuAuto"></div>
-
         <!-- Contenido principal -->
         <div class="menu">
-            <h2 onclick="mostrarContenido('art')">Sound Visualization</h2>
-            <h2 onclick="mostrarContenido('game')">Interactive Sound Game<h2>
-            <h2 onclick="mostrarContenido('therapeutic')">Sound Frequencies PsychoTherapy<h2>
+            <h2 id="title1" onclick="mostrarContenido('art')"></h2>
+            <h2 id="title2" onclick="mostrarContenido('game')"></h2>
+            <h2 id="title3" onclick="mostrarContenido('therapeutic')"></h2>
         </div>
 
         <!-- Sección de contenido central -->
@@ -235,41 +231,23 @@
         <p class="small">®Alfonso Pretelt all rights Reserved</p>
     </footer>
 
-    <!-- Contenedor del iframe ampliado -->
+    <!-- Contenedor del video ampliado -->
     <div id="expanded-page" class="expanded-page">
-        <iframe id="expanded-iframe" allow="autoplay"></iframe>
+        <video id="expanded-video"  autoplay loop ></video>
     </div>
 
     <script>
         const expandedPage = document.getElementById('expanded-page');
-        const expandedIframe = document.getElementById('expanded-iframe');
+        const expandedVideo = document.getElementById('expanded-video');
 
-        // Almacenar el estado de los iframes (si el sonido está activado o no)
-        let iframeStates = {
-            iframe1: false,
-            iframe2: false,
-            iframe3: false,
-            iframe4: false,
-            iframe5: false,
-            iframe6: false
-        };
+        // Función para controlar el estado del video (mostrar/ocultar)
+        function toggleVideo(videoId) {
+            const video = document.getElementById(videoId);
 
-        // Función para controlar el estado del iframe (activar/desactivar sonido y mostrar/ocultar)
-        function toggleIframeSound(iframeId) {
-            const iframe = document.getElementById(iframeId);
-            const state = iframeStates[iframeId];
-            
-            if (state) {
-                // Ocultar el iframe y desactivar el sonido
-                iframe.classList.add('hidden'); // Ocultar iframe
-                iframe.src = ""; // Detener el sonido
-                iframeStates[iframeId] = false; // Cambiar el estado a desactivado
-            } else {
-                // Mostrar el iframe y activar el sonido
-                iframe.classList.remove('hidden'); // Mostrar iframe
-                iframe.src = iframe.src.replace("?autoplay=0", "") + "?autoplay=1"; // Activar el sonido
-                iframeStates[iframeId] = true; // Cambiar el estado a activado
-            }
+            // Mostrar el video ampliado
+            expandedPage.classList.add('active');
+            expandedVideo.src = video.src;
+            expandedVideo.play();
         }
 
         // Función para mostrar el contenido dinámico sin afectar otras secciones del menú
@@ -281,23 +259,23 @@
                 contentArea.innerHTML = `
                 <div class="container">
                     <div class="grid-container">
-                        <div class="gallery-item" ondblclick="toggleIframeSound('iframe1')">
-                            <iframe id="iframe1" class="hidden" src="https://ambientbronz.netlify.app" allow="autoplay; muted" frameborder="0"></iframe>
+                        <div class="gallery-item">
+                            <video id="video1" src="2.mp4" onclick="toggleVideo('video1')" autoplay loop></video>
                         </div>
-                        <div class="gallery-item" ondblclick="toggleIframeSound('iframe2')">
-                            <iframe id="iframe2" class="hidden" src="https://arcano3.netlify.app" allow="autoplay; muted" frameborder="0"></iframe>
+                        <div class="gallery-item large-video">
+        <video id="video2" src="3.mp4" onclick="toggleVideo('video2')" autoplay muted loop></video>
+    </div>
+                        <div class="gallery-item">
+                            <video id="video3" src="33.mp4" onclick="toggleVideo('video3')" autoplay  loop></video>
                         </div>
-                        <div class="gallery-item" ondblclick="toggleIframeSound('iframe3')">
-                            <iframe id="iframe3" class="hidden" src="https://partsound.netlify.app" allow="autoplay; muted" frameborder="0"></iframe>
+                        <div class="gallery-item">
+                            <video id="video4" src="4.mp4" onclick="toggleVideo('video4')" autoplay  loop></video>
                         </div>
-                        <div class="gallery-item" ondblclick="toggleIframeSound('iframe4')">
-                            <iframe id="iframe4" class="hidden" src="https://subtle-gecko-095f0a.netlify.app" allow="autoplay; muted" frameborder="0"></iframe>
+                        <div class="gallery-item">
+                            <video id="video5" src="5.mp4" onclick="toggleVideo('video5')" autoplay  loop></video>
                         </div>
-                        <div class="gallery-item" ondblclick="toggleIframeSound('iframe5')">
-                            <iframe id="iframe5" class="hidden" src="https://part33.netlify.app" allow="autoplay; muted" frameborder="0"></iframe>
-                        </div>
-                        <div class="gallery-item" ondblclick="toggleIframeSound('iframe6')">
-                            <iframe id="iframe6" class="hidden" src="https://aprtltgranular.netlify.app/" allow="autoplay; muted" frameborder="0"></iframe>
+                        <div class="gallery-item">
+                            <video id="video6" src="6.mp4" onclick="toggleVideo('video6')" autoplay loop></video>
                         </div>
                     </div>
                 </div>`;
@@ -311,59 +289,53 @@
         }
 
         // Para cerrar la página expandida al hacer clic fuera
-        expandedPage.addEventListener('click', function() {
+        expandedPage.addEventListener('click', function () {
             expandedPage.classList.remove('active');
-            expandedIframe.src = ""; // Limpiar el iframe
+            expandedVideo.pause();
+            expandedVideo.src = ""; // Limpiar el video
         });
 
-        // Función para manejar el menú interactivo automático
-        let menuText = [
-            "Interactive Art Media",
-            "Sound Visualization",
-            "Interactive Sound Game",
-            "Sound Frequencies PsychoTherapy"
+        // Función para manejar el efecto de tipeo en los títulos del menú
+        let titles = [
+            { id: 'title1', text: 'Sound Visualization' },
+            { id: 'title2', text: 'Interactive Sound Game' },
+            { id: 'title3', text: 'Sound Frequencies PsychoTherapy' }
         ];
 
-        let menuElement;
-        let menuIndex = 0;
-        let charIndex = 0;
+        let currentTitleIndex = 0;
+        let currentCharIndex = 0;
 
-        function setupMenu() {
-            menuElement = document.getElementById('menuAuto');
-            writeMenuText();
-        }
+        function typeTitles() {
+            if (currentTitleIndex < titles.length) {
+                let titleElement = document.getElementById(titles[currentTitleIndex].id);
+                let fullText = titles[currentTitleIndex].text;
 
-        function writeMenuText() {
-            if (menuIndex < menuText.length) {
-                let currentText = menuText[menuIndex];
+                // Mostrar el elemento
+                titleElement.style.opacity = 1;
 
-                if (charIndex < currentText.length) {
-                    menuElement.innerHTML += currentText.charAt(charIndex);
-                    charIndex++;
-                    setTimeout(writeMenuText, 100); // Escribir el siguiente carácter con retraso
+                if (currentCharIndex < fullText.length) {
+                    titleElement.innerHTML += fullText.charAt(currentCharIndex);
+                    currentCharIndex++;
+                    setTimeout(typeTitles, 50); // Velocidad de tipeo
                 } else {
-                    menuElement.innerHTML += "<br/>";
-                    menuIndex++;
-                    charIndex = 0;
-                    setTimeout(writeMenuText, 500); // Pausar antes de la siguiente línea
+                    // Pasar al siguiente título
+                    currentTitleIndex++;
+                    currentCharIndex = 0;
+                    setTimeout(typeTitles, 200); // Pausa entre títulos
                 }
-            } else {
-                // Al terminar de escribir, aplicar el desvanecimiento
-                setTimeout(() => {
-                    menuElement.classList.add("hidden");
-                }, 1000); // Esperar 2 segundos después de escribir el menú
             }
         }
 
-        // Inicializar el menú interactivo
-        document.addEventListener('DOMContentLoaded', setupMenu);
+        // Iniciar el efecto de tipeo al cargar la página
+        document.addEventListener('DOMContentLoaded', typeTitles);
     </script>
 
-    <!-- Bootstrap JS y Popper.js (opcional, pero necesario para algunos componentes de Bootstrap) -->
+    <!-- Bootstrap JS y Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
+
 
