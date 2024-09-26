@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <!-- Metadatos y enlaces existentes -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="About">
-    <meta name="keywords" content="Artesonoro, experimental, alfonsopretelt,tarot">
+    <meta description="About">
+    <meta name="keywords" content="Artesonoro, experimental, alfonsopretelt, tarot">
     <meta name="author" content="alfonsopretelt">
     <meta name="robots" content="Interactive">
     <meta name="google" content="translate">
     <meta property="og:type" content="lemt.jpeg">
-    <meta property="og:url" content="https://arteypsique.com/tarot_syntheziser">
+    <meta property="og:url" content="https://arteypsique.com/tarot_synthesizer">
     <meta property="og:title" content="Tarot Synthesizer">
     <meta property="og:description" content="Art Media">
     <meta property="og:image" content="lemt.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap"
+          rel="stylesheet">
     <meta name="format-detection" content="telephone=no">
 
     <script>
@@ -29,7 +30,6 @@
     <title>Interactive Art Media</title>
 
     <style>
-   
         body {
             margin: 0;
             font-family: "Anta", sans-serif;
@@ -38,7 +38,7 @@
             flex-direction: column;
             min-height: 100vh;
             color: #aeaeae;
-            margin: 30px;
+            padding: 30px;
         }
 
         .anta-regular {
@@ -49,7 +49,7 @@
 
         header {
             display: flex;
-            background-color:  #d5d5d5;
+            background-color: #d5d5d5;
             padding: 20px;
             color: #3d3c3c;
             text-align: left;
@@ -66,7 +66,7 @@
 
         /* Estilos del menú */
         #menu {
-            background-color:  #d5d5d5;
+            background-color: #d5d5d5;
             padding: 20px;
             color: #7b7878;
             text-shadow: 0 0 10px #e2e2b8;
@@ -78,7 +78,6 @@
             text-decoration: none;
             color: #ffffff;
             text-shadow: 0 0 10px #e2e2b8;
-
             font-size: 9px;
             font-family: "Anta", sans-serif;
         }
@@ -105,20 +104,21 @@
             text-shadow: 0 0 5px #b6b4b4, 0 0 5px #ffffff;
             margin-top: 6px;
             cursor: pointer;
-            opacity: 0; 
-
+            opacity: 0;
         }
 
         h2:hover {
             color: #bdbbbb;
             text-shadow: 0 0 5px #f0f0f0, 0 0 5px #ffffff;
-
         }
 
         .grid-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 5px;
+            position: relative;
+            z-index: 1000;
+
         }
 
         .gallery-item {
@@ -126,6 +126,8 @@
             padding: 10px;
             transition: transform 0.3s ease;
             width: 100%;
+            position: relative;
+            z-index: 100;
 
         }
 
@@ -133,6 +135,9 @@
             width: 100%;
             height: auto;
             cursor: pointer;
+            transition: opacity 0.5s ease, filter 0.5s ease;
+            z-index: 100;
+
         }
 
         .gallery-item.hidden {
@@ -145,14 +150,15 @@
 
         .expanded-page {
             position: fixed;
-            top: 5%;
-            left: 5%;
-            width: 90%;
-            height: 90%;
-            z-index: 1000;
-            background-color: rgba(255, 255, 255, 0);
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 80%;
+            z-index: 1001;
+            background-color: rgba(255, 255, 255, 0.0);
             padding: 10px;
             display: none;
+            cursor: move;
         }
 
         .expanded-page video {
@@ -166,179 +172,899 @@
         }
 
         .large-video {
-    grid-column: span 1;
+            grid-column: span 1;
+        }
+
+        p {
+            font-size: 0.7em;
+            margin-left: 700px;
+        }
+
+        footer {
+            font-size: 0.7em;
+        }
+
+        #video2,
+        #video6,
+        #video3,
+        #video4,
+        #video5 {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 100;
+        }
+
+        /* Estilos para los sliders blancos y pequeños */
+        #controls-panel input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            color: #ffffff;
+        }
+
+        #controls-panel input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+            margin-top: -3px;
+        }
+
+        #controls-panel input[type="range"]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            background: #ffffff;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        #controls-panel input[type="range"]::-moz-range-thumb {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+        }
+
+        #controls-panel input[type="range"]::-moz-range-track {
+            width: 100%;
+            height: 4px;
+            background: #ffffff;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        /* Estilos para la pantalla de mezcla */
+        #mix-screen {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 110%;
+    height: 110%;
+    background-color: #000;
+    margin-top: 20px;
+    z-index: 30; /* Este valor asegura que esté muy por debajo de los otros elementos */
+    resize: both;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px rgba(96, 176, 185, 0.5);
+    cursor: move;
 }
 
-p{
-    font-size: 0.7em;
-    margin-left: 700px;
+     
+
+
+        #mix-screen video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+            transition: opacity 0.5s ease, filter 0.5s ease, transform 0.5s ease; /* Añadido transform para el zoom */
+            pointer-events: none; /* Permite que los eventos pasen al contenedor */
+
+        }
+
+        /* Estilo para el checkbox normal */
+#mix-mode, #control-mode {
+    appearance: none; /* Eliminamos el estilo predeterminado */
+    width: 20px;
+    height: 20px;
+    border: 2px solid #eceaea; /* Color del borde */
+    background-color: #00000000; /* Fondo gris cuando no está seleccionado */
+    border-radius: 4px; /* Esquinas redondeadas si lo deseas */
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(81, 175, 186, 0.5); /* Luz tenue */
+    font-size: 6px;
+
 }
 
-footer{
-    font-size: 0.7em;
+/* Estilo para cuando el checkbox está seleccionado */
+#mix-mode:checked, #control-mode:checked {
+    background-color:  #f1f1f1db; /* Fondo gris cuando está seleccionado */
+    border-color: #484848; /* Cambia el borde a gris también */
+    box-shadow: 0 0 10px rgba(81, 175, 186, 0.5); /* Luz tenue */
+    font-size: 5px;
 
 }
 
-#video2 {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-}
-#video6 {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-}
-#video3 {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-    
-}
 
-#video4 {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-    
-}
-#video5 {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+        /* Estilos para el ecualizador */
+        .equalizer {
+            margin-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            padding-top: 10px;
+        }
+
+        .equalizer .control-group label {
+            font-size: 0.7em;
+        }
+
+        .equalizer .control-group input[type="range"] {
+            width: 80px;
+        }
+
+        /* Estilos para el panel de controles movible y redimensionable */
+        #controls-panel {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* Inicialmente oculto */
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.041);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 18px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(96, 176, 185, 0.5); /* Luz tenue */
+            z-index: 10000; /* Por encima de los videos */
+            color: #ffffff;
+            resize: both; /* Permite redimensionar */
+            overflow: auto; /* Muestra scroll interno si es necesario */
+            cursor: default; /* Cambiado a default */
+        }
+
+        /* Estilos para los controles dentro de la caja */
+        #controls-panel .control-group {
+            display: flex;
+            align-items: center;
+            margin: 1px 0;
+            width: 100%;
+        }
+
+        #controls-panel .control-group label {
+            flex: 0 0 30%;
+            margin-right: 5px;
+            color: #ffffff;
+            font-size: 0.5em; /* Texto más pequeño */
+        }
+
+        #controls-panel .control-group input[type="range"] {
+            flex: 1;
+            width: 100%;
+            -webkit-appearance: none;
+            height: 4px;
+            background: transparent;
+        }
+
+        #controls-panel .switch-group {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+            width: 100%;
+        }
+
+        #controls-panel .switch-group label {
+            flex: 1;
+            margin-right: 10px;
+            color: #ffffff;
+            font-size: 0.7em;
+        }
+
+        #controls-panel .switch-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Efecto de luz tenue en el marco (glow) */
+        #controls-panel {
+            box-shadow: 0 0 15px rgba(96, 176, 185, 0.5); /* Luz tenue suave */
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        /* Efecto de hover para el glow */
+        #controls-panel:hover {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* Glow más fuerte al pasar el mouse */
+        }
     </style>
 </head>
 
 <body>
 
-    <header class="container">
-        <a href="index.html" style="text-decoration: none">
-            <h4 id="back-to-top">a-prtlt</h4>
-        </a>
+<header class="container">
+    <a href="index.html" style="text-decoration: none">
+        <h4 id="back-to-top">a-prtlt</h4>
+    </a>
 
-        <div id="menu" class="container">
-            <a href="about.html">About</a>
-            <a href="CV.html">CV</a>
-            <a href="teachings.html">Teachings</a>
-            <a href="Contact.html">Contact</a>
-        </div>
-    </header>
+    <div id="menu" class="container">
+        <a href="about.html">About</a>
+        <a href="CV.html">CV</a>
+        <a href="teachings.html">Teachings</a>
+        <a href="Contact.html">Contact</a>
+    </div>
+</header>
 
-    <div class="container">
+<div class="container">
 
-        <div class="menu">
-            <h2 id="title1" onclick="mostrarContenido('art')"></h2>
-            <h2 id="title2" onclick="mostrarContenido('game')"></h2>
-            <h2 id="title3" onclick="mostrarContenido('therapeutic')"></h2>
-        </div>
-
-        <div class="content" id="content-area">
-        </div>
-
+    <div class="menu">
+        <h2 id="title1" onclick="mostrarContenido('art')"></h2>
+        <h2 id="title2" onclick="mostrarContenido('game')"></h2>
+        <h2 id="title3" onclick="mostrarContenido('therapeutic')"></h2>
     </div>
 
-    <footer class="container text-center mt-4">
-        <p class="small">®Alfonso Pretelt all rights Reserved</p>
-    </footer>
-
-    <div id="expanded-page" class="expanded-page">
-        <video id="expanded-video"  autoplay loop ></video>
+    <div class="content" id="content-area">
     </div>
 
-    <script>
-        const expandedPage = document.getElementById('expanded-page');
-        const expandedVideo = document.getElementById('expanded-video');
+</div>
 
-        function toggleVideo(videoId) {
-            const video = document.getElementById(videoId);
+<footer class="container text-center mt-4">
+    <p class="small">®Alfonso Pretelt all rights Reserved</p>
+</footer>
 
-            expandedPage.classList.add('active');
-            expandedVideo.src = video.src;
-            expandedVideo.play();
-        }
+<div id="expanded-page" class="expanded-page">
+    <video id="expanded-video" autoplay loop></video>
+</div>
 
-        function mostrarContenido(tipo) {
-            const contentArea = document.getElementById('content-area');
-            contentArea.innerHTML = ''; 
-
-            if (tipo === 'art') {
-                contentArea.innerHTML = `
-                <div class="container">
-                    <p> Audiovisual objects {materialized entities} digital synthesis and generation - algorithmic composition.</p>
-                
-                    <div class="grid-container">
-                        <div class="gallery-item">
-                            <video id="video1" src="2.mp4" onclick="toggleVideo('video1')" autoplay  loop></video>
-                        </div>
-                        <div class="gallery-item large-video">
-        <video id="video2" src="3.1.mp4" onclick="toggleVideo('video2')" autoplay autoplay loop onloadedmetadata="this.volume=0.9"></video>
+<!-- Panel de controles movible y redimensionable -->
+<div id="controls-panel">
+    <!-- Contenido del panel de controles -->
+    <!-- Controles de volumen existentes -->
+    <div class="control-group">
+        <label for="general-volume">G.Gain</label>
+        <input type="range" id="general-volume" min="0" max="1" step="0.01" value="1">
     </div>
-                        <div class="gallery-item">
-                            <video id="video3" src="33.mp4" onclick="toggleVideo('video3')" autoplay  loop onloadedmetadata="this.volume=0.9"></video>
-                        </div>
-                        <div class="gallery-item">
-                            <video id="video4" src="4.mp4" onclick="toggleVideo('video4')" autoplay  loop onloadedmetadata="this.volume=0.5"></video>
-                        </div>
-                        <div class="gallery-item">
-                            <video id="video5" src="5.mp4" onclick="toggleVideo('video5')" autoplay   loop></video>
-                        </div>
-                        <div class="gallery-item">
-                            <video id="video6" src="6.mp4" onclick="toggleVideo('video6')" autoplay loop onloadedmetadata="this.volume=0.2"></video>
-                        </div>
-                    </div>
-                </div>`;
-            } else if (tipo === 'game') {
-                contentArea.innerHTML = `
-                <iframe src="https://arteypsique.com/lematworld.html" width="100%" height="900" frameborder="0"></iframe>`;
-            } else if (tipo === 'therapeutic') {
-                contentArea.innerHTML = `
-                <iframe src="https://meditative.netlify.app/" width="100%" height="900" frameborder="0"></iframe>`;
+    <div class="control-group">
+        <label for="volume-video1">I</label>
+        <input type="range" id="volume-video1" min="0" max="1" step="0.01" value="1">
+    </div>
+    <div class="control-group">
+        <label for="volume-video2">II</label>
+        <input type="range" id="volume-video2" min="0" max="1" step="0.01" value="0.9">
+    </div>
+    <div class="control-group">
+        <label for="volume-video3">III</label>
+        <input type="range" id="volume-video3" min="0" max="1" step="0.01" value="0.9">
+    </div>
+    <div class="control-group">
+        <label for="volume-video4">IV</label>
+        <input type="range" id="volume-video4" min="0" max="1" step="0.01" value="0.9">
+    </div>
+    <div class="control-group">
+        <label for="volume-video5">V</label>
+        <input type="range" id="volume-video5" min="0" max="1" step="0.01" value="0.9">
+    </div>
+    <div class="control-group">
+        <label for="volume-video6">VI</label>
+        <input type="range" id="volume-video6" min="0" max="1" step="0.01" value="0.9">
+    </div>
+
+    <!-- Switch y botones existentes -->
+    <div class="switch-group">
+        <label for="mix-mode">Mx Scrn</label>
+        <input type="checkbox" id="mix-mode">
+    </div>
+
+    <!-- Nuevo Switch para alternar entre Volumen y Zoom -->
+    <div class="switch-group">
+        <label for="control-mode">Zoom M</label>
+        <input type="checkbox" id="control-mode">
+    </div>
+
+    
+
+        <div class="equalizer">
+
+        <div class="control-group">
+
+            <label for="bass"></label>
+            <input type="range" id="bass" min="-100" max="100" step="1" value="0">
+        </div>
+        <div class="control-group">
+            <label for="mid"></label>
+            <input type="range" id="mid" min="-100" max="100" step="1" value="0">
+        </div>
+        <div class="control-group">
+            <label for="treble"></label>
+            <input type="range" id="treble" min="-100" max="100" step="1" value="0">
+        </div>
+    </div>
+</div>
+
+<!-- Pantalla de mezcla grande -->
+<div id="mix-screen">
+    <video id="mix-video1" src="2.mp4" loop></video>
+    <video id="mix-video2" src="3.1.mp4" loop></video>
+    <video id="mix-video3" src="33.mp4" loop></video>
+    <video id="mix-video4" src="4.mp4" loop></video>
+    <video id="mix-video5" src="5.mp4" loop></video>
+    <video id="mix-video6" src="6.mp4" loop></video>
+</div>
+
+<script>
+    const expandedPage = document.getElementById('expanded-page');
+    const expandedVideo = document.getElementById('expanded-video');
+
+    function toggleVideo(videoId) {
+        const video = document.getElementById(videoId);
+
+        // Silenciar todos los videos de la galería excepto el seleccionado
+        const galleryVideos = document.querySelectorAll('.gallery-item video');
+        galleryVideos.forEach(v => {
+            if (v.id !== videoId) {
+                v.muted = true;
+            } else {
+                v.muted = false;
             }
-        }
-
-        expandedPage.addEventListener('click', function () {
-            expandedPage.classList.remove('active');
-            expandedVideo.pause();
-            expandedVideo.src = ""; 
         });
 
-        let titles = [
-            { id: 'title1', text: 'Sound Visualization' },
-            { id: 'title2', text: 'Interactive Sound Game' },
-            { id: 'title3', text: 'Sound Frequencies PsychoTherapy' }
-        ];
+        // Expandir el video seleccionado
+        expandedPage.classList.add('active');
+        expandedVideo.src = video.src;
+        expandedVideo.volume = video.volume; // Preservar el volumen original
+        expandedVideo.play();
+    }
 
-        let currentTitleIndex = 0;
-        let currentCharIndex = 0;
+    function mostrarContenido(tipo) {
+        const contentArea = document.getElementById('content-area');
+        contentArea.innerHTML = '';
 
-        function typeTitles() {
-            if (currentTitleIndex < titles.length) {
-                let titleElement = document.getElementById(titles[currentTitleIndex].id);
-                let fullText = titles[currentTitleIndex].text;
+        if (tipo === 'art') {
+            contentArea.innerHTML = `
+            <div class="container">
+                <p> Audiovisual objects {materialized entities} digital synthesis and generation - algorithmic composition.</p>
 
-                titleElement.style.opacity = 1;
+                <div class="grid-container">
+                    <div class="gallery-item">
+                        <video id="video1" src="2.mp4" onclick="toggleVideo('video1')" autoplay loop></video>
+                    </div>
+                    <div class="gallery-item">
+                        <video id="video2" src="3.1.mp4" onclick="toggleVideo('video2')" autoplay loop></video>
+                    </div>
+                    <div class="gallery-item">
+                        <video id="video3" src="33.mp4" onclick="toggleVideo('video3')" autoplay loop></video>
+                    </div>
+                    <div class="gallery-item">
+                        <video id="video4" src="4.mp4" onclick="toggleVideo('video4')" autoplay loop></video>
+                    </div>
+                    <div class="gallery-item">
+                        <video id="video5" src="5.mp4" onclick="toggleVideo('video5')" autoplay loop></video>
+                    </div>
+                    <div class="gallery-item">
+                        <video id="video6" src="6.mp4" onclick="toggleVideo('video6')" autoplay loop></video>
+                    </div>
+                </div>
+            </div>`;
+        } else if (tipo === 'game') {
+            contentArea.innerHTML = `
+            <iframe src="https://arteypsique.com/lematworld.html" width="100%" height="900" frameborder="0"></iframe>`;
+        } else if (tipo === 'therapeutic') {
+            contentArea.innerHTML = `
+            <iframe src="https://meditative.netlify.app/" width="100%" height="900" frameborder="0"></iframe>`;
+        }
 
-                if (currentCharIndex < fullText.length) {
-                    titleElement.innerHTML += fullText.charAt(currentCharIndex);
-                    currentCharIndex++;
-                    setTimeout(typeTitles, 50); 
-                } else {
-                    currentTitleIndex++;
-                    currentCharIndex = 0;
-                    setTimeout(typeTitles, 200); 
+        // Mostrar u ocultar el panel de controles según el contenido
+        const controlsPanel = document.getElementById('controls-panel');
+        if (tipo === 'art') {
+            controlsPanel.style.display = 'flex';
+            initializeControls();
+        } else {
+            controlsPanel.style.display = 'none';
+        }
+    }
+
+    function initializeControls() {
+        // Obtener referencias a los sliders de volumen
+        const generalVolume = document.getElementById('general-volume');
+        const volumeVideo1 = document.getElementById('volume-video1');
+        const volumeVideo2 = document.getElementById('volume-video2');
+        const volumeVideo3 = document.getElementById('volume-video3');
+        const volumeVideo4 = document.getElementById('volume-video4');
+        const volumeVideo5 = document.getElementById('volume-video5');
+        const volumeVideo6 = document.getElementById('volume-video6');
+        const mixMode = document.getElementById('mix-mode');
+        const controlMode = document.getElementById('control-mode'); // Nuevo switch para Zoom Mode
+        const mixScreen = document.getElementById('mix-screen');
+
+        // Mapear sliders a los videos de la galería
+        const galleryVideoMap = {
+            'volume-video1': document.getElementById('video1'),
+            'volume-video2': document.getElementById('video2'),
+            'volume-video3': document.getElementById('video3'),
+            'volume-video4': document.getElementById('video4'),
+            'volume-video5': document.getElementById('video5'),
+            'volume-video6': document.getElementById('video6')
+        };
+
+        // Mapear sliders a los videos del mix-screen
+        const mixVideoMap = {
+            'volume-video1': document.getElementById('mix-video1'),
+            'volume-video2': document.getElementById('mix-video2'),
+            'volume-video3': document.getElementById('mix-video3'),
+            'volume-video4': document.getElementById('mix-video4'),
+            'volume-video5': document.getElementById('mix-video5'),
+            'volume-video6': document.getElementById('mix-video6')
+        };
+
+        // Variable para rastrear el estado del modo mix
+        let isMixMode = false;
+
+        // Variable para almacenar el valor de contraste
+        let contrastValue = 100;
+
+        // Crear AudioContext
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+        // Crear filtros para el ecualizador
+        const bassFilter = audioContext.createBiquadFilter();
+        bassFilter.type = 'lowshelf';
+        bassFilter.frequency.value = 500; // Frecuencia de corte para bajos
+
+        const midFilter = audioContext.createBiquadFilter();
+        midFilter.type = 'peaking';
+        midFilter.frequency.value = 1500; // Frecuencia central para medios
+        midFilter.Q.value = 1;
+
+        const trebleFilter = audioContext.createBiquadFilter();
+        trebleFilter.type = 'highshelf';
+        trebleFilter.frequency.value = 3000; // Frecuencia de corte para agudos
+
+        // Conectar filtros en serie
+        bassFilter.connect(midFilter);
+        midFilter.connect(trebleFilter);
+        trebleFilter.connect(audioContext.destination);
+
+        // Mapear videos a sus nodos de audio
+        const videoAudioNodes = {};
+
+        // Función para inicializar los nodos de audio
+        function initializeAudioNodes() {
+            if (isMixMode) {
+                for (let key in mixVideoMap) {
+                    const videoElement = mixVideoMap[key];
+                    if (!videoAudioNodes[key]) {
+                        const source = audioContext.createMediaElementSource(videoElement);
+                        source.connect(bassFilter);
+                        videoAudioNodes[key] = source;
+                    }
+                }
+            } else {
+                for (let key in galleryVideoMap) {
+                    const videoElement = galleryVideoMap[key];
+                    if (!videoAudioNodes[key]) {
+                        const source = audioContext.createMediaElementSource(videoElement);
+                        source.connect(bassFilter);
+                        videoAudioNodes[key] = source;
+                    }
                 }
             }
         }
 
-        document.addEventListener('DOMContentLoaded', typeTitles);
-    </script>
+        // Función para actualizar volumen y opacidad o zoom
+        function updateVolumeAndOpacityOrZoom(sliderId, value) {
+            if (isMixMode) {
+                if (controlMode.checked) {
+                    // Modo Zoom
+                    // Ajustar zoom y volumen en mix-screen
+                    const scaleValue = 1 + value * 2; // Escala entre 1 y 3
+                    mixVideoMap[sliderId].style.transform = `scale(${scaleValue})`;
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                    // Ajustar volumen
+                    mixVideoMap[sliderId].volume = value * parseFloat(generalVolume.value);
+
+                    // Ajustar opacidad si lo deseas
+                    mixVideoMap[sliderId].style.opacity = value;
+
+                    // Ajustar escala de grises
+                    const grayscaleValue = (1 - value) * 100;
+                    mixVideoMap[sliderId].style.filter = `grayscale(${grayscaleValue}%) contrast(${contrastValue}%)`;
+
+                } else {
+                    // Modo Volumen
+                    // Actualizar volumen y opacidad en mix-screen
+                    mixVideoMap[sliderId].volume = value * parseFloat(generalVolume.value);
+                    mixVideoMap[sliderId].style.opacity = value;
+
+                    // Ajustar escala de grises
+                    const grayscaleValue = (1 - value) * 100;
+                    mixVideoMap[sliderId].style.filter = `grayscale(${grayscaleValue}%) contrast(${contrastValue}%)`;
+                }
+            } else {
+                // Actualizar volumen y opacidad en galería
+                galleryVideoMap[sliderId].volume = value * parseFloat(generalVolume.value);
+                galleryVideoMap[sliderId].style.opacity = value;
+
+                // Ajustar escala de grises
+                const grayscaleValue = (1 - value) * 100;
+                galleryVideoMap[sliderId].style.filter = `grayscale(${grayscaleValue}%)`;
+            }
+        }
+
+        // Control general de volumen
+        generalVolume.addEventListener('input', function () {
+            const value = parseFloat(this.value);
+            for (let key in galleryVideoMap) {
+                const individualValue = parseFloat(document.getElementById(key).value);
+                const newVolume = individualValue * value;
+                if (isMixMode) {
+                    mixVideoMap[key].volume = newVolume;
+                } else {
+                    galleryVideoMap[key].volume = newVolume;
+                }
+            }
+        });
+
+        // Controles de volumen individuales
+        for (let key in galleryVideoMap) {
+            document.getElementById(key).addEventListener('input', function () {
+                const individualValue = parseFloat(this.value);
+                updateVolumeAndOpacityOrZoom(key, individualValue);
+            });
+        }
+
+        // Modo Mix
+        mixMode.addEventListener('change', function () {
+            isMixMode = this.checked;
+            if (isMixMode) {
+                // Activar modo mix
+                mixScreen.style.display = 'block';
+                mostrarMixScreen();
+
+                // Silenciar videos de la galería
+                const galleryVideos = document.querySelectorAll('.gallery-item video');
+                galleryVideos.forEach(v => {
+                    v.muted = true;
+                });
+
+                // Inicializar nodos de audio
+                initializeAudioNodes();
+
+                // Reproducir videos del mix-screen
+                for (let key in mixVideoMap) {
+                    const slider = document.getElementById(key);
+                    const value = parseFloat(slider.value);
+                    mixVideoMap[key].style.opacity = value;
+
+                    // Aplicar escala de grises inicial
+                    const grayscaleValue = (1 - value) * 100;
+                    mixVideoMap[key].style.filter = `grayscale(${grayscaleValue}%) contrast(${contrastValue}%)`;
+
+                    if (controlMode.checked) {
+                        // Modo Zoom
+                        const scaleValue = 1 + value * 2;
+                        mixVideoMap[key].style.transform = `scale(${scaleValue})`;
+
+                        // Ajustar volumen
+                        mixVideoMap[key].volume = value * parseFloat(generalVolume.value);
+                        mixVideoMap[key].muted = false;
+                    } else {
+                        // Modo Volumen
+                        mixVideoMap[key].volume = value * parseFloat(generalVolume.value);
+                        mixVideoMap[key].muted = false;
+                        mixVideoMap[key].style.transform = 'scale(1)'; // Restablecer zoom
+                    }
+
+                    mixVideoMap[key].play();
+                }
+
+                // Aplicar efectos visuales iniciales
+                adjustVisualEffects();
+            } else {
+                // Desactivar modo mix
+                mixScreen.style.display = 'none';
+                ocultarMixScreen();
+
+                // Restaurar sonido de los videos de la galería
+                const galleryVideos = document.querySelectorAll('.gallery-item video');
+                galleryVideos.forEach(v => {
+                    v.muted = false;
+                    v.style.transform = 'scale(1)'; // Restablecer zoom si estaba aplicado
+                });
+
+                // Pausar videos en mix-screen
+                const mixVideos = document.querySelectorAll('#mix-screen video');
+                mixVideos.forEach(v => {
+                    v.pause();
+                });
+            }
+        });
+
+        // Escuchar cambios en el controlMode (Switch de Zoom Mode)
+        controlMode.addEventListener('change', function () {
+            // Actualizar todos los sliders para reflejar el cambio de modo
+            for (let key in galleryVideoMap) {
+                const slider = document.getElementById(key);
+                const value = parseFloat(slider.value);
+                updateVolumeAndOpacityOrZoom(key, value);
+            }
+        });
+
+        // Controladores para el ecualizador
+        const bassSlider = document.getElementById('bass');
+        const midSlider = document.getElementById('mid');
+        const trebleSlider = document.getElementById('treble');
+
+        bassSlider.addEventListener('input', function () {
+            adjustAudioEffects();
+            adjustVisualEffects();
+        });
+
+        midSlider.addEventListener('input', function () {
+            adjustAudioEffects();
+            adjustVisualEffects();
+        });
+
+        trebleSlider.addEventListener('input', function () {
+            adjustAudioEffects();
+            adjustVisualEffects();
+        });
+
+        // Función para ajustar los efectos visuales basados en el ecualizador
+        function adjustVisualEffects() {
+            if (!isMixMode) return;
+
+            const bassValue = parseFloat(bassSlider.value);
+            const midValue = parseFloat(midSlider.value);
+            const trebleValue = parseFloat(trebleSlider.value);
+
+            // Mapear valores para los filtros CSS
+            const brightnessEffect = (midValue + 100) / 200 * 200; // Brillo entre 0% y 200%
+            const contrastEffect = (bassValue + 100) / 200 * 200; // Contraste entre 0% y 200%
+            const saturateEffect = (trebleValue + 100) / 200 * 200; // Saturación entre 0% y 200%
+
+            contrastValue = contrastEffect; // Actualizar valor global de contraste
+
+            // Aplicar filtros CSS a los videos en mix-screen
+            for (let key in mixVideoMap) {
+                // Obtener el valor actual de escala de grises
+                const volumeValue = parseFloat(document.getElementById(key).value);
+                const grayscaleValue = (1 - volumeValue) * 100;
+
+                mixVideoMap[key].style.filter = `
+                    grayscale(${grayscaleValue}%)
+                    brightness(${brightnessEffect}%)
+                    contrast(${contrastEffect}%)
+                    saturate(${saturateEffect}%)
+                `;
+            }
+        }
+
+        // Función para ajustar los efectos de audio basados en el ecualizador
+        function adjustAudioEffects() {
+            const bassValue = parseFloat(bassSlider.value);
+            const midValue = parseFloat(midSlider.value);
+            const trebleValue = parseFloat(trebleSlider.value);
+
+            // Ajustar ganancias de los filtros
+            bassFilter.gain.value = bassValue * 0.5; // Multiplicar por 0.5 para hacer el efecto extremo
+            midFilter.gain.value = midValue * 0.5;
+            trebleFilter.gain.value = trebleValue * 0.5;
+        }
+
+        // Funciones para controlar el z-index de mix-screen
+        function mostrarMixScreen() {
+            mixScreen.style.zIndex = '100';
+        }
+
+        function ocultarMixScreen() {
+            mixScreen.style.zIndex = '9';
+        }
+
+        // Inicializar nodos de audio para la galería
+        initializeAudioNodes();
+    }
+
+    // Cerrar la página expandida al hacer clic
+    expandedPage.addEventListener('click', function () {
+        expandedPage.classList.remove('active');
+        expandedVideo.pause();
+        expandedVideo.src = "";
+
+        // Restaurar el sonido de todos los videos de la galería
+        const galleryVideos = document.querySelectorAll('.gallery-item video');
+        galleryVideos.forEach(v => {
+            v.muted = false;
+        });
+    });
+
+    // Animación de escritura para los títulos
+    let titles = [
+        { id: 'title1', text: 'Sound Visualization' },
+        { id: 'title2', text: 'Interactive Sound Game' },
+        { id: 'title3', text: 'Sound Frequencies PsychoTherapy' }
+    ];
+
+    let currentTitleIndex = 0;
+    let currentCharIndex = 0;
+
+    function typeTitles() {
+        if (currentTitleIndex < titles.length) {
+            let titleElement = document.getElementById(titles[currentTitleIndex].id);
+            let fullText = titles[currentTitleIndex].text;
+
+            titleElement.style.opacity = 1;
+
+            if (currentCharIndex < fullText.length) {
+                titleElement.innerHTML += fullText.charAt(currentCharIndex);
+                currentCharIndex++;
+                setTimeout(typeTitles, 50);
+            } else {
+                currentTitleIndex++;
+                currentCharIndex = 0;
+                setTimeout(typeTitles, 200);
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', typeTitles);
+
+    // Funcionalidad para hacer el panel de controles arrastrable y redimensionable
+    const controlsPanel = document.getElementById('controls-panel');
+
+    let isDraggingControls = false;
+    let offsetXControls, offsetYControls;
+
+    function dragStartControls(e) {
+        // Evitar conflicto con el redimensionamiento
+        const rect = controlsPanel.getBoundingClientRect();
+        const resizeBorderSize = 10; // Tamaño de la zona de redimensionamiento en píxeles
+
+        let clientX, clientY;
+        if (e.type === "touchstart") {
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+        } else {
+            clientX = e.clientX;
+            clientY = e.clientY;
+        }
+
+        const isInResizeZone = (
+            clientX > rect.right - resizeBorderSize &&
+            clientY > rect.bottom - resizeBorderSize
+        );
+
+        // Evitar arrastre al interactuar con controles internos
+        const targetTag = e.target.tagName.toLowerCase();
+        const draggableTags = ['input', 'label', 'button', 'select', 'textarea'];
+        if (draggableTags.includes(targetTag)) {
+            return; // No iniciar arrastre si se hizo clic en un control interactivo
+        }
+
+        if (isInResizeZone) {
+            return; // No iniciar arrastre si estamos en la zona de redimensionamiento
+        }
+
+        isDraggingControls = true;
+        e.preventDefault();
+
+        offsetXControls = clientX - rect.left;
+        offsetYControls = clientY - rect.top;
+
+        document.addEventListener('mousemove', dragMoveControls);
+        document.addEventListener('mouseup', dragEndControls);
+        document.addEventListener('touchmove', dragMoveControls);
+        document.addEventListener('touchend', dragEndControls);
+    }
+
+    function dragMoveControls(e) {
+        if (!isDraggingControls) return;
+        e.preventDefault();
+        let clientX, clientY;
+        if (e.type === "touchmove") {
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+        } else {
+            clientX = e.clientX;
+            clientY = e.clientY;
+        }
+        controlsPanel.style.left = (clientX - offsetXControls) + 'px';
+        controlsPanel.style.top = (clientY - offsetYControls) + 'px';
+        controlsPanel.style.transform = 'none';
+    }
+
+    function dragEndControls() {
+        isDraggingControls = false;
+        document.removeEventListener('mousemove', dragMoveControls);
+        document.removeEventListener('mouseup', dragEndControls);
+        document.removeEventListener('touchmove', dragMoveControls);
+        document.removeEventListener('touchend', dragEndControls);
+    }
+
+    // Asociar el arrastre al panel completo
+    controlsPanel.addEventListener('mousedown', dragStartControls);
+    controlsPanel.addEventListener('touchstart', dragStartControls);
+
+    // Funcionalidad para hacer la mix-screen arrastrable y redimensionable
+    const mixScreen = document.getElementById('mix-screen');
+
+    let isDraggingMixScreen = false;
+    let offsetXMixScreen, offsetYMixScreen;
+
+    function dragStartMixScreen(e) {
+        // Evitar conflicto con el redimensionamiento
+        const rect = mixScreen.getBoundingClientRect();
+        const resizeBorderSize = 10; // Tamaño de la zona de redimensionamiento en píxeles
+
+        let clientX, clientY;
+        if (e.type === "touchstart") {
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+        } else {
+            clientX = e.clientX;
+            clientY = e.clientY;
+        }
+
+        const isInResizeZone = (
+            clientX > rect.right - resizeBorderSize &&
+            clientY > rect.bottom - resizeBorderSize
+        );
+
+        if (isInResizeZone) {
+            return; // No iniciar arrastre si estamos en la zona de redimensionamiento
+        }
+
+        isDraggingMixScreen = true;
+        e.preventDefault();
+
+        offsetXMixScreen = clientX - rect.left;
+        offsetYMixScreen = clientY - rect.top;
+
+        document.addEventListener('mousemove', dragMoveMixScreen);
+        document.addEventListener('mouseup', dragEndMixScreen);
+        document.addEventListener('touchmove', dragMoveMixScreen);
+        document.addEventListener('touchend', dragEndMixScreen);
+    }
+
+    function dragMoveMixScreen(e) {
+        if (!isDraggingMixScreen) return;
+        e.preventDefault();
+        let clientX, clientY;
+        if (e.type === "touchmove") {
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+        } else {
+            clientX = e.clientX;
+            clientY = e.clientY;
+        }
+        mixScreen.style.left = (clientX - offsetXMixScreen) + 'px';
+        mixScreen.style.top = (clientY - offsetYMixScreen) + 'px';
+    }
+
+    function dragEndMixScreen() {
+        isDraggingMixScreen = false;
+        document.removeEventListener('mousemove', dragMoveMixScreen);
+        document.removeEventListener('mouseup', dragEndMixScreen);
+        document.removeEventListener('touchmove', dragMoveMixScreen);
+        document.removeEventListener('touchend', dragEndMixScreen);
+    }
+
+    // Asociar los eventos a la mix-screen
+    mixScreen.addEventListener('mousedown', dragStartMixScreen);
+    mixScreen.addEventListener('touchstart', dragStartMixScreen);
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-
 </html>
 
 
