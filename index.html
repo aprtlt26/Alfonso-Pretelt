@@ -392,28 +392,27 @@
     
 /* Estilo para el ícono de pregunta encerrado en un círculo */
 .circle-icon {
-    display: inline-block;
-    width: 40px; /* Ajusta el tamaño del círculo */
+    display: none; /* Inicialmente oculto */
+    width: 40px;
     height: 40px;
     line-height: 40px;
-    border-radius: 50%; /* Hace el ícono circular */
-    background-color: grey; /* Fondo gris */
-    color: white; /* Color de la interrogación */
-    text-align: center; /* Centrar el texto */
-    font-size: 20px; /* Tamaño del texto */
-    font-weight: bold; /* Grosor de la interrogación */
+    border-radius: 50%;
+    background-color: grey;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
     position: fixed;
-    top: 10px; /* Posición en la parte superior */
-    right: 10px; /* Posición en la parte derecha */
-    cursor: pointer; /* Mostrar que es clicable */
-    z-index: 10000; /* Asegura que esté encima de otros elementos */
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    z-index: 10000;
 }
 
-/* Estilos para el modal */
 .modal {
     display: none; /* Oculto por defecto */
     position: fixed;
-    z-index: 9999; /* Asegura que esté por encima de otros elementos */
+    z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
@@ -421,26 +420,21 @@
     background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
 }
 
-/* Contenido del modal */
-/* Ajuste del modal */
 .modal-content {
     background-color: rgba(255, 255, 255, 0.233);
     margin: 15% auto;
-    padding: 10px; /* Reducir el padding */
+    padding: 10px;
     border: 1px solid #888;
-    width: 60%; /* Hacer más delgado */
-    max-width: 400px; /* Limitar el ancho máximo */
-    font-size: 14px; /* Ajusta el tamaño del texto si es necesario */
+    width: 60%;
+    max-width: 400px;
+    font-size: 14px;
 }
 
-/* Estilo para el texto dentro del modal */
 .modal-content p {
-    line-height: 1.5; /* Ajustar la altura de línea para mejorar la legibilidad */
-    margin: 0; /* Elimina el margen por defecto */
+    line-height: 1.5;
+    margin: 0;
 }
 
-
-/* Estilo para el botón de cierre */
 .close {
     color: #aaa;
     float: right;
@@ -455,6 +449,7 @@
     text-decoration: none;
     cursor: pointer;
 }
+
 
 
     </style>
@@ -590,6 +585,8 @@
 </div>
 
 <script>
+
+    
     const expandedPage = document.getElementById('expanded-page');
     const expandedVideo = document.getElementById('expanded-video');
 
@@ -616,6 +613,15 @@
     function mostrarContenido(tipo) {
         const contentArea = document.getElementById('content-area');
         contentArea.innerHTML = '';
+
+       
+    if (tipo === 'art') {
+        icon.style.display = 'inline-block';  // Mostramos el ícono de pregunta solo para Sound Visualization
+    } else {
+        icon.style.display = 'none';  // Ocultamos el ícono de pregunta para otras secciones
+    }
+
+
 
         if (tipo === 'art') {
             contentArea.innerHTML = `
@@ -1170,6 +1176,8 @@ window.onclick = function (event) {
         modal.style.display = "none";
     }
 }
+
+
 
 </script>
 
