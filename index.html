@@ -176,7 +176,7 @@
         }
 
         p {
-            font-size: 0.7em;
+            font-size: 0.6em;
             margin-left: 700px;
         }
 
@@ -397,7 +397,7 @@
     height: 40px;
     line-height: 40px;
     border-radius: 50%;
-    background-color: grey;
+    background-color: rgb(182, 180, 180);
     color: white;
     text-align: center;
     font-size: 20px;
@@ -441,6 +441,7 @@
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+    display: none;
 }
 
 .close:hover,
@@ -513,9 +514,12 @@
 
 <header class="container">
     <a href="index.html" style="text-decoration: none">
+
         <h4 id="back-to-top">a-prtlt</h4>
     </a>
 
+
+<p style="color: #aaa;">New Media</p>
     <div id="menu" class="container">
         <a href="about.html">About</a>
         <a href="teachings.html">Teachings</a>
@@ -629,7 +633,7 @@
         <span class="close">&times;</span>
         <h4> AV ALMAS</h4>
         <P> Audiovisual Synthesizer  </P>
-        <p>{Materialized Entities} Audiovisual objects: digital synthesis - Generation Code - Particle Systems 3D - Algorithmic Composition.</p>
+        <p>{Materialized Entities} Audiovisual objects: digital synthesis - Generation Code - Particle Systems 3D - Algorithmic Composition. </p>
     </div>
 </div>
 
@@ -675,6 +679,12 @@
     const contentArea = document.getElementById('content-area');
     contentArea.innerHTML = '';
 
+
+    if (tipo === 'stoneOracle') {
+            icon.style.display = 'inline-block';  // Mostrar el ícono de ayuda
+        } else {
+            icon.style.display = 'none';  // Ocultar el ícono de ayuda en otras secciones
+        }
     // Mostrar ícono de ayuda solo en la sección de Sound Visualization
     if (tipo === 'art') {
         icon.style.display = 'inline-block';
@@ -706,17 +716,22 @@
             </div>`;
     } else if (tipo === 'game') {
         contentArea.innerHTML = `
+        <p>Each element on the screen emits sound when touched, interactive audiovisual compositions based on the game of tarot. {computer music}</p>
             <iframe src="https://arteypsique.com/lematworld.html" width="100%" height="900" frameborder="0"></iframe>`;
     } else if (tipo === 'therapeutic') {
         contentArea.innerHTML = `
+        <p>App for meditation with sound frequencies.
+{start, write the sentence: "Ordenar Pensamientos"} </p>
+
             <iframe src="https://meditative.netlify.app/" width="100%" height="900" frameborder="0"></iframe>`;
     } else if (tipo === 'interactiveScreen') {
         // Sección de Interactive Screen
         contentArea.innerHTML = `
             <div>
+                <p>Touch screen gesture interaction. Modulating audio and particles. {P5} </p>
+
                 <ul>
                     <li><a href="#" class="grey-link" onclick="loadIframeContent('https://subtle-gecko-095f0a.netlify.app/')">[#]</a></li>
-                    <li><a href="#" class="grey-link" onclick="loadIframeContent('https://ambientbronz.netlify.app/')">[#]</a></li>
                     <li><a href="#" class="grey-link" onclick="loadIframeContent('https://partsound.netlify.app/')">[#]</a></li>
                     <li><a href="#" class="grey-link" onclick="loadIframeContent('https://arcano3.netlify.app')">[#]</a></li>
                     <li><a href="#" class="grey-link" onclick="loadIframeContent('https://part33.netlify.app')">[#]</a></li>
@@ -730,8 +745,10 @@
     } else if (tipo === 'soundIllustration') {
         // Sección de Sound Illustration con galería de imágenes
         contentArea.innerHTML = `
-            <div>
-                <p>Particle systems generated with the -STONE ORACLE Shynthesizer-, stone rubbing synthesizer and haptic listening. through algorithmic processing and digital synthesis.</p>
+
+        <p>Particle systems generated with the -STONE ORACLE Synthesizer-, stone rubbing synthesizer and haptic listening through algorithmic processing and digital synthesis. {P5}</p>
+
+          
 
                 <div class="gallery-container">
 
@@ -770,6 +787,14 @@
             </div>`;
     }
 
+ 
+    
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Lógica para mostrar la sección inicial
+        mostrarContenido('stoneOracle');
+    });
+
     // Mostrar u ocultar el panel de controles según el contenido
     const controlsPanel = document.getElementById('controls-panel');
     if (tipo === 'art') {
@@ -792,8 +817,19 @@ function expandImage(img) {
         img.style.width = '150px'; // Regresar a tamaño pequeño
     } else {
         img.style.width = '100%'; // Ampliar a tamaño mediano
+    } if (tipo === 'stoneOracle') {
+            contentArea.innerHTML = `
+                <p>Particle systems generated with the -STONE ORACLE Synthesizer-, stone rubbing synthesizer and haptic listening through algorithmic processing and digital synthesis.</p>
+            `;
+        }
     }
-}
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Lógica para mostrar la sección inicial
+        mostrarContenido('stoneOracle');
+    });
+
+
 
 
     function initializeControls() {
@@ -1113,7 +1149,7 @@ function expandImage(img) {
     // Animación de escritura para los títulos
     let titles = [
         { id: 'title1', text: 'Sound Visualization' },
-        { id: 'title4', text: 'Interactive Screen' },
+        { id: 'title4', text: 'Gesture Interaction.' },
         { id: 'title5', text: 'Stone Oracle' },
         { id: 'title2', text: 'Interactive Sound Game' },
         { id: 'title3', text: 'Sound Frequencies PsychoTherapy' },
@@ -1393,6 +1429,4 @@ videos.forEach(video => {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-
 
