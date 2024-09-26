@@ -406,7 +406,7 @@
     top: 10px;
     right: 10px;
     cursor: pointer;
-    z-index: 10000;
+    z-index: 50;
 }
 
 .modal {
@@ -445,11 +445,65 @@
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: rgb(255, 255, 255);
     text-decoration: none;
     cursor: pointer;
 }
 
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    position: absolute; /* Cambiado a absolute para permitir arrastre */
+    z-index: 1000;
+    resize: both; /* Permite redimensionar */
+    overflow: hidden; /* Evita que el contenido se desborde al redimensionar */
+    cursor: move; /* Cambia el cursor a uno de movimiento */
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+}
+
+.gallery-item img {
+    width: 150px;
+    height: auto;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.1); /* Un pequeño efecto de zoom al pasar el ratón */
+}
+
+.grey-link {
+    color: grey;
+}
+
+.grey-link:hover {
+    color: darkgrey; /* Opcional: para cambiar el color al pasar el mouse */
+}
+
+.image-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    margin: 20px 0; /* Espacio entre las imágenes */
+}
+
+.image-container img {
+    width: 200%; /* Ajusta el tamaño de la imagen a un tamaño mediano (50% del ancho de la pantalla) */
+    height: auto; /* Mantiene la proporción de la imagen */
+    cursor: pointer; /* Cambia el cursor al pasar sobre la imagen */
+    display: flex;
+    justify-content: center;
+}
+
+.image-container img:hover {
+    transform: scale(1.1); /* Opción de agrandamiento al pasar el mouse */
+    transition: transform 0.3s ease; /* Animación suave */
+}
 
 
     </style>
@@ -472,11 +526,20 @@
 
 <div class="container">
 
+   
+ 
     <div class="menu">
         <h2 id="title1" onclick="mostrarContenido('art')"></h2>
-        <h2 id="title2" onclick="mostrarContenido('game')"></h2>
+        <h2 id="title4" onclick="mostrarContenido('interactiveScreen')"></h2>
+        <h2 id="title5" onclick="mostrarContenido('soundIllustration')"></h2>
         <h2 id="title3" onclick="mostrarContenido('therapeutic')"></h2>
+        <h2 id="title2" onclick="mostrarContenido('game')"></h2>
+
+        <!-- Nuevas secciones -->
+     
     </div>
+    
+
 
     <div class="content" id="content-area">
     </div>
@@ -536,7 +599,6 @@
         <input type="checkbox" id="control-mode">
     </div>
 
-    
 
         <div class="equalizer">
 
@@ -568,7 +630,7 @@
         <span class="close">&times;</span>
         <h4> AV ALMAS</h4>
         <P> Audiovisual Synthesizer  </P>
-        <p>{materialized entities} Audiovisual objects: digital synthesis - Generation Code - Particle Systems - Algorithmic Composition.</p>
+        <p>{Materialized Entities} Audiovisual objects: digital synthesis - Generation Code - Particle Systems 3D - Algorithmic Composition.</p>
     </div>
 </div>
 
@@ -611,59 +673,129 @@
     }
 
     function mostrarContenido(tipo) {
-        const contentArea = document.getElementById('content-area');
-        contentArea.innerHTML = '';
+    const contentArea = document.getElementById('content-area');
+    contentArea.innerHTML = '';
 
-       
+    // Mostrar ícono de ayuda solo en la sección de Sound Visualization
     if (tipo === 'art') {
-        icon.style.display = 'inline-block';  // Mostramos el ícono de pregunta solo para Sound Visualization
+        icon.style.display = 'inline-block';
     } else {
-        icon.style.display = 'none';  // Ocultamos el ícono de pregunta para otras secciones
+        icon.style.display = 'none';
     }
 
-
-
-        if (tipo === 'art') {
-            contentArea.innerHTML = `
-           
-                <div class="grid-container">
-                    <div class="gallery-item">
-                        <video id="video1" src="2.mp4" onclick="toggleVideo('video1')" autoplay loop></video>
-                    </div>
-                    <div class="gallery-item">
-                        <video id="video2" src="3.1.mp4" onclick="toggleVideo('video2')" autoplay loop></video>
-                    </div>
-                    <div class="gallery-item">
-                        <video id="video3" src="33.mp4" onclick="toggleVideo('video3')" autoplay loop></video>
-                    </div>
-                    <div class="gallery-item">
-                        <video id="video4" src="4.mp4" onclick="toggleVideo('video4')" autoplay loop></video>
-                    </div>
-                    <div class="gallery-item">
-                        <video id="video5" src="5.mp4" onclick="toggleVideo('video5')" autoplay loop></video>
-                    </div>
-                    <div class="gallery-item">
-                        <video id="video6" src="6.mp4" onclick="toggleVideo('video6')" autoplay loop></video>
-                    </div>
+    if (tipo === 'art') {
+        contentArea.innerHTML = `
+            <div class="grid-container">
+                <div class="gallery-item">
+                    <video id="video1" src="2.mp4" onclick="toggleVideo('video1')" autoplay loop></video>
+                </div>
+                <div class="gallery-item">
+                    <video id="video2" src="3.1.mp4" onclick="toggleVideo('video2')" autoplay loop></video>
+                </div>
+                <div class="gallery-item">
+                    <video id="video3" src="33.mp4" onclick="toggleVideo('video3')" autoplay loop></video>
+                </div>
+                <div class="gallery-item">
+                    <video id="video4" src="4.mp4" onclick="toggleVideo('video4')" autoplay loop></video>
+                </div>
+                <div class="gallery-item">
+                    <video id="video5" src="5.mp4" onclick="toggleVideo('video5')" autoplay loop></video>
+                </div>
+                <div class="gallery-item">
+                    <video id="video6" src="6.mp4" onclick="toggleVideo('video6')" autoplay loop></video>
                 </div>
             </div>`;
-        } else if (tipo === 'game') {
-            contentArea.innerHTML = `
+    } else if (tipo === 'game') {
+        contentArea.innerHTML = `
             <iframe src="https://arteypsique.com/lematworld.html" width="100%" height="900" frameborder="0"></iframe>`;
-        } else if (tipo === 'therapeutic') {
-            contentArea.innerHTML = `
+    } else if (tipo === 'therapeutic') {
+        contentArea.innerHTML = `
             <iframe src="https://meditative.netlify.app/" width="100%" height="900" frameborder="0"></iframe>`;
-        }
+    } else if (tipo === 'interactiveScreen') {
+        // Sección de Interactive Screen
+        contentArea.innerHTML = `
+            <div>
+                <ul>
+                    <li><a href="#" class="grey-link" onclick="loadIframeContent('https://subtle-gecko-095f0a.netlify.app/')">[#]</a></li>
+                    <li><a href="#" class="grey-link" onclick="loadIframeContent('https://ambientbronz.netlify.app/')">[#]</a></li>
+                    <li><a href="#" class="grey-link" onclick="loadIframeContent('https://partsound.netlify.app/')">[#]</a></li>
+                    <li><a href="#" class="grey-link" onclick="loadIframeContent('https://arcano3.netlify.app')">[#]</a></li>
+                    <li><a href="#" class="grey-link" onclick="loadIframeContent('https://part33.netlify.app')">[#]</a></li>
+                    <li><a href="#" class="grey-link" onclick="loadIframeContent('https://aprtltgranular.netlify.app/')">[#]</a></li>
 
-        // Mostrar u ocultar el panel de controles según el contenido
-        const controlsPanel = document.getElementById('controls-panel');
-        if (tipo === 'art') {
-            controlsPanel.style.display = 'flex';
-            initializeControls();
-        } else {
-            controlsPanel.style.display = 'none';
-        }
+
+
+                </ul>
+                <iframe id="interactive-iframe" src="https://partsound.netlify.app/" width="100%" height="600" frameborder="0"></iframe>
+            </div>`;
+    } else if (tipo === 'soundIllustration') {
+        // Sección de Sound Illustration con galería de imágenes
+        contentArea.innerHTML = `
+            <div>
+                <p>Particle systems generated with the -STONE ORACLE Shynthesizer-, stone rubbing synthesizer and haptic listening. through algorithmic processing and digital synthesis.</p>
+
+                <div class="gallery-container">
+
+                    <div class="gallery-item">
+                        <img src="1d.webp" alt="Imagen 1" onclick="expandImage(this)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="2d.webp" alt="Imagen 2" onclick="expandImage(this)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="3d.webp" alt="Imagen 3" onclick="expandImage(this)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="4d.webp" alt="Imagen 4" onclick="expandImage(this)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="g.gif" alt="Imagen 5" onclick="expandImage(this)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="6d.webp" alt="Imagen 6" onclick="expandImage(this)">
+                    </div>
+
+                    <div> </div>
+                    <div> </div>
+
+
+                    <div> </div>
+                    <div class="image-container">
+    <img src="pied.gif" alt="Imagen 6" onclick="expandImage(this)">
+
+
+    <img src="Oracle.gif" alt="Imagen 6" onclick="expandImage(this)">
+</div>
+
+                </div>
+            </div>`;
     }
+
+    // Mostrar u ocultar el panel de controles según el contenido
+    const controlsPanel = document.getElementById('controls-panel');
+    if (tipo === 'art') {
+        controlsPanel.style.display = 'flex';
+        initializeControls();
+    } else {
+        controlsPanel.style.display = 'none';
+    }
+}
+
+// Función para cargar el contenido del iframe según el enlace seleccionado
+function loadIframeContent(url) {
+    const iframe = document.getElementById('interactive-iframe');
+    iframe.src = url;
+}
+
+// Función para expandir las imágenes de la galería
+function expandImage(img) {
+    if (img.style.width === '100%') {
+        img.style.width = '150px'; // Regresar a tamaño pequeño
+    } else {
+        img.style.width = '100%'; // Ampliar a tamaño mediano
+    }
+}
+
 
     function initializeControls() {
         // Obtener referencias a los sliders de volumen
@@ -982,8 +1114,12 @@
     // Animación de escritura para los títulos
     let titles = [
         { id: 'title1', text: 'Sound Visualization' },
+        { id: 'title4', text: 'Interactive Screen' },
+        { id: 'title5', text: 'Stone Oracle' },
         { id: 'title2', text: 'Interactive Sound Game' },
-        { id: 'title3', text: 'Sound Frequencies PsychoTherapy' }
+        { id: 'title3', text: 'Sound Frequencies PsychoTherapy' },
+
+
     ];
 
     let currentTitleIndex = 0;
@@ -999,7 +1135,7 @@
             if (currentCharIndex < fullText.length) {
                 titleElement.innerHTML += fullText.charAt(currentCharIndex);
                 currentCharIndex++;
-                setTimeout(typeTitles, 50);
+                setTimeout(typeTitles, 20);
             } else {
                 currentTitleIndex++;
                 currentCharIndex = 0;
@@ -1177,6 +1313,78 @@ window.onclick = function (event) {
     }
 }
 
+// Obtener el contenedor de la galería
+const gridContainer = document.querySelector('.grid-container');
+
+let isDraggingGrid = false;
+let offsetXGrid, offsetYGrid;
+
+function dragStartGrid(e) {
+    const rect = gridContainer.getBoundingClientRect();
+    let clientX, clientY;
+
+    if (e.type === "touchstart") {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+    } else {
+        clientX = e.clientX;
+        clientY = e.clientY;
+    }
+
+    isDraggingGrid = true;
+    e.preventDefault();
+
+    offsetXGrid = clientX - rect.left;
+    offsetYGrid = clientY - rect.top;
+
+    document.addEventListener('mousemove', dragMoveGrid);
+    document.addEventListener('mouseup', dragEndGrid);
+    document.addEventListener('touchmove', dragMoveGrid);
+    document.addEventListener('touchend', dragEndGrid);
+}
+
+function dragMoveGrid(e) {
+    if (!isDraggingGrid) return;
+    e.preventDefault();
+    let clientX, clientY;
+
+    if (e.type === "touchmove") {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+    } else {
+        clientX = e.clientX;
+        clientY = e.clientY;
+    }
+
+    // Actualizar la posición del contenedor
+    gridContainer.style.left = (clientX - offsetXGrid) + 'px';
+    gridContainer.style.top = (clientY - offsetYGrid) + 'px';
+}
+
+function dragEndGrid() {
+    isDraggingGrid = false;
+    document.removeEventListener('mousemove', dragMoveGrid);
+    document.removeEventListener('mouseup', dragEndGrid);
+    document.removeEventListener('touchmove', dragMoveGrid);
+    document.removeEventListener('touchend', dragEndGrid);
+}
+
+// Asociar el arrastre al grid-container
+gridContainer.addEventListener('mousedown', dragStartGrid);
+gridContainer.addEventListener('touchstart', dragStartGrid);
+
+// Evitar que los videos dentro del grid-container bloqueen el arrastre del contenedor
+const videos = document.querySelectorAll('.grid-container video');
+
+videos.forEach(video => {
+    video.addEventListener('mousedown', function(e) {
+        e.stopPropagation(); // Detiene la propagación del evento al contenedor padre
+    });
+
+    video.addEventListener('touchstart', function(e) {
+        e.stopPropagation(); // Detiene la propagación en pantallas táctiles
+    });
+});
 
 
 </script>
@@ -1186,8 +1394,6 @@ window.onclick = function (event) {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-
 
 
 
