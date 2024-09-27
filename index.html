@@ -539,31 +539,24 @@
     }
 }
 
-
 @media (max-width: 768px) {
-
- 
-    /* Evitar que los videos se expandan en móviles */
+    /* Asegura que los videos no se expandan ni muestren controles en móviles */
     .gallery-item video {
-        pointer-events: none !important; /* Desactiva la interacción con los videos en móviles */
-        width: 100% !important; /* Asegura que los videos ocupen el ancho disponible */
-        height: auto !important; /* Mantén la proporción de los videos */
-        object-fit: contain !important; /* Ajusta los videos para que no se estiren */
+        width: 100% !important; /* Ajusta el video al 100% del ancho */
+        height: auto !important;
+        pointer-events: none !important; /* Desactiva la interacción en móviles */
+        object-fit: contain !important; /* Evita que se estiren */
+        controls: false !important; /* Asegura que no se muestren los controles */
     }
 
-    /* Ocultar los controles de video en móviles */
-    .gallery-item video::-webkit-media-controls {
-        display: none !important; /* Ocultar los controles predeterminados en móviles */
-    }
-
-    .gallery-item video::-moz-media-controls {
-        display: none !important; /* Ocultar controles en Firefox */
-    }
-
+    /* Ocultar controles predeterminados en todos los navegadores */
+    .gallery-item video::-webkit-media-controls,
+    .gallery-item video::-moz-media-controls,
     .gallery-item video::-media-controls {
-        display: none !important; /* Ocultar en otros navegadores compatibles */
+        display: none !important; /* Asegura que los controles estén ocultos en todos los navegadores */
     }
 }
+
 
 
 
@@ -713,6 +706,9 @@
     const expandedVideo = document.getElementById('expanded-video');
 
     function toggleVideo(videoId) {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    if (!isMobile) { // Solo permitir la expansión en pantallas más grandes
         const video = document.getElementById(videoId);
 
         // Silenciar todos los videos de la galería excepto el seleccionado
@@ -724,6 +720,14 @@
                 v.muted = false;
             }
         });
+
+        // Expandir el video seleccionado
+        expandedPage.classList.add('active');
+        expandedVideo.src = video.src;
+        expandedVideo.volume = video.volume; // Preservar el volumen original
+        expandedVideo.play();
+    }
+
 
         // Expandir el video seleccionado
         expandedPage.classList.add('active');
@@ -1503,6 +1507,18 @@ if (isMobile) {
     document.removeEventListener('touchstart', dragStartMixScreen);
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    if (isMobile) {
+        // Desactivar autoplay en móviles
+        const galleryVideos = document.querySelectorAll('.gallery-item video');
+        galleryVideos.forEach(video => {
+            video.removeAttribute('autoplay'); // Desactivar autoplay en móviles
+            video.setAttribute('controls', 'false'); // Desactivar controles en móviles
+        });
+    }
+});
 
 
 });
