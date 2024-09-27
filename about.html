@@ -101,12 +101,9 @@
             text-shadow: 0 0 30px #efffca;
         }
 
-        p:hover{
+        p:hover {
             color: #d7e4fc;
-
         }
-
-       
 
         /* Botón circular para abrir el modal de CV */
         .circle-button {
@@ -123,7 +120,7 @@
             box-shadow: 0 0 10px rgb(151, 151, 151);
             position: fixed;
             bottom: 20px;
-            right: 20px;
+            left: 20px;
             z-index: 10000;
             transition: background-color 0.3s ease;
             font-size: 12px;
@@ -135,18 +132,18 @@
 
         /* Estilos para el modal de CV */
         #cv-modal {
-            display: none; /* Oculto por defecto */
+            display: none;
             position: fixed;
             z-index: 9999;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+            background-color: rgba(0, 0, 0, 0.5);
         }
 
         #cv-modal .modal-content {
-                     background-color: rgba(81, 81, 81, 0.869);
+            background-color: rgba(81, 81, 81, 0.869);
             margin: 10% auto;
             padding: 20px;
             border: 1px solid #888;
@@ -157,7 +154,6 @@
             text-align: left;
             box-shadow: 0 0 20px rgba(81, 175, 186, 0.5);
             border-radius: 8px;
-        
         }
 
         /* Botón de cierre en el modal */
@@ -179,6 +175,120 @@
         #cv-modal p {
             color: #333;
             line-height: 1.5;
+        }
+
+        /* Botón circular para el formulario en la esquina inferior derecha */
+        .form-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #3d3c3c18;
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgb(151, 151, 151);
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+            transition: background-color 0.3s ease;
+            font-size: 12px;
+        }
+
+        .form-button:hover {
+            background-color: #7b7878;
+        }
+
+        /* Estilos para el modal del formulario */
+        #form-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        #form-modal .modal-content {
+            background-color: rgba(81, 81, 81, 0.869);
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 60%;
+            max-width: 300px;
+            font-size: 14px;
+            color: #191818;
+            text-align: left;
+            box-shadow: 0 0 20px rgba(81, 175, 186, 0.5);
+            border-radius: 8px;
+        }
+
+        .close-form {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-form:hover,
+        .close-form:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #form-modal form {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: auto;
+            text-shadow: 0 0 20px #fefffc;
+            color: #e3fbfd;
+            font-size: small;
+        }
+
+        #form-modal label {
+            margin-bottom: 10px;
+        }
+
+        #form-modal textarea {
+            height: 150px;
+            resize: vertical;
+            text-shadow: 0 0 10px #fdfdfc;
+        }
+
+        #form-modal input,
+        #form-modal textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border-style: dashed;
+            background-color: #000000;
+            text-shadow: 0 0 20px #e7e8e4;
+            color: #b4b4b2;
+            font-size: small;
+            box-shadow: 0 0 10px #daf0ff;
+        }
+
+        #form-modal button {
+            background-color: #000000;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-style: dashed;
+            box-shadow: 0 0 30px #cae9ff;
+        }
+
+        #form-modal button:hover {
+            background-color: #bbbbbb;
         }
 
         /* Reglas de estilo para pantallas móviles */
@@ -210,7 +320,6 @@
                 max-width: 100%;
             }
 
-            /* El texto del primer párrafo se moverá debajo de la imagen en móviles */
             #paragraph1 {
                 display: block;
                 flex-direction: column;
@@ -228,22 +337,20 @@
 <body>
     <div class="container">
         <header class="container">
-        <a href="index.html" style="text-decoration: none">
-            <h4 id="back-to-top">a-prtlt</h4></a>
-    
+            <a href="index.html" style="text-decoration: none">
+                <h4 id="back-to-top">a-prtlt</h4>
             </a>
-        </header>
+      
 
         <div id="menu" class="container">
             <a href="teachings.html">Teachings</a>
-            <a href="Contact.html">Contact</a>
         </div>
-
+    </header>
         <div class="container" id="autoTextContainer">
             <div class="container">
                 <p id="paragraph1" style="display: flex; align-items: center;">
                     <img src="cub.gif" alt="" height="320" margin: 10px auto; border: 10px solid #FFF;>
-                    <a href="https://aprtlt.wixsite.com/aprtlt" style="color: rgb(176, 174, 221);  text-decoration: none; margin: 20px; margin-bottom: 50px;" target="_blank">Art Music Film</a>
+                    <a href="https://aprtlt.wixsite.com/aprtlt" style="color: rgb(176, 174, 221); text-decoration: none; margin: 20px; margin-bottom: 50px;" target="_blank">Art Music Film</a>
                 </p>
                 <p id="paragraph2" style="display: flex; align-items: center;"></p>
                 <p id="paragraph3" style="display: flex; align-items: center;"></p>
@@ -265,20 +372,47 @@
             <div class="modal-content">
                 <span class="close-cv">&times;</span>
                 <h4>Alfonso Pretelt</h4>
-                <p>Alfonso Pretelt is a musician and audiovisual artist, specialized in sound and video art, studying at the University of Barcelona, and sonology at the Royal Conservatory of The Hague. He started in music with the piano and voice from the age of 7. He studied music theory and piano with the Russian teachers Irina Litvin, Irina Sachli and Dimitro Riesnik. (Autonomous University of Bucaramanga) he has studied electroacoustic composition with Alejandro Iglesias Rossi (Argentine), José Manuel Berenguer and Ricardo Mandolini.</p>
-                <p>He has studied sound and video art with Barbara Held, Carmen Pardo and José Manuel Berenguer. He studied Sonology with: Joel Ryan, Peter Pabon, Kess Tasselar. His studies in cinematography and psychology complement his vision as a creator and post-artist.</p>
-                <p>He is founder and director of Ideofónica, a platform for Latin American sound art and auralities. He has been a teacher and workshop leader of sound art, video art and contemporary music.</p>
+                <p>I am musician and audiovisual artist, specialized in sound and video art at the University of Barcelona, and sonology at the Royal Conservatory of The Hague. He started in music with the piano and voice from the age of 7. He studied music at different universities in Colombia.    My studies in cinematography and psychology complement his vision as a creator and post-artist.
+            </p>
+                <p>I am founder and director of Ideofónica, a platform for Latin American sound art and auralities and Ambient/drone Space. I has been a teacher and workshop leader of sound art, video art and contemporary music.</p>
                 <p>I have focused on acoustic research, experimental musical composition and audiovisual development. I promote deep listening experiences and decentralized education.</p>
                 <p>Psychologist: After my studies in arts, music and sound, I have completed an undergraduate degree in psychology, seeking to enhance my perspective on the field of science or other holistic contexts. I strengthened my studies of tarot and psychomagic by collaborating with Jodorowsky as a musician and assistant in psychomagic theater in Argentina and Mexico 2013-2014.</p>
+
+            </div>
+        </div>
+
+        <!-- Botón circular para abrir el modal del formulario -->
+        <button class="form-button" id="form-button">Form</button>
+
+        <!-- Modal para el formulario -->
+        <div id="form-modal">
+            <div class="modal-content">
+                <span class="close-form">&times;</span>
+                <form action="https://formspree.io/f/mayrebry" method="POST">
+                    <label>
+                        Name:
+                        <input type="text" name="name" required>
+                    </label>
+                    <label>
+                        Email:
+                        <input type="email" name="email" required>
+                    </label>
+                    <label>
+                        Message:
+                        <textarea name="message" required></textarea>
+                    </label>
+                    <button type="submit">Send</button>
+                </form>
             </div>
         </div>
 
         <script>
             const paragraphs = [
-                "I question the interface and posture of the cyborg in its contemporary condition, turning techno-spiritual and techno-emotional contexts into the interaction with the machine. My interests in the multiple possibilities of sound and perceptual forms have led me on a transpersonal quest to materialize spirit and spiritualize consciousness. I have concentrated on acoustic research, experimental music composition, and audiovisual development. I promote deep listening experiences and pedagogies.",
-                "He conceives sound as an entity, a material to be sculpted like a stone. His work with sound focuses on electroacoustic composition, modular synthesis and microsound. Musically, he places himself at the avant-garde of modular electronics, noise and ambient-drone.",
-                "As for video, he has explored different technological formats, searching for an aesthetic that always visually relates sound or the absence of it with the narrative or story to be told. He also uses code generation for image and sound.",
-                "He manages to merge his multiple knowledge in the pedagogy of archetypes and symbolic figures of the tarot, from psychoanalytic psychology and creation, seeking to erode in the unconscious the meanings of archetypes whose language is already there, interaction with images awakens this language in us."
+            "I question the interface and posture of the cyborg in its contemporary condition, turning techno-spiritual and techno-emotional contexts into the interaction with the machine. My interests in the multiple possibilities of sound and perceptual forms have led me on a transpersonal quest to materialize spirit and spiritualize consciousness. I have concentrated on acoustic research, experimental music composition, and audiovisual development. I promote deep listening experiences and pedagogies.",
+                "I conceive sound as an entity, a material to be sculpted like a stone. My work with sound focuses on electroacoustic composition, modular synthesis and microsound. Musically, I prefer the avant-garde of modular electronics, noise and ambient-drone.",
+                "As for video, I explored different technological formats, searching for an aesthetic that always visually relates sound or the absence of it with the narrative or story to be told. I also use code generation for image and sound.",
+                "I merge multiple knowledge in the pedagogy of archetypes and symbolic figures of the tarot, from psychoanalytic psychology and creation, seeking to erode in the unconscious the meanings of archetypes whose language is already there, interaction with images awakens this language in us."
+            
             ];
 
             let currentParagraph = 0;
@@ -291,51 +425,55 @@
                 if (index < currentText.length) {
                     document.getElementById(paragraphId).innerHTML += currentText.charAt(index);
                     index++;
-                    setTimeout(typeWriter, 5);  // Ajusta la velocidad de escritura
+                    setTimeout(typeWriter, 5);
                 } else if (currentParagraph < paragraphs.length - 1) {
                     currentParagraph++;
                     index = 0;
-                    setTimeout(typeWriter, 500);  // Pausa entre párrafos
+                    setTimeout(typeWriter, 500);
                 }
             }
 
             window.onload = typeWriter;
-
-            // Función para mostrar/ocultar el menú en móviles
-            function toggleMenu() {
-                const menu = document.getElementById('menu');
-                if (menu.style.display === 'flex') {
-                    menu.style.display = 'none';
-                } else {
-                    menu.style.display = 'flex';
-                }
-            }
 
             // Funcionalidad del modal de CV
             const cvButton = document.getElementById('cv-button');
             const cvModal = document.getElementById('cv-modal');
             const closeCv = document.querySelector('.close-cv');
 
-            // Abrir el modal al hacer clic en el botón
             cvButton.onclick = function () {
                 cvModal.style.display = 'block';
             }
 
-            // Cerrar el modal al hacer clic en la "x"
             closeCv.onclick = function () {
                 cvModal.style.display = 'none';
             }
 
-            // Cerrar el modal si se hace clic fuera del contenido
             window.onclick = function (event) {
                 if (event.target == cvModal) {
                     cvModal.style.display = 'none';
                 }
             }
+
+            // Funcionalidad del modal del formulario
+            const formButton = document.getElementById('form-button');
+            const formModal = document.getElementById('form-modal');
+            const closeForm = document.querySelector('.close-form');
+
+            formButton.onclick = function () {
+                formModal.style.display = 'block';
+            }
+
+            closeForm.onclick = function () {
+                formModal.style.display = 'none';
+            }
+
+            window.onclick = function (event) {
+                if (event.target == formModal) {
+                    formModal.style.display = 'none';
+                }
+            }
         </script>
-
 </body>
-
 </html>
 
 
