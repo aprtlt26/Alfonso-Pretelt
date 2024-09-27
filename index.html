@@ -451,8 +451,10 @@
     cursor: pointer;
 }
 
+
 .grid-container {
     display: grid;
+    
     grid-template-columns: repeat(3, 1fr);
     gap: 5px;
     position: absolute; /* Cambiado a absolute para permitir arrastre */
@@ -460,6 +462,9 @@
     resize: both; /* Permite redimensionar */
     overflow: hidden; /* Evita que el contenido se desborde al redimensionar */
     cursor: move; /* Cambia el cursor a uno de movimiento */
+    width: 80%; /* Cambiado para hacer el contenedor más pequeño */
+            height: 70%; /
+
 }
 
 .gallery-container {
