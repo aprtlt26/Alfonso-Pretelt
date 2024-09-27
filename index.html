@@ -540,14 +540,31 @@
 }
 
 
+@media (max-width: 768px) {
 
-    /* Reducir el espacio superior del grid */
  
+    /* Evitar que los videos se expandan en móviles */
+    .gallery-item video {
+        pointer-events: none !important; /* Desactiva la interacción con los videos en móviles */
+        width: 100% !important; /* Asegura que los videos ocupen el ancho disponible */
+        height: auto !important; /* Mantén la proporción de los videos */
+        object-fit: contain !important; /* Ajusta los videos para que no se estiren */
+    }
 
-/*
+    /* Ocultar los controles de video en móviles */
+    .gallery-item video::-webkit-media-controls {
+        display: none !important; /* Ocultar los controles predeterminados en móviles */
+    }
 
-    /* Reducir aún más el espacio superior del grid */
-  
+    .gallery-item video::-moz-media-controls {
+        display: none !important; /* Ocultar controles en Firefox */
+    }
+
+    .gallery-item video::-media-controls {
+        display: none !important; /* Ocultar en otros navegadores compatibles */
+    }
+}
+
 
 
 
@@ -736,7 +753,7 @@
         contentArea.innerHTML = `
             <div class="grid-container">
                 <div class="gallery-item">
-                    <video id="video1" src="2.mp4" onclick="toggleVideo('video1')" autoplay loop></video>
+                    <video id="video1" src="2.mp4" onclick="toggleVideo('video1')" autoplay  loop></video>
                 </div>
                 <div class="gallery-item">
                     <video id="video2" src="3.1.mp4" onclick="toggleVideo('video2')" autoplay loop></video>
@@ -748,7 +765,7 @@
                     <video id="video4" src="4.mp4" onclick="toggleVideo('video4')" autoplay loop></video>
                 </div>
                 <div class="gallery-item">
-                    <video id="video5" src="5.mp4" onclick="toggleVideo('video5')" autoplay loop></video>
+                    <video id="video5" src="5.mp4" onclick="toggleVideo('video5')" autoplay   loop></video>
                 </div>
                 <div class="gallery-item">
                     <video id="video6" src="6.mp4" onclick="toggleVideo('video6')" autoplay loop></video>
@@ -1499,6 +1516,7 @@ if (isMobile) {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
 
 
 
