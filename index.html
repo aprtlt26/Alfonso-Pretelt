@@ -511,27 +511,7 @@
 /* Estilos para pantallas móviles */
 @media (max-width: 768px) {
     /* Evitar que los videos se expandan en móviles */
-    .gallery-item video {
-        
-        pointer-events: none !important; 
-        transform: none !important; /* Elimina cualquier transformación como zoom */
-        width: 100% !important;
-        height: auto !important;
-       
-    }
-
-    .gallery-item video {
-        width: 100%; /* Mantén el tamaño del video */
-        height: auto; /* Mantén la proporción correcta */
-        margin: 2% 0; /* Espacio mínimo entre videos */
-        padding: 0; 
-    }
-
-    /* Si el contenedor tiene espacio extra, ajusta el gap entre los elementos del grid */
-    .grid-container {
-        gap: 1%; /* Reduce la separación entre las filas del grid */
-    }
-
+   
     
     
     /* Fijar el mix-screen en móviles */
@@ -546,20 +526,7 @@
         pointer-events: none; /* Evita que la pantalla se mueva en móviles */
     }
 
-    /* Evitar el arrastre de controles, pero mantener su tamaño */
-    #controls-panel {
-        display:flex;
-        position: fixed !important;
-        bottom: 0 !important;
-        width: 20% !important;
-        height: 18% !important;
-        pointer-events: auto !important; /* Habilita la interacción con los controles sin arrastrarlos */
-        cursor: default !important;
-        overflow: hidden !important;
-        top: 490px;
-        left:120px;
-    }
-    
+ 
 
     /* Asegurar que los controles no se expandan ni se arrastren */
     .control-group input[type="range"] {
@@ -573,40 +540,14 @@
 }
 
 
-/* Estilo para pantallas móviles */
-@media (max-width: 768px) {
-    /* Ajustar los márgenes entre videos para reducir el espacio vertical */
-    .gallery-item {
-        margin: 0; /* Eliminar márgenes entre los videos */
-        padding: 0;
-    }
 
     /* Reducir el espacio superior del grid */
-    .grid-container {
-        gap: 5px; /* Ajusta el gap entre las filas */
-        margin-top: 0px; /* Subir el grid hacia arriba */
-    }
-}
-/* Ajustes adicionales para reducir el espacio vertical entre los videos */
-@media (max-width: 768px) {
-    /* Ajustar los márgenes entre videos para reducir el espacio vertical */
-    .gallery-item {
-        margin: 0; /* Eliminar cualquier margen adicional */
-        padding: 0; /* Asegurar que no haya relleno */
-    }
+ 
+
+/*
 
     /* Reducir aún más el espacio superior del grid */
-    .grid-container {
-        gap: 2px; /* Reduce aún más el espacio entre los videos */
-        margin-top: 0px; /* Subir todo el bloque hacia arriba */
-    }
-
-    /* Asegurarse de que el contenedor esté bien centrado y compacto */
-    .container {
-        padding: 0; /* Asegurar que no haya relleno adicional */
-        margin: 0 auto; /* Centrar el contenedor */
-    }
-}
+  
 
 
 
@@ -1558,7 +1499,6 @@ if (isMobile) {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
 
 
 
