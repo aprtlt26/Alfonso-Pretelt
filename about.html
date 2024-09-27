@@ -80,7 +80,7 @@
             margin: 0 20px;
             font-size: 1.5em;
             color: #030303;
-            text-shadow: 0 0 30px #27ff06;
+            text-shadow: 0 0 30px #fcfcfc;
             text-decoration: none;
             font-family: 'Anta';
         }
@@ -94,7 +94,7 @@
             display: flex;
             padding-top: 200px;
             font-size: 9px;
-            text-shadow: 0 0 30px #27ff06;
+            text-shadow: 0 0 30px #ffffff;
 
         }
 
@@ -104,11 +104,11 @@
             font-size: 9px;
             margin: 20px auto;
             color: #1f1e1e;
-            text-shadow: 0 0 30px #efffca;
+            text-shadow: 0 0 30px #bfbfbf;
         }
 
         p:hover {
-            color: #00ff26;
+            color: #f2f2f2;
         }
 
         /* Botón circular para abrir el modal de CV */
@@ -123,7 +123,7 @@
             color: rgb(1, 1, 1);
             border: none;
             cursor: pointer;
-            box-shadow: 0 0 10px rgb(0, 255, 34);
+            box-shadow: 0 0 10px rgb(239, 239, 239);
             position: fixed;
             bottom: 20px;
             left: 20px;
@@ -156,10 +156,15 @@
             width: 60%;
             max-width: 600px;
             font-size: 14px;
-            color: #191818;
+            color: #030303;
             text-align: left;
-            box-shadow: 0 0 20px rgba(81, 175, 186, 0.5);
+            box-shadow: 0 0 20px rgba(206, 206, 206, 0.5);
             border-radius: 8px;
+        }
+        #cv-modal .modal-content:hover{
+            color: #fdfdfc;
+            box-shadow: 0 0 20px rgba(243, 255, 184, 0.5);
+
         }
 
         /* Botón de cierre en el modal */
@@ -195,7 +200,7 @@
             color: rgb(4, 4, 4);
             border: none;
             cursor: pointer;
-            box-shadow: 0 0 10px rgb(95, 255, 31);
+            box-shadow: 0 0 10px rgb(255, 255, 255);
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -443,7 +448,7 @@
                 } else if (currentParagraph < paragraphs.length - 1) {
                     currentParagraph++;
                     index = 0;
-                    setTimeout(typeWriter, 30);
+                    setTimeout(typeWriter, 500);
                 }
             }
 
