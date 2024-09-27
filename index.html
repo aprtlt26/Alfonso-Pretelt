@@ -559,6 +559,39 @@
     }
 }
 
+/* Estilos generales del botón de Play/Pause */
+.play-btn {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Ajustes para el panel de controles en móviles */
+@media (max-width: 768px) {
+    #controls-panel {
+        position: fixed;
+        bottom: 0;
+        width: 90%; /* Ajuste para hacerlo más angosto */
+        max-height: 150px; /* Ajuste para hacerlo más corto */
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        padding: 10px;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* Luz tenue */
+        resize: none; /* Desactivar redimensionar */
+        overflow: hidden; /* Evitar que el contenido se desborde */
+    }
+}
+
 
     </style>
 </head>
@@ -608,8 +641,10 @@
 
 <!-- Panel de controles movible y redimensionable -->
 <div id="controls-panel">
-    <!-- Contenido del panel de controles -->
-    <!-- Controles de volumen existentes -->
+ 
+    <div class="control-group">
+        <button id="playPauseBtn" class="play-btn">Play</button>
+    </div>
     <div class="control-group">
         <label for="general-volume">G.Gain</label>
         <input type="range" id="general-volume" min="0" max="1" step="0.01" value="1">
@@ -745,22 +780,22 @@
         contentArea.innerHTML = `
             <div class="grid-container">
                 <div class="gallery-item">
-                    <video id="video1" src="2.mp4" onclick="toggleVideo('video1')" autoplay loop></video>
+                    <video id="video1" src="2.mp4" onclick="toggleVideo('video1')"  loop></video>
                 </div>
                 <div class="gallery-item">
-                    <video id="video2" src="3.1.mp4" onclick="toggleVideo('video2')" autoplay loop></video>
+                    <video id="video2" src="3.1.mp4" onclick="toggleVideo('video2')"  loop></video>
                 </div>
                 <div class="gallery-item">
-                    <video id="video3" src="33.mp4" onclick="toggleVideo('video3')" autoplay loop></video>
+                    <video id="video3" src="33.mp4" onclick="toggleVideo('video3')" loop></video>
                 </div>
                 <div class="gallery-item">
-                    <video id="video4" src="4.mp4" onclick="toggleVideo('video4')" autoplay loop></video>
+                    <video id="video4" src="4.mp4" onclick="toggleVideo('video4')"   loop></video>
                 </div>
                 <div class="gallery-item">
-                    <video id="video5" src="5.mp4" onclick="toggleVideo('video5')" autoplay loop></video>
+                    <video id="video5" src="5.mp4" onclick="toggleVideo('video5')" loop></video>
                 </div>
                 <div class="gallery-item">
-                    <video id="video6" src="6.mp4" onclick="toggleVideo('video6')" autoplay loop></video>
+                    <video id="video6" src="6.mp4" onclick="toggleVideo('video6')"  loop></video>
                 </div>
             </div>`;
     } else if (tipo === 'game') {
@@ -1494,6 +1529,53 @@ if (isMobile) {
     document.removeEventListener('mousedown', dragStartMixScreen);
     document.removeEventListener('touchstart', dragStartMixScreen);
 }
+document.addEventListener('DOMContentLoaded', function() {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    let isPlaying = false; // Controlar el estado de reproducción
+    const galleryVideos = document.querySelectorAll('.gallery-item video'); // Obtener todos los videos
+
+    // Asegurarnos de que todos los videos estén pausados al cargar la página
+    galleryVideos.forEach(video => {
+        video.pause(); // Pausar videos
+        video.autoplay = false; // Desactivar autoplay tanto en escritorio como en móviles
+        video.controls = false; // Ocultar controles nativos de video
+        video.muted = true; // Silenciar los videos por defecto
+    });
+
+    // Función para controlar Play/Pausa de todos los videos
+    function togglePlayPause() {
+        // Iterar sobre todos los videos y alternar entre play/pause
+        galleryVideos.forEach(video => {
+            if (isPlaying) {
+                video.pause(); // Pausar los videos si ya están reproduciéndose
+            } else {
+                video.play().catch(error => {
+                    console.log("Error al intentar reproducir el video: " + error);
+                });
+            }
+        });
+
+        // Cambiar el texto del botón según el estado de reproducción
+        document.getElementById('playPauseBtn').textContent = isPlaying ? 'Play' : 'Pause';
+        isPlaying = !isPlaying; // Alternar el estado
+    }
+
+    // Asociar el botón de Play/Pausa a la función togglePlayPause
+    document.getElementById('playPauseBtn').addEventListener('click', function() {
+        galleryVideos.forEach(video => {
+            video.muted = false; // Quitar el mute cuando el usuario da play
+        });
+        togglePlayPause(); // Llamar a la función de Play/Pause
+    });
+
+    // Evitar que los videos se reproduzcan automáticamente en móviles
+    if (isMobile) {
+        galleryVideos.forEach(video => {
+            video.autoplay = false; // Desactivar autoplay en móviles
+            video.controls = false; // Ocultar controles nativos de video
+        });
+    }
+});
 
 
 
