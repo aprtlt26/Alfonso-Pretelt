@@ -509,6 +509,63 @@
     transform: scale(1.5); /* Opción de agrandamiento al pasar el mouse */
 }
 
+/* Estilos para pantallas móviles */
+@media (max-width: 768px) {
+    /* Evitar que los videos se expandan en móviles */
+    .gallery-item video {
+        width: 100% !important; /* No expande más allá del contenedor */
+        height: auto !important; /* Mantiene la proporción */
+        transform: scale(1) !important; /* Desactiva el zoom */
+    }
+
+    /* Fijar el mix-screen en móviles */
+    #mix-screen {
+        position: fixed !important; /* Fijo en la pantalla */
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important; /* Ocupa todo el ancho */
+        height: 100% !important; /* Ocupa todo el alto */
+        cursor: default !important; /* Evita el cursor de movimiento */
+        resize: none !important; /* Desactiva el redimensionado */
+    }
+
+    /* Ocultar los controles en la versión móvil si es necesario */
+    #controls-panel {
+        position: fixed !important;
+        top: auto !important;
+        left: auto !important;
+        bottom: 0 !important; /* Siempre en la parte inferior */
+        width: 100% !important; /* Ancho completo */
+        resize: none !important; /* No redimensionable */
+        cursor: default !important; /* Evita el cursor de movimiento */
+        overflow: hidden; /* Evita que los controles se desborden */
+    }
+
+    /* Desactivar la funcionalidad de arrastre en móviles */
+    .grid-container,
+    #controls-panel,
+    #mix-screen {
+        pointer-events: auto !important; /* Permite la interacción, pero no el arrastre */
+        touch-action: none !important; /* Deshabilita el arrastre en móviles */
+    }
+
+    /* Asegurar que el contenido dentro del grid no se mueva en móviles */
+    .grid-container {
+        position: static !important; /* No movible */
+    }
+
+    /* Evitar que la pantalla se mueva al hacer scroll en móviles */
+    body {
+        overflow: hidden !important; /* Desactiva el scroll en móviles */
+    }
+
+    /* Ajustar el tamaño de los videos de la pantalla grande en móviles */
+    #mix-screen video {
+        width: 100% !important;
+        height: auto !important;
+    }
+}
+
 
     </style>
 </head>
@@ -1417,6 +1474,19 @@ videos.forEach(video => {
     video.addEventListener('touchstart', function(e) {
         e.stopPropagation(); // Detiene la propagación en pantallas táctiles
     });
+
+    // Funcionalidad para hacer el panel de controles y el mix-screen no arrastrables en móviles
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+if (!isMobile) {
+    // Solo permitir arrastre en pantallas grandes
+    controlsPanel.addEventListener('mousedown', dragStartControls);
+    controlsPanel.addEventListener('touchstart', dragStartControls);
+
+    mixScreen.addEventListener('mousedown', dragStartMixScreen);
+    mixScreen.addEventListener('touchstart', dragStartMixScreen);
+}
+
 });
 
 
