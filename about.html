@@ -16,30 +16,31 @@
     <meta property="og:image" content="lemt.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
     <meta name="format-detection" content="telephone=no">
 
-    <script>
-        document.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
-        });
-    </script>
+    <!-- Font Awesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+    
     <title>Interactive Art Media</title>
 
     <style>
-      body {
+        body {
             margin: 0;
             font-family: "Anta", sans-serif;
-            background-color: #000000;
+            background-color: #ffffff00;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
             margin: 30px;
+            overflow: hidden; /* Esto asegurará que el canvas cubra toda la pantalla */
+
         }
+        
 
         .anta-regular {
             font-family: "Anta", sans-serif;
@@ -48,7 +49,7 @@
         }
 
         header {
-            background-color:#000000;
+            background-color: #ffffff00;
             padding: 20px;
             color: #d4d4d4;
             text-align: left;
@@ -56,7 +57,7 @@
 
         #menu {
             display: flex;
-            background-color: #000000;
+            background-color: #ffffff00;
             padding: 20px;
             color: #d4d4d4;
             text-shadow: 0 0 10px #efffca;
@@ -66,7 +67,7 @@
         #menu a {
             margin: 0 20px;
             text-decoration: none;
-            color: #d1d1d1;
+            color: #000000;
             font-size: 9px;
             font-family: "Anta", sans-serif;
         }
@@ -77,22 +78,24 @@
 
         h4 {
             margin: 0 20px;
-            font-size: 1em;
-            color: #c9eff4;
-            text-shadow: 0 0 30px #efffca;
+            font-size: 1.5em;
+            color: #030303;
+            text-shadow: 0 0 30px #27ff06;
             text-decoration: none;
             font-family: 'Anta';
         }
 
         h4:hover {
-            color: hsl(73, 100%, 81%);
+            color: hsl(0, 0%, 39%);
         }
 
-     footer {
+        footer {
+            justify-content: center;
             display: flex;
             padding-top: 200px;
-            justify-content: center;
-            font-size: 8px;
+            font-size: 9px;
+            text-shadow: 0 0 30px #27ff06;
+
         }
 
         p {
@@ -100,12 +103,12 @@
             text-align: justify;
             font-size: 9px;
             margin: 20px auto;
-            color: #d4d4d4;
+            color: #1f1e1e;
             text-shadow: 0 0 30px #efffca;
         }
 
         p:hover {
-            color: #d7e4fc;
+            color: #00ff26;
         }
 
         /* Botón circular para abrir el modal de CV */
@@ -116,11 +119,11 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background-color: #3d3c3c18;
-            color: white;
+            background-color: #ffffff00;
+            color: rgb(1, 1, 1);
             border: none;
             cursor: pointer;
-            box-shadow: 0 0 10px rgb(151, 151, 151);
+            box-shadow: 0 0 10px rgb(0, 255, 34);
             position: fixed;
             bottom: 20px;
             left: 20px;
@@ -188,11 +191,11 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background-color: #3d3c3c18;
-            color: white;
+            background-color: #ababab18;
+            color: rgb(4, 4, 4);
             border: none;
             cursor: pointer;
-            box-shadow: 0 0 10px rgb(151, 151, 151);
+            box-shadow: 0 0 10px rgb(95, 255, 31);
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -214,11 +217,11 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(245, 244, 244, 0.5);
         }
 
         #form-modal .modal-content {
-            background-color: rgba(81, 81, 81, 0.869);
+            background-color: rgba(180, 176, 176, 0.195);
             margin: 10% auto;
             padding: 20px;
             border: 1px solid #888;
@@ -227,7 +230,7 @@
             font-size: 14px;
             color: #191818;
             text-align: left;
-            box-shadow: 0 0 20px rgba(81, 175, 186, 0.5);
+            box-shadow: 0 0 20px rgba(30, 255, 0, 0.5);
             border-radius: 8px;
         }
 
@@ -334,6 +337,13 @@
                 margin: 10px 0;
             }
         }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Esto asegura que el canvas esté detrás del contenido */
+        }
     </style>
 </head>
 
@@ -343,15 +353,14 @@
             <a href="index.html" style="text-decoration: none">
                 <h4 id="back-to-top">a-prtlt</h4>
             </a>
-      
+        </header>
 
         <div id="menu" class="container">
         </div>
-    </header>
+
         <div class="container" id="autoTextContainer">
             <div class="container">
                 <p id="paragraph1" style="display: flex; align-items: center;">
-                    <img src="cub.gif" alt="" height="320" margin: 10px auto; border: 10px solid #FFF;>
                     <a href="https://aprtlt.wixsite.com/aprtlt" style="color: rgb(176, 174, 221); text-decoration: none; margin: 20px; margin-bottom: 50px;" target="_blank">Art Music Film</a>
                 </p>
                 <p id="paragraph2" style="display: flex; align-items: center;"></p>
@@ -381,10 +390,13 @@
                 <p>Psychologist: After my studies in arts, music and sound, I have completed an undergraduate degree in psychology, seeking to enhance my perspective on the field of science or other holistic contexts. I strengthened my studies of tarot and psychomagic by collaborating with Jodorowsky as a musician and assistant in psychomagic theater in Argentina and Mexico 2013-2014.</p>
 
             </div>
+            </div>
         </div>
 
-        <!-- Botón circular para abrir el modal del formulario -->
-        <button class="form-button" id="form-button">Form</button>
+        <!-- Botón circular para abrir el modal del formulario con icono de sobre -->
+        <button class="form-button" id="form-button">
+            <i class="fas fa-envelope"></i>
+        </button>
 
         <!-- Modal para el formulario -->
         <div id="form-modal">
@@ -423,7 +435,7 @@
             function typeWriter() {
                 const paragraphId = `paragraph${currentParagraph + 1}`;
                 const currentText = paragraphs[currentParagraph];
-                
+
                 if (index < currentText.length) {
                     document.getElementById(paragraphId).innerHTML += currentText.charAt(index);
                     index++;
@@ -475,6 +487,261 @@
                 }
             }
         </script>
+
+<script>
+    let inc = 0.05;
+    let scl = 10;
+    let cols, rows;
+    let zoff = 0;
+    let particles = [];
+    let flowfield;
+    let maxSpeed = 0.5;
+    let audioStarted = false;
+    let globalReverb;
+    let globalDelay;
+    let globalCompressor;
+    let globalOscillator = [];
+    let globalGainMod = 0;  // Para modular la ganancia general lentamente y constantemente
+    let currentFreqs = [];  // Para almacenar las frecuencias actuales
+    let targetFreqs = [];   // Para almacenar las frecuencias objetivo
+    let freqChangeDuration = 10000;  // Duración del cambio de frecuencia (10 segundos)
+    let amplitude;  // Analizador de amplitud
+
+    function setup() {
+        createCanvas(windowWidth, windowHeight);
+        colorMode(HSB, 660, 900, 100, 10000);
+        cols = floor(width / scl);
+        rows = floor(height / scl);
+        flowfield = new Array(cols * rows);
+
+        // Reverberación amplia y profunda
+        globalReverb = new p5.Reverb();
+        globalReverb.set(50, 30);  // Reverb profundo
+
+        // Delay espacioso
+        globalDelay = new p5.Delay();
+        globalDelay.process(globalReverb,  0.5, 0.7, 2500);  // Delay largo
+
+        // Compresor ajustado para evitar saturación
+        globalCompressor = new p5.Compressor();
+        globalCompressor.attack(0.03);
+        globalCompressor.release(0.5);  // Liberación rápida para controlar mejor los picos
+        globalCompressor.threshold(-30);  // Umbral más bajo para mejor control de picos
+        globalCompressor.ratio(6);
+        globalCompressor.connect();
+
+        // Configurar el analizador de amplitud
+        amplitude = new p5.Amplitude();
+        amplitude.setInput(globalCompressor);  // Analiza el audio después del compresor
+
+        for (let i = 0; i < 800; i++) {
+            particles.push(new Particle());
+        }
+
+        background(255);
+
+        noLoop(); // Pausar hasta que se haga clic
+
+        // Crear osciladores
+        for (let i = 0; i < 8; i++) {
+            let osc = new p5.Oscillator('sine');
+            let initialFreq = random(200, 600);  // Frecuencia inicial aleatoria
+            osc.freq(initialFreq);  
+            osc.amp(0);  // Empieza sin sonido
+            osc.disconnect();
+            osc.connect(globalReverb);
+            osc.connect(globalDelay);
+            osc.connect(globalCompressor);
+            osc.start();
+            globalOscillator.push(osc);
+            currentFreqs.push(initialFreq);  // Guardar la frecuencia inicial
+            targetFreqs.push(initialFreq);   // La frecuencia objetivo empieza igual que la inicial
+        }
+
+        setInterval(changeFrequencies, 60000);  // Cambiar las frecuencias de los osciladores cada minuto
+    }
+
+    function draw() {
+        if (!audioStarted) return;
+
+        background(10, 50);
+
+        let yoff = 0;
+        let numActiveParticles = 0;
+
+        globalGainMod = map(sin(frameCount * 0.05), -1, 0.3, 0.01, 0.2);  // Subidas y bajadas constantes de ganancia
+
+        // Obtener el nivel de amplitud actual
+        let level = amplitude.getLevel();
+
+        // Ajustar maxSpeed en función del nivel de amplitud (opcional)
+        maxSpeed = map(level, 0, 0.1, 0.5, 2);
+        maxSpeed = constrain(maxSpeed, 0.5, 2);
+
+        for (let y = 0; y < rows; y++) {
+            let xoff = 0;
+            for (let x = 0; x < cols; x++) {
+                let index = x + y * cols;
+                let angle = noise(xoff, yoff, zoff) * TWO_PI;
+                let v = p5.Vector.fromAngle(angle);
+                v.setMag(0.05);
+                flowfield[index] = v;
+                xoff += inc;
+            }
+            yoff += inc;
+        }
+
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].follow(flowfield);
+            particles[i].update();
+            particles[i].edges();  // Asegurar que las partículas envuelvan los bordes
+            particles[i].show(level);  // Pasar el nivel de amplitud a la función show()
+
+            if (particles[i].isNearCenter()) {
+                numActiveParticles++;
+            }
+        }
+
+        // Aumentar baseAmp para incrementar el volumen al regresar
+let baseAmp = map(numActiveParticles, 0, particles.length, 0, 0.3);  // Ganancia basada en partículas activas
+        let targetAmp = baseAmp * globalGainMod;  // Modulación global aplicada a la ganancia
+
+
+        // Ajustar el número de partículas en función del nivel de amplitud
+let desiredNumParticles = map(level, 0, 0.1, 200, 1000);
+desiredNumParticles = floor(constrain(desiredNumParticles, 200, 1000));
+
+// Ajustar el array de partículas
+if (particles.length < desiredNumParticles) {
+let newParticles = desiredNumParticles - particles.length;
+for (let i = 0; i < newParticles; i++) {
+    particles.push(new Particle());
+}
+} else if (particles.length > desiredNumParticles) {
+particles.splice(0, particles.length - desiredNumParticles);
+}
+
+        // Reducir attackTime para que el sonido aparezca más rápidamente
+        let attackTime = random(0.5, 2);  // Aparición más rápida
+        let releaseTime = random(10, 20);  // Desvanecimiento lento y suave
+        
+
+        for (let i = 0; i < globalOscillator.length; i++) {
+            globalOscillator[i].freq(lerp(currentFreqs[i], targetFreqs[i], frameCount / freqChangeDuration));  // Cambio suave de frecuencia
+           
+            if (random(1) > 0.4) {  // Fragmentación aleatoria
+                globalOscillator[i].amp(targetAmp, attackTime);  // Aparición fragmentada
+                setTimeout(() => {
+                    globalOscillator[i].amp(0, releaseTime);  // Desvanecimiento evanescente
+                }, attackTime * 1000);
+            }
+        }
+
+        zoff += 0.2;  // Continuar desplazando el ruido para las partículas
+    }
+
+    // Función para cambiar las frecuencias de los osciladores y reiniciar partículas
+    function changeFrequencies() {
+        for (let i = 0; i < globalOscillator.length; i++) {
+            targetFreqs[i] = random(300, 500);  // Asignar una nueva frecuencia aleatoria como objetivo
+        }
+
+        // Reiniciar las partículas desde posiciones aleatorias
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].reset();  // Llamar a la función para reiniciar cada partícula
+        }
+    }
+
+    // Activa el audio y el loop cuando se hace clic
+    function mousePressed() {
+        if (!audioStarted) {
+            userStartAudio();
+            audioStarted = true;
+
+            // Aplicar un fade-in suave a todos los osciladores
+            for (let i = 0; i < globalOscillator.length; i++) {
+                globalOscillator[i].amp(0.01, 5);  // Fade-in de 5 segundos
+            }
+
+            loop();  // Iniciar la animación después de que se haga clic
+        }
+    }
+
+    class Particle {
+        constructor() {
+            this.pos = createVector(random(width), random(height));
+            this.vel = createVector(0, 0);
+            this.acc = createVector(0, 0);
+            this.prevPos = this.pos.copy();
+        }
+
+        follow(vectors) {
+            let x = floor(this.pos.x / scl);
+            let y = floor(this.pos.y / scl);
+            let index = x + y * cols;
+            let force = vectors[index];
+            this.applyForce(force);
+        }
+
+        applyForce(force) {
+            this.acc.add(force);
+        }
+
+        update() {
+            this.vel.add(this.acc);
+            this.vel.limit(maxSpeed);  // Usar maxSpeed actualizado
+            this.pos.add(this.vel);
+            this.acc.mult(0);
+        }
+
+        edges() {
+            // Asegurar que las partículas reaparezcan en el borde opuesto
+            if (this.pos.x > width) this.pos.x = 0;
+            if (this.pos.x < 0) this.pos.x = width;
+            if (this.pos.y > height) this.pos.y = 0;
+            if (this.pos.y < 0) this.pos.y = height;
+        }
+
+        reset() {
+            // Reiniciar la partícula a una nueva posición y velocidad aleatorias
+            this.pos = createVector(random(width), random(height));
+            this.vel = createVector(0, 0);
+            this.acc = createVector(0, 0);
+            this.prevPos = this.pos.copy();
+        }
+
+        isNearCenter() {
+            let d = dist(this.pos.x, this.pos.y, width / 2, height / 2);
+            return d < width / 3;  // Ajustar el rango según el comportamiento visual
+        }
+
+        show(amplitudeLevel) {
+            let hueValue = map(sin(frameCount * 0.090 + this.pos.x * 0.001), -10, 1, 980, 980, 654, 224);
+            let saturationValue = map(this.pos.y, 0, height, 50, 100);
+            let brightnessValue = map(sin(frameCount * 0.03 + this.pos.y * 0.01), -1, 1, 70, 100);
+
+            // Ajustar la opacidad de las partículas en función de la amplitud del sonido
+            let alphaValue = map(amplitudeLevel, 0, 0.1, 50, 255);  // Valor mínimo aumentado a 50
+            alphaValue = constrain(alphaValue, 50, 255);
+
+            fill(hueValue, saturationValue, brightnessValue, alphaValue);
+            stroke(192, 192, 192, alphaValue);
+            strokeWeight(1);
+
+            beginShape();
+            let numPoints = floor(random(3, 6));
+            for (let i = 0; i < numPoints; i++) {
+                let offsetX = random(-30, 30);
+                let offsetY = random(-10, 20);
+                curveVertex(this.pos.x + offsetX, this.pos.y + offsetY);
+            }
+            endShape(CLOSE);
+
+            this.prevPos = this.pos.copy();
+        }
+    }
+    
+</script>
 </body>
 </html>
 
