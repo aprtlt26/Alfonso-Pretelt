@@ -156,7 +156,7 @@
             width: 60%;
             max-width: 600px;
             font-size: 14px;
-            color: #030303;
+            color: #ffffff;
             text-align: left;
             box-shadow: 0 0 20px rgba(206, 206, 206, 0.5);
             border-radius: 8px;
@@ -184,7 +184,7 @@
         }
 
         #cv-modal p {
-            color: #333;
+            color: #f4f4f4;
             line-height: 1.5;
         }
 
@@ -226,7 +226,7 @@
         }
 
         #form-modal .modal-content {
-            background-color: rgba(180, 176, 176, 0.195);
+            background-color: rgba(197, 197, 197, 0.195);
             margin: 10% auto;
             padding: 20px;
             border: 1px solid #888;
@@ -235,7 +235,7 @@
             font-size: 14px;
             color: #191818;
             text-align: left;
-            box-shadow: 0 0 20px rgba(30, 255, 0, 0.5);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
             border-radius: 8px;
         }
 
@@ -281,11 +281,11 @@
             margin: 5px 0;
             box-sizing: border-box;
             border-style: dashed;
-            background-color: #000000;
+            background-color: #c2c2c2;
             text-shadow: 0 0 20px #e7e8e4;
-            color: #b4b4b2;
+            color: #000000;
             font-size: small;
-            box-shadow: 0 0 10px #daf0ff;
+            box-shadow: 0 0 10px #d1d1d1;
         }
 
         #form-modal button {
@@ -539,7 +539,7 @@
         amplitude = new p5.Amplitude();
         amplitude.setInput(globalCompressor);  // Analiza el audio después del compresor
 
-        for (let i = 0; i < 800; i++) {
+        for (let i = 0; i < 700; i++) {
             particles.push(new Particle());
         }
 
@@ -563,7 +563,7 @@
             targetFreqs.push(initialFreq);   // La frecuencia objetivo empieza igual que la inicial
         }
 
-        setInterval(changeFrequencies, 60000);  // Cambiar las frecuencias de los osciladores cada minuto
+        setInterval(changeFrequencies, 30000);  // Cambiar las frecuencias de los osciladores cada minuto
     }
 
     function draw() {
@@ -613,8 +613,8 @@ let baseAmp = map(numActiveParticles, 0, particles.length, 0, 0.3);  // Ganancia
 
 
         // Ajustar el número de partículas en función del nivel de amplitud
-let desiredNumParticles = map(level, 0, 0.1, 200, 1000);
-desiredNumParticles = floor(constrain(desiredNumParticles, 200, 1000));
+let desiredNumParticles = map(level, 0, 0.1, 200, 700);
+desiredNumParticles = floor(constrain(desiredNumParticles, 200, 700));
 
 // Ajustar el array de partículas
 if (particles.length < desiredNumParticles) {
