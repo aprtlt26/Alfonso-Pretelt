@@ -620,25 +620,12 @@
 #toggleGalleryBtn:active {
     transform: scale(0.58); /* Efecto de "presionado" */
 }
-
-        @media (max-width: 768px) {
-    /* Asegura que los videos no se expandan ni muestren controles en móviles */
-    .gallery-item video {
-        width: 100% !important; /* Ajusta el video al 100% del ancho */
-        height: auto !important;
-        pointer-events: none !important; /* Desactiva la interacción en móviles */
-        object-fit: contain !important; /* Evita que se estiren */
-        controls: false !important; /* Asegura que no se muestren los controles */
-    }
-
-    /* Ocultar controles predeterminados en todos los navegadores */
-    .gallery-item video::-webkit-media-controls,
-    .gallery-item video::-moz-media-controls,
-    .gallery-item video::-media-controls {
-        display: none !important; /* Asegura que los controles estén ocultos en todos los navegadores */
-    }
+/* Ocultar controles de video en todos los dispositivos */
+.gallery-item video::-webkit-media-controls,
+.gallery-item video::-moz-media-controls,
+.gallery-item video::-media-controls {
+    display: none !important; /* Asegura que los controles no aparezcan en ningún navegador */
 }
-
 
 
     </style>
@@ -831,11 +818,11 @@
         contentArea.innerHTML = `
         <div class="grid-container">
                     <div class="gallery-item">
-                        <img src="1.gif" alt="Image for Video 1" onclick="toggleVideo('video1')">
+                        <img src="1.gif" alt="Image for Video 1" ('video1')">
                         <video id="video2" src="2.mp4" loop style="display: none;"></video>
                     </div>
                     <div class="gallery-item">
-                        <img src="2.gif" alt="Image for Video 2" onclick="toggleVideo('video2')">
+                        <img src="2.gif" alt="Image for Video 2" ('video2')">
                         <video id="video2" src="3.1.mp4" loop style="display: none;"></video>
                     </div>
                     <div class="gallery-item">
@@ -1628,6 +1615,35 @@ let isGalleryVisible = true;
 
 });
 
+// Evitar que los videos sean visibles o interactivos en móviles y escritorio
+document.addEventListener('DOMContentLoaded', function() {
+    const galleryVideos = document.querySelectorAll('.gallery-item video');
+    
+    galleryVideos.forEach(video => {
+        // Mantener la reproducción en segundo plano
+        video.play(); 
+        video.muted = true; // Si quieres que los videos no emitan sonido en la galería
+        video.style.display = 'none'; // Asegúrate de que el video no se muestre
+        video.style.pointerEvents = 'none'; // Desactivar la interacción con los videos
+    });
+});
+
+// Activar solo la pantalla de mezcla y desactivar la interacción con videos en la galería
+
+// Iniciar reproducción de los videos en `mix-screen`
+const mixVideos = document.querySelectorAll('#mix-screen video');
+mixVideos.forEach(video => {
+    video.play(); // Mantén los videos de la mezcla reproduciéndose
+    video.style.opacity = 1; // Asegúrate de que sean visibles solo en la mezcla
+});
+
+// Asegurarse de que los videos de la galería estén invisibles y no interactivos
+const galleryVideos = document.querySelectorAll('.gallery-item video');
+galleryVideos.forEach(video => {
+    video.style.display = 'none'; // Mantén invisibles los videos de la galería
+    video.style.pointerEvents = 'none'; // Desactiva la interacción con los videos
+    
+});
 
 
 </script>
@@ -1637,6 +1653,7 @@ let isGalleryVisible = true;
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
 
 
 
