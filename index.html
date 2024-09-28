@@ -484,6 +484,7 @@
     color: darkgrey; /* Opcional: para cambiar el color al pasar el mouse */
 }
 
+
 .image-container {
     display: grid;
     justify-content: center; /* Centra horizontalmente */
@@ -557,8 +558,65 @@
 }
 
 
+.gallery-item img {
+    width: 100%; /* Ajusta la imagen al 100% del contenedor */
+    height: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    object-fit: cover; /* Asegura que la imagen siempre llene el contenedor sin distorsión */
+}
 
+.gallery-item img:hover {
+    transform: scale(1.1); /* Efecto de zoom ligero al pasar el ratón */
+}
 
+/* Ajustes para pantallas móviles */
+@media (max-width: 768px) {
+    /* Ajuste el tamaño de las imágenes y cambie el diseño de la galería a una columna para pantallas móviles */
+    .gallery-container {
+        grid-template-columns: repeat(2, 1fr); /* Cambia a dos columnas en pantallas más pequeñas */
+    }
+
+    .gallery-item img {
+        width: 100%; /* Ajusta la imagen al 100% del contenedor */
+    height: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    object-fit: cover; /* Asegura que la imagen siempre llene el contenedor sin distorsión */
+}/* Asegura que las imágenes mantengan la proporción dentro de su contenedor */
+    }
+
+    .gallery-item img:hover {
+        transform: none; /* Deshabilitar el efecto de zoom en pantallas táctiles */
+    }
+
+    #toggleGalleryBtn {
+    background-color: #dfdcdc00; /* Color de fondo transparente */
+    border: none;
+    color: white; /* Color del texto */
+    padding: 5px 8px;
+    text-align: center;
+    font-size: 8px; /* Tamaño del texto */
+    cursor: pointer;
+    border-radius: 12px; /* Bordes redondeados */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    outline: none; /* Eliminar el borde azul */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* Luz tenue */
+    display: inline-block;
+}
+
+#toggleGalleryBtn:hover {
+    background-color: #a1a0a050; /* Color al hacer hover */
+    transform: scale(1.05); /* Efecto de escala suave al hacer hover */
+}
+
+#toggleGalleryBtn:focus {
+    outline: none; /* También elimina el borde en el foco */
+}
+
+#toggleGalleryBtn:active {
+    transform: scale(0.58); /* Efecto de "presionado" */
+}
 
 
     </style>
@@ -609,7 +667,9 @@
 
 <!-- Panel de controles movible y redimensionable -->
 <div id="controls-panel">
- 
+    <div class="container text-center mt-4">
+        <button id="toggleGalleryBtn" class="btn">Hide Panel</button>
+    </div>
  
     <div class="control-group">
         <label for="general-volume">G.Gain</label>
@@ -721,11 +781,7 @@
             }
         });
 
-        // Expandir el video seleccionado
-        expandedPage.classList.add('active');
-        expandedVideo.src = video.src;
-        expandedVideo.volume = video.volume; // Preservar el volumen original
-        expandedVideo.play();
+       
     }
 }
 
@@ -751,26 +807,52 @@
 
     if (tipo === 'art') {
         contentArea.innerHTML = `
-            <div class="grid-container">
-                <div class="gallery-item">
-                    <video id="video1" src="2.mp4" onclick="toggleVideo('video1')" autoplay  loop></video>
-                </div>
-                <div class="gallery-item">
-                    <video id="video2" src="3.1.mp4" onclick="toggleVideo('video2')" autoplay loop></video>
-                </div>
-                <div class="gallery-item">
-                    <video id="video3" src="33.mp4" onclick="toggleVideo('video3')" autoplay loop></video>
-                </div>
-                <div class="gallery-item">
-                    <video id="video4" src="4.mp4" onclick="toggleVideo('video4')" autoplay loop></video>
-                </div>
-                <div class="gallery-item">
-                    <video id="video5" src="5.mp4" onclick="toggleVideo('video5')" autoplay   loop></video>
-                </div>
-                <div class="gallery-item">
-                    <video id="video6" src="6.mp4" onclick="toggleVideo('video6')" autoplay loop></video>
-                </div>
-            </div>`;
+        <div class="grid-container">
+                    <div class="gallery-item">
+                        <img src="1.gif" alt="Image for Video 1" onclick="toggleVideo('video1')">
+                        <video id="video2" src="2.mp4" loop style="display: none;"></video>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="2.gif" alt="Image for Video 2" onclick="toggleVideo('video2')">
+                        <video id="video2" src="3.1.mp4" loop style="display: none;"></video>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="3.gif" alt="Image for Video 3" onclick="toggleVideo('video3')">
+                        <video id="video2" src="part33.mp4" loop style="display: none;"></video>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="4.gif" alt="Image for Video 4" onclick="toggleVideo('video4')">
+                        <video id="video2" src="3.1.mp4" loop style="display: none;"></video>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="5.gif" alt="Image for Video 5" onclick="toggleVideo('video5')">
+                        <video id="video2" src="5.mp4" loop style="display: none;"></video>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="6.gif" alt="Image for Video 6" onclick="toggleVideo('video6')">
+                        <video id="video2" src="6.mp4" loop style="display: none;"></video>
+                    </div>
+                </div>`;
+
+            // Seleccionar el contenedor de la galería dinámicamente
+            const galleryContainer = document.querySelector('.grid-container');
+            const toggleGalleryBtn = document.getElementById('toggleGalleryBtn');
+            
+            // Estado para determinar si el contenedor está visible o no
+            let isGalleryVisible = true;
+
+            // Añadir el evento click al botón
+            toggleGalleryBtn.addEventListener('click', function () {
+                if (isGalleryVisible) {
+                    galleryContainer.style.display = 'none';
+                    toggleGalleryBtn.textContent = 'Show Panel';
+                } else {
+                    galleryContainer.style.display = 'grid';
+                    toggleGalleryBtn.textContent = 'Hide Panel';
+                }
+                isGalleryVisible = !isGalleryVisible;
+            });
+        
     } else if (tipo === 'game') {
         contentArea.innerHTML = `
         <p>Each element on the screen emits sound when touched, interactive audiovisual compositions based on the game of tarot. {computer music}</p>
@@ -1515,7 +1597,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+  // Seleccionar el botón y el contenedor de las imágenes
+  const toggleGalleryBtn = document.getElementById('toggleGalleryBtn');
+const galleryContainer = document.querySelector('.grid-container');
 
+// Estado para determinar si el contenedor está visible o no
+let isGalleryVisible = true;
 
 });
 
@@ -1528,5 +1615,6 @@ document.addEventListener('DOMContentLoaded', function() {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
 
 
