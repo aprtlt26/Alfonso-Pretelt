@@ -649,6 +649,7 @@
 }
 
 
+
     </style>
 </head>
 
@@ -659,7 +660,8 @@
 
         <h4 id="back-to-top">a-prtlt</h4>
     </a>
-
+    
+    
 
     <div id="menu" class="container">
     </div>
@@ -774,9 +776,10 @@
         <h4> AV ALMAS</h4>
         <P> Audiovisual Synthesizer  </P>
         <p>{Materialized Entities} Audiovisual objects: digital synthesis - Generation Code - Particle Systems 3D - Algorithmic Composition. </p>
+        <a style="color: #3d3c3c;" href="https://synthvid.netlify.app/" target="_blank" rel="noopener noreferrer">AV Almas Synthesizer</a>
+
     </div>
 </div>
-
 
 
 <!-- Pantalla de mezcla grande -->
@@ -791,7 +794,10 @@
 
 <script>
 
-    
+window.onload = function() {
+    window.focus();
+};
+
     const expandedPage = document.getElementById('expanded-page');
     const expandedVideo = document.getElementById('expanded-video');
 
@@ -819,7 +825,10 @@
 
     if (tipo === 'art') {
         contentArea.innerHTML = `
+        <a href="http://https://synthvid.netlify.app/" target="_blank" rel="noopener noreferrer"></a>
+
         <div class="grid-container">
+
                     <div class="gallery-item">
                         <img src="1.gif" alt="Image for Video 1" ('video1')">
                         <video id="video1" src="2.mp4" loop style="display: none;"></video>
@@ -844,6 +853,8 @@
                         <img src="6.gif" alt="Image for Video 6" ('video6')">
                         <video id="video6" src="6.mp4" loop style="display: none;"></video>
                     </div>
+                    <a style="color: #3d3c3c;" href="https://synthvid.netlify.app/" target="_blank" rel="noopener noreferrer">AV Almas Synthesizer</a>
+
                 </div>`;
 
             // Seleccionar el contenedor de la galería dinámicamente
@@ -899,7 +910,7 @@
 
         <p>Particle systems generated with the -STONE ORACLE Synthesizer-, stone rubbing synthesizer and haptic listening through algorithmic processing and digital synthesis. {P5}</p>
 
-          
+
 
                 <div class="gallery-container">
 
@@ -1687,6 +1698,31 @@ function toggleVideo(videoId) {
 }
 
 
+const updateVolume = (videoId, volume) => {
+    const slider = document.getElementById(videoId);
+    slider.value = volume;
+    slider.dispatchEvent(new Event('input')); // Dispara el evento 'input'
+};
+
+document.addEventListener('keydown', function (e) {
+    switch (e.key) {
+        case '1':
+            updateVolume('volume-video1', 1);
+            break;
+        case '2':
+            updateVolume('volume-video2', 1);
+            break;
+        case '3':
+            updateVolume('volume-video3', 1);
+            break;
+        // Añade más casos si es necesario...
+    }
+
+});
+
+
+
+
 </script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -1694,6 +1730,7 @@ function toggleVideo(videoId) {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
 
 
 
