@@ -626,6 +626,18 @@
 .gallery-item video::-media-controls {
     display: none !important; /* Asegura que los controles no aparezcan en ningún navegador */
 }
+#mix-screen video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    transition: opacity 0.5s ease, filter 0.5s ease, transform 0.5s ease;
+    pointer-events: none; /* Permite que los eventos pasen al contenedor */
+}
+
 
 
     </style>
@@ -774,25 +786,7 @@
     const expandedPage = document.getElementById('expanded-page');
     const expandedVideo = document.getElementById('expanded-video');
 
-    function toggleVideo(videoId) {
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
-    if (!isMobile) { // Solo permitir la expansión en pantallas más grandes
-        const video = document.getElementById(videoId);
-
-        // Silenciar todos los videos de la galería excepto el seleccionado
-        const galleryVideos = document.querySelectorAll('.gallery-item video');
-        galleryVideos.forEach(v => {
-            if (v.id !== videoId) {
-                v.muted = true;
-            } else {
-                v.muted = false;
-            }
-        });
-
-       
-    }
-}
+    
 
 
  
@@ -819,27 +813,27 @@
         <div class="grid-container">
                     <div class="gallery-item">
                         <img src="1.gif" alt="Image for Video 1" ('video1')">
-                        <video id="video2" src="2.mp4" loop style="display: none;"></video>
+                        <video id="video1" src="2.mp4" loop style="display: none;"></video>
                     </div>
                     <div class="gallery-item">
                         <img src="2.gif" alt="Image for Video 2" ('video2')">
                         <video id="video2" src="3.1.mp4" loop style="display: none;"></video>
                     </div>
                     <div class="gallery-item">
-                        <img src="3.gif" alt="Image for Video 3" onclick="toggleVideo('video3')">
-                        <video id="video2" src="part33.mp4" loop style="display: none;"></video>
+                        <img src="3.gif" alt="Image for Video 3" ('video3')">
+                        <video id="video3" src="part33.mp4" loop style="display: none;"></video>
                     </div>
                     <div class="gallery-item">
-                        <img src="4.gif" alt="Image for Video 4" onclick="toggleVideo('video4')">
-                        <video id="video2" src="3.1.mp4" loop style="display: none;"></video>
+                        <img src="4.gif" alt="Image for Video 4" ('video4')">
+                        <video id="video4" src="3.1.mp4" loop style="display: none;"></video>
                     </div>
                     <div class="gallery-item">
-                        <img src="5.gif" alt="Image for Video 5" onclick="toggleVideo('video5')">
-                        <video id="video2" src="5.mp4" loop style="display: none;"></video>
+                        <img src="5.gif" alt="Image for Video 5" ('video5')">
+                        <video id="video5" src="5.mp4" loop style="display: none;"></video>
                     </div>
                     <div class="gallery-item">
-                        <img src="6.gif" alt="Image for Video 6" onclick="toggleVideo('video6')">
-                        <video id="video2" src="6.mp4" loop style="display: none;"></video>
+                        <img src="6.gif" alt="Image for Video 6" ('video6')">
+                        <video id="video6" src="6.mp4" loop style="display: none;"></video>
                     </div>
                 </div>`;
 
@@ -1138,70 +1132,71 @@ function expandImage(img) {
 
         // Modo Mix
         mixMode.addEventListener('change', function () {
-            isMixMode = this.checked;
-            if (isMixMode) {
-                // Activar modo mix
-                mixScreen.style.display = 'block';
-                mostrarMixScreen();
+    isMixMode = this.checked;
+    if (isMixMode) {
+        // Activar modo mix
+        mixScreen.style.display = 'block';
+        mostrarMixScreen();
 
-                // Silenciar videos de la galería
-                const galleryVideos = document.querySelectorAll('.gallery-item video');
-                galleryVideos.forEach(v => {
-                    v.muted = true;
-                });
-
-                // Inicializar nodos de audio
-                initializeAudioNodes();
-
-                // Reproducir videos del mix-screen
-                for (let key in mixVideoMap) {
-                    const slider = document.getElementById(key);
-                    const value = parseFloat(slider.value);
-                    mixVideoMap[key].style.opacity = value;
-
-                    // Aplicar escala de grises inicial
-                    const grayscaleValue = (1 - value) * 100;
-                    mixVideoMap[key].style.filter = `grayscale(${grayscaleValue}%) contrast(${contrastValue}%)`;
-
-                    if (controlMode.checked) {
-                        // Modo Zoom
-                        const scaleValue = 1 + value * 2;
-                        mixVideoMap[key].style.transform = `scale(${scaleValue})`;
-
-                        // Ajustar volumen
-                        mixVideoMap[key].volume = value * parseFloat(generalVolume.value);
-                        mixVideoMap[key].muted = false;
-                    } else {
-                        // Modo Volumen
-                        mixVideoMap[key].volume = value * parseFloat(generalVolume.value);
-                        mixVideoMap[key].muted = false;
-                        mixVideoMap[key].style.transform = 'scale(1)'; // Restablecer zoom
-                    }
-
-                    mixVideoMap[key].play();
-                }
-
-                // Aplicar efectos visuales iniciales
-                adjustVisualEffects();
-            } else {
-                // Desactivar modo mix
-                mixScreen.style.display = 'none';
-                ocultarMixScreen();
-
-                // Restaurar sonido de los videos de la galería
-                const galleryVideos = document.querySelectorAll('.gallery-item video');
-                galleryVideos.forEach(v => {
-                    v.muted = false;
-                    v.style.transform = 'scale(1)'; // Restablecer zoom si estaba aplicado
-                });
-
-                // Pausar videos en mix-screen
-                const mixVideos = document.querySelectorAll('#mix-screen video');
-                mixVideos.forEach(v => {
-                    v.pause();
-                });
-            }
+        // Silenciar videos de la galería
+        const galleryVideos = document.querySelectorAll('.gallery-item video');
+        galleryVideos.forEach(v => {
+            v.muted = true;
         });
+
+        // Inicializar nodos de audio
+        initializeAudioNodes();
+
+        // Reproducir videos del mix-screen
+        for (let key in mixVideoMap) {
+            const slider = document.getElementById(key);
+            const value = parseFloat(slider.value);
+            mixVideoMap[key].style.opacity = value;
+
+            // Aplicar escala de grises inicial
+            const grayscaleValue = (1 - value) * 100;
+            mixVideoMap[key].style.filter = `grayscale(${grayscaleValue}%) contrast(${contrastValue}%)`;
+
+            if (controlMode.checked) {
+                // Modo Zoom
+                const scaleValue = 1 + value * 2;
+                mixVideoMap[key].style.transform = `scale(${scaleValue})`;
+
+                // Ajustar volumen
+                mixVideoMap[key].volume = value * parseFloat(generalVolume.value);
+                mixVideoMap[key].muted = false;
+            } else {
+                // Modo Volumen
+                mixVideoMap[key].volume = value * parseFloat(generalVolume.value);
+                mixVideoMap[key].muted = false;
+                mixVideoMap[key].style.transform = 'scale(1)'; // Restablecer zoom
+            }
+
+            mixVideoMap[key].play();
+        }
+
+        // Aplicar efectos visuales iniciales
+        adjustVisualEffects();
+    } else {
+        // Desactivar modo mix
+        mixScreen.style.display = 'none';
+        ocultarMixScreen();
+
+        // Restaurar sonido de los videos de la galería
+        const galleryVideos = document.querySelectorAll('.gallery-item video');
+        galleryVideos.forEach(v => {
+            v.muted = false;
+            v.style.transform = 'scale(1)'; // Restablecer zoom si estaba aplicado
+        });
+
+        // Pausar videos en mix-screen
+        const mixVideos = document.querySelectorAll('#mix-screen video');
+        mixVideos.forEach(v => {
+            v.pause();
+        });
+    }
+});
+
 
         // Escuchar cambios en el controlMode (Switch de Zoom Mode)
         controlMode.addEventListener('change', function () {
@@ -1289,17 +1284,10 @@ function expandImage(img) {
     }
 
     // Cerrar la página expandida al hacer clic
-    expandedPage.addEventListener('click', function () {
-        expandedPage.classList.remove('active');
-        expandedVideo.pause();
-        expandedVideo.src = "";
-
+  
         // Restaurar el sonido de todos los videos de la galería
-        const galleryVideos = document.querySelectorAll('.gallery-item video');
-        galleryVideos.forEach(v => {
-            v.muted = false;
-        });
-    });
+    
+  
 
     // Animación de escritura para los títulos
     let titles = [
@@ -1615,7 +1603,6 @@ let isGalleryVisible = true;
 
 });
 
-// Evitar que los videos sean visibles o interactivos en móviles y escritorio
 // Asegurarse de que los videos no se puedan abrir ni hacer clic
 document.addEventListener('DOMContentLoaded', function () {
     const galleryVideos = document.querySelectorAll('.gallery-item video');
@@ -1645,13 +1632,50 @@ mixVideos.forEach(video => {
 });
 
 
-// Asegurarse de que los videos de la galería estén invisibles y no interactivos
-const galleryVideos = document.querySelectorAll('.gallery-item video');
-galleryVideos.forEach(video => {
-    video.style.display = 'none'; // Mantén invisibles los videos de la galería
-    video.style.pointerEvents = 'none'; // Desactiva la interacción con los videos
+// Activar solo la pantalla de mezcla y desactivar la interacción con videos en la galería
+
+// Iniciar reproducción de los videos en `mix-screen`
+
+document.addEventListener('DOMContentLoaded', function() {
+    const galleryVideos = document.querySelectorAll('.gallery-item video');
     
+    galleryVideos.forEach(video => {
+        video.play(); 
+        video.muted = true; // Silencia el video si no deseas sonido
+        video.style.display = 'none'; 
+        video.style.pointerEvents = 'none'; 
+    });
+
+    // Iniciar reproducción de los videos en mix-screen si está en modo mix
+    const mixMode = document.getElementById('mix-mode');
+    if (mixMode.checked) {
+        const mixVideos = document.querySelectorAll('#mix-screen video');
+        mixVideos.forEach(video => {
+            video.play(); 
+            video.style.opacity = 1; 
+        });
+    }
 });
+
+
+
+function toggleVideo(videoId) {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    if (!isMobile) { // Solo permitir la mute/unmute en pantallas más grandes
+        const video = document.getElementById(videoId);
+
+        // Silenciar todos los videos de la galería excepto el seleccionado
+        const galleryVideos = document.querySelectorAll('.gallery-item video');
+        galleryVideos.forEach(v => {
+            if (v.id !== videoId) {
+                v.muted = true;
+            } else {
+                v.muted = false;
+            }
+        });
+    }
+}
 
 
 </script>
@@ -1661,6 +1685,7 @@ galleryVideos.forEach(video => {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
 
 
 
