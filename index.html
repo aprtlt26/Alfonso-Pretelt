@@ -621,6 +621,25 @@
     transform: scale(0.58); /* Efecto de "presionado" */
 }
 
+        @media (max-width: 768px) {
+    /* Asegura que los videos no se expandan ni muestren controles en móviles */
+    .gallery-item video {
+        width: 100% !important; /* Ajusta el video al 100% del ancho */
+        height: auto !important;
+        pointer-events: none !important; /* Desactiva la interacción en móviles */
+        object-fit: contain !important; /* Evita que se estiren */
+        controls: false !important; /* Asegura que no se muestren los controles */
+    }
+
+    /* Ocultar controles predeterminados en todos los navegadores */
+    .gallery-item video::-webkit-media-controls,
+    .gallery-item video::-moz-media-controls,
+    .gallery-item video::-media-controls {
+        display: none !important; /* Asegura que los controles estén ocultos en todos los navegadores */
+    }
+}
+
+
 
     </style>
 </head>
