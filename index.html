@@ -1616,26 +1616,34 @@ let isGalleryVisible = true;
 });
 
 // Evitar que los videos sean visibles o interactivos en móviles y escritorio
-document.addEventListener('DOMContentLoaded', function() {
+// Asegurarse de que los videos no se puedan abrir ni hacer clic
+document.addEventListener('DOMContentLoaded', function () {
     const galleryVideos = document.querySelectorAll('.gallery-item video');
     
     galleryVideos.forEach(video => {
         // Mantener la reproducción en segundo plano
         video.play(); 
-        video.muted = true; // Si quieres que los videos no emitan sonido en la galería
-        video.style.display = 'none'; // Asegúrate de que el video no se muestre
-        video.style.pointerEvents = 'none'; // Desactivar la interacción con los videos
+        video.muted = true; // Si no deseas sonido en la galería
+        
+        // Ocultar el video y desactivar toda interacción
+        video.style.display = 'none'; // Oculta el video
+        video.style.pointerEvents = 'none'; // Evita que se pueda interactuar
+        
+        // Desactivar clics y toques para evitar que los videos se abran
+        video.addEventListener('click', (e) => e.preventDefault());
+        video.addEventListener('touchstart', (e) => e.preventDefault());
+        video.addEventListener('mousedown', (e) => e.preventDefault());
     });
 });
 
-// Activar solo la pantalla de mezcla y desactivar la interacción con videos en la galería
-
-// Iniciar reproducción de los videos en `mix-screen`
+// Asegurar que los videos en mix-screen se reproduzcan sin abrirse
 const mixVideos = document.querySelectorAll('#mix-screen video');
 mixVideos.forEach(video => {
-    video.play(); // Mantén los videos de la mezcla reproduciéndose
-    video.style.opacity = 1; // Asegúrate de que sean visibles solo en la mezcla
+    video.play(); // Mantener la reproducción en la pantalla de mezcla
+    video.style.opacity = 1; // Asegura que los videos sean visibles solo en la mezcla
+    video.style.pointerEvents = 'none'; // Desactivar interacción con videos de la mezcla
 });
+
 
 // Asegurarse de que los videos de la galería estén invisibles y no interactivos
 const galleryVideos = document.querySelectorAll('.gallery-item video');
