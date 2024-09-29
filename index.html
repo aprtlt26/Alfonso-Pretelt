@@ -170,11 +170,18 @@
         }
 
         p {
+            display: flex;
+            text-align: center;
+            justify-content: center;
             font-size: 0.6em;
-            margin-left: 700px;
+            margin-left: 100px;
         }
 
         footer {
+            display: flex;
+            position: relative;
+            text-align: center;
+            justify-content: center;
             font-size: 0.7em;
         }
 
@@ -512,7 +519,13 @@
 /* Estilos para pantallas móviles */
 @media (max-width: 768px) {
     /* Evitar que los videos se expandan en móviles */
-   
+    p {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            font-size: 0.6em;
+            margin-left: 100px;
+        }
     
     
     /* Fijar el mix-screen en móviles */
@@ -535,7 +548,7 @@
     }
 
     /* Evitar que el contenido general de la pantalla se mueva */
-    
+  
 }
 @media (max-width: 768px) {
     /* Asegura que los videos no se expandan ni muestren controles en móviles */
@@ -556,6 +569,8 @@
     .gallery-item video::-media-controls {
         display: none !important; /* Asegura que los controles estén ocultos en todos los navegadores */
     }
+
+   
 }
 
 
@@ -578,6 +593,12 @@
         grid-template-columns: repeat(2, 1fr); /* Cambia a dos columnas en pantallas más pequeñas */
     }
 
+    footer {
+            text-align: center;
+            justify-content: center;
+            font-size: 0.5em;
+            top: 300px;
+        }
     .gallery-item img {
         width: 100%; /* Ajusta la imagen al 100% del contenedor */
     height: 100%;
@@ -688,7 +709,7 @@
 
 </div>
 
-<footer class="container text-center mt-4">
+<footer >
     <p class="small">®Alfonso Pretelt all rights Reserved</p>
 </footer>
 
@@ -764,21 +785,8 @@
 <div class="container">
    
 
-<div>
-    <span id="info-icon" class="circle-icon">?</span>
-</div>
-
 <!-- Modal oculto inicialmente -->
-<div id="info-modal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h4> AV ALMAS</h4>
-        <P> Audiovisual Synthesizer  </P>
-        <p>{Materialized Entities} Audiovisual objects: digital synthesis - Generation Code - Particle Systems 3D - Algorithmic Composition. </p>
-        <a style="color: #3d3c3c;" href="https://synthvid.netlify.app/" target="_blank" rel="noopener noreferrer">AV Almas Synthesizer</a>
 
-    </div>
-</div>
 
 
 <!-- Pantalla de mezcla grande -->
@@ -810,17 +818,8 @@ window.onload = function() {
     contentArea.innerHTML = '';
 
 
-    if (tipo === 'stoneOracle') {
-            icon.style.display = 'inline-block';  // Mostrar el ícono de ayuda
-        } else {
-            icon.style.display = 'none';  // Ocultar el ícono de ayuda en otras secciones
-        }
     // Mostrar ícono de ayuda solo en la sección de Sound Visualization
-    if (tipo === 'art') {
-        icon.style.display = 'inline-block';
-    } else {
-        icon.style.display = 'none';
-    }
+
 
     if (tipo === 'art') {
         contentArea.innerHTML = `
@@ -852,7 +851,7 @@ window.onload = function() {
                         <img src="6.gif" alt="Image for Video 6" ('video6')">
                         <video id="video6" src="6.mp4" loop style="display: none;"></video>
                     </div>
-                    <a style="color: #3d3c3c;" href="https://synthvid.netlify.app/" target="_blank" rel="noopener noreferrer">AV Almas Synthesizer</a>
+                    <a  style="color: #3d3c3c; font-size:8px" href="https://synthvid.netlify.app/" target="_blank" rel="noopener noreferrer">AV Almas Synthesizer</a>
 
                 </div>`;
 
@@ -907,7 +906,6 @@ window.onload = function() {
         // Sección de Sound Illustration con galería de imágenes
         contentArea.innerHTML = `
 
-        <p>Particle systems generated with the -STONE ORACLE Synthesizer-, stone rubbing synthesizer and haptic listening through algorithmic processing and digital synthesis. {P5}</p>
 
 
 
@@ -951,7 +949,10 @@ window.onload = function() {
 
 </div>
 
+
                 </div>
+                <p>Particle systems generated with the -STONE ORACLE Synthesizer-, stone rubbing synthesizer and haptic listening through algorithmic processing and digital synthesis. {P5}</p>
+
             </div>`;
     }
 
@@ -1743,16 +1744,6 @@ document.addEventListener('keydown', function (e) {
 </body>
 </html>
 
-
-
-
-</script>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
 
 
 
