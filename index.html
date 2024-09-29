@@ -100,7 +100,7 @@
 
         h2 {
             font-size: 0.6em;
-            color: #ebe9e9;
+            color: #ffffff;
             text-shadow: 0 0 5px #b6b4b4, 0 0 5px #ffffff;
             margin-top: 6px;
             cursor: pointer;
@@ -677,6 +677,7 @@
         <h2 id="title5" onclick="mostrarContenido('soundIllustration')"></h2>
         <h2 id="title3" onclick="mostrarContenido('therapeutic')"></h2>
         <h2 id="title2" onclick="mostrarContenido('game')"></h2>
+        <h2 id="title6" onclick="mostrarContenido('soundFilm')"></h2>
 
         <!-- Nuevas secciones -->
      
@@ -957,7 +958,22 @@ window.onload = function() {
     }
 
  
+
+    if (tipo === 'soundFilm') {
+        contentArea.innerHTML = `
+            
+        <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/426390940?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
+            </div>
+
+            <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1014067786?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>        </div>
+            </div>
+                <div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1014073262?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" ></iframe></div>
+                </div>
+                    `;
+                }
     
+
+
 
     document.addEventListener('DOMContentLoaded', function() {
         // Lógica para mostrar la sección inicial
@@ -993,10 +1009,6 @@ function expandImage(img) {
         }
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        // Lógica para mostrar la sección inicial
-        mostrarContenido('stoneOracle');
-    });
 
 
 
@@ -1316,6 +1328,8 @@ function expandImage(img) {
         { id: 'title5', text: 'Stone Oracle' },
         { id: 'title2', text: 'Interactive Sound Game' },
         { id: 'title3', text: 'Sound Frequencies PsychoTherapy' },
+        { id: 'title6', text: 'Sound Film' },
+
 
 
     ];
@@ -1333,11 +1347,11 @@ function expandImage(img) {
             if (currentCharIndex < fullText.length) {
                 titleElement.innerHTML += fullText.charAt(currentCharIndex);
                 currentCharIndex++;
-                setTimeout(typeTitles, 20);
+                setTimeout(typeTitles, 10);
             } else {
                 currentTitleIndex++;
                 currentCharIndex = 0;
-                setTimeout(typeTitles, 200);
+                setTimeout(typeTitles, 100);
             }
         }
     }
@@ -1719,6 +1733,17 @@ document.addEventListener('keydown', function (e) {
     }
 
 });
+
+
+
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
 
 
 
