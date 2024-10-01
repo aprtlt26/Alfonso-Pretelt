@@ -721,9 +721,10 @@
 
 <!-- Panel de controles movible y redimensionable -->
 <div id="controls-panel">
- 
 
-              
+    <a  style="color:#ffffff ; font-size:8px; text-shadow: 0 0 10px rgba( 100, 175, 186, 0.5);
+    " href="https://av-almas.netlify.app/" target="_blank" rel="noopener noreferrer">AV Almas Synthesizer</a>
+    
     <div class="container text-center mt-4">
         <button id="toggleGalleryBtn" class="btn">Hide Panel</button>
     </div>
@@ -814,8 +815,6 @@
 
         if (tipo === 'art') {
             contentArea.innerHTML = `
-
-
             <div id="gallery-grid" class="grid-container">
                     <div class="gallery-item">
                         <img src="1.gif" alt="Image for Video 1" ('video1')">
@@ -840,14 +839,17 @@
                     <div class="gallery-item">
                         <img src="6.gif" alt="Image for Video 6" ('video6')">
                         <video id="video6" src="6.mp4" loop style="display: none;"></video>
+                        
                     </div>
 
-                      <a  style="color:#ffffff ; font-size:8px; text-shadow: 0 0 10px rgba( 100, 175, 186, 0.5);
+                    <a  style="color:#ffffff ; font-size:8px; text-shadow: 0 0 10px rgba( 100, 175, 186, 0.5);
 " href="https://synthvid.netlify.app/" target="_blank" rel="noopener noreferrer">AV Almas Synthesizer</a>
 
-                </div>`
                 </div>
-            `;
+            
+
+                   
+                </div>`;
 
             // Seleccionar el contenedor de la galería dinámicamente
             const galleryContainer = document.querySelector('.grid-container');
@@ -895,6 +897,8 @@
 
                 </ul>
                 <iframe id="interactive-iframe" src="https://part33.netlify.app" width="100%" height="600" frameborder="0"></iframe>
+
+                
             </div>`;
     } else if (tipo === 'soundIllustration') {
         // Sección de Sound Illustration con galería de imágenes
@@ -944,7 +948,9 @@
 </div>
 
 
-               
+                </div>
+                <p>Particle systems generated with the -STONE ORACLE Synthesizer-, stone rubbing synthesizer and haptic listening through algorithmic processing and digital synthesis. {P5}</p>
+
             </div>`;
     }
 
@@ -1735,6 +1741,7 @@ document.addEventListener('keydown', function (e) {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
 
 
 
