@@ -793,45 +793,28 @@
 
 <!-- Pantalla de mezcla grande -->
 <div id="mix-screen">
-    <video id="mix-video1" src="2.mp4" loop></video>
+    <video id="mix-video1" src="1.mp4" loop></video>
     <video id="mix-video2" src="3.1.mp4" loop></video>
-    <video id="mix-video3" src="33.mp4" loop></video>
+    <video id="mix-video3" src="3.mp4" loop></video>
     <video id="mix-video4" src="4.mp4" loop></video>
     <video id="mix-video5" src="5.mp4" loop></video>
     <video id="mix-video6" src="6.mp4" loop></video>
 </div>
 
 <script>
-
-window.onload = function() {
-    window.focus();
-};
-
     const expandedPage = document.getElementById('expanded-page');
     const expandedVideo = document.getElementById('expanded-video');
 
-    
-
-
- 
-
     function mostrarContenido(tipo) {
-    const contentArea = document.getElementById('content-area');
-    contentArea.innerHTML = '';
+        const contentArea = document.getElementById('content-area');
+        contentArea.innerHTML = '';
 
-
-    // Mostrar ícono de ayuda solo en la sección de Sound Visualization
-
-
-    if (tipo === 'art') {
-        contentArea.innerHTML = `
-        <a href="http://https://synthvid.netlify.app/" target="_blank" rel="noopener noreferrer"></a>
-
-        <div class="grid-container">
-
+        if (tipo === 'art') {
+            contentArea.innerHTML = `
+            <div id="gallery-grid" class="grid-container">
                     <div class="gallery-item">
                         <img src="1.gif" alt="Image for Video 1" ('video1')">
-                        <video id="video1" src="2.mp4" loop style="display: none;"></video>
+                        <video id="video1" src="1.mp4" loop style="display: none;"></video>
                     </div>
                     <div class="gallery-item">
                         <img src="2.gif" alt="Image for Video 2" ('video2')">
@@ -839,10 +822,10 @@ window.onload = function() {
                     </div>
                     <div class="gallery-item">
                         <img src="3.gif" alt="Image for Video 3" ('video3')">
-                        <video id="video3" src="part33.mp4" loop style="display: none;"></video>
+                        <video id="video3" src="3.mp4" loop style="display: none;"></video>
                     </div>
                     <div class="gallery-item">
-                        <img src="4.gif" alt="Image for Video 4" ('video4')">
+                        <img src="4.gif" alt="Image for Video 4"('video4')">
                         <video id="video4" src="3.1.mp4" loop style="display: none;"></video>
                     </div>
                     <div class="gallery-item">
@@ -853,11 +836,8 @@ window.onload = function() {
                         <img src="6.gif" alt="Image for Video 6" ('video6')">
                         <video id="video6" src="6.mp4" loop style="display: none;"></video>
                     </div>
-
-                    <a  style="color:#ffffff ; font-size:8px; text-shadow: 0 0 10px rgba( 100, 175, 186, 0.5);
-" href="https://av-almas.netlify.app/" target="_blank" rel="noopener noreferrer">AV Almas Synthesizer</a>
-
-                </div>`;
+                </div>
+            `;
 
             // Seleccionar el contenedor de la galería dinámicamente
             const galleryContainer = document.querySelector('.grid-container');
