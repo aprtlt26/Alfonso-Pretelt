@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Metadatos y enlaces existentes -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta description="About">
@@ -64,7 +63,6 @@
             }
         }
 
-        /* Estilos del menú */
         #menu {
             background-color: #d5d5d5;
             padding: 20px;
@@ -314,28 +312,26 @@
             width: 80px;
         }
 
-        /* Estilos para el panel de controles movible y redimensionable */
         #controls-panel {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            display: none; /* Inicialmente oculto */
+            display: none; 
             flex-direction: column;
             align-items: center;
             background-color: rgba(255, 255, 255, 0.041);
             border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 18px;
             padding: 10px;
-            box-shadow: 0 0 10px rgba(96, 176, 185, 0.5); /* Luz tenue */
-            z-index: 10000; /* Por encima de los videos */
+            box-shadow: 0 0 10px rgba(96, 176, 185, 0.5); 
+            z-index: 10000; 
             color: #ffffff;
-            resize: both; /* Permite redimensionar */
-            overflow: auto; /* Muestra scroll interno si es necesario */
-            cursor: default; /* Cambiado a default */
+            resize: both; 
+            overflow: auto;
+            cursor: default; 
         }
 
-        /* Estilos para los controles dentro de la caja */
         #controls-panel .control-group {
             display: flex;
             align-items: center;
@@ -347,7 +343,7 @@
             flex: 0 0 30%;
             margin-right: 5px;
             color: #ffffff;
-            font-size: 0.5em; /* Texto más pequeño */
+            font-size: 0.5em;
         }
 
         #controls-panel .control-group input[type="range"] {
@@ -377,25 +373,21 @@
             height: 20px;
         }
 
-        /* Efecto de luz tenue en el marco (glow) */
         #controls-panel {
-            box-shadow: 0 0 15px rgba(96, 176, 185, 0.5); /* Luz tenue suave */
+            box-shadow: 0 0 15px rgba(96, 176, 185, 0.5); 
             transition: box-shadow 0.3s ease-in-out;
         }
 
-        /* Efecto de hover para el glow */
         #controls-panel:hover {
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* Glow más fuerte al pasar el mouse */
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); 
         }
 
-        /* Estilos para el modal */
 
 
     
     
-/* Estilo para el ícono de pregunta encerrado en un círculo */
 .circle-icon {
-    display: none; /* Inicialmente oculto */
+    display: none; 
     width: 40px;
     height: 40px;
     line-height: 40px;
@@ -413,14 +405,14 @@
 }
 
 .modal {
-    display: none; /* Oculto por defecto */
+    display: none; 
     position: fixed;
     z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    background-color: rgba(0, 0, 0, 0.5); 
 }
 
 .modal-content {
@@ -459,12 +451,12 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 5px;
-    position: absolute; /* Cambiado a absolute para permitir arrastre */
+    position: absolute; 
     z-index: 1000;
-    resize: both; /* Permite redimensionar */
-    overflow: hidden; /* Evita que el contenido se desborde al redimensionar */
-    cursor: move; /* Cambia el cursor a uno de movimiento */
-    width: 50%; /* Cambiado para hacer el contenedor más pequeño */
+    resize: both; 
+    overflow: hidden;
+    cursor: move; 
+    width: 50%; 
     height:45%; 
 }
 
@@ -482,7 +474,7 @@
 }
 
 .gallery-item img:hover {
-    transform: scale(1.3); /* Un pequeño efecto de zoom al pasar el ratón */
+    transform: scale(1.3);
 }
 
 .grey-link {
@@ -490,14 +482,14 @@
 }
 
 .grey-link:hover {
-    color: darkgrey; /* Opcional: para cambiar el color al pasar el mouse */
+    color: darkgrey;
 }
 
 
 .image-container {
     display: grid;
-    justify-content: center; /* Centra horizontalmente */
-    margin: 20px 0; /* Espacio entre las imágenes */
+    justify-content: center; 
+    margin: 20px 0; 
     grid-template-columns: repeat(2, 1fr);
     justify-content: center;
     align-items: center;
@@ -508,19 +500,17 @@
 
 .image-container img {
     display: grid;
-    width: 100%; /* Ajusta el tamaño de la imagen a un tamaño mediano (50% del ancho de la pantalla) */
-    height: auto; /* Mantiene la proporción de la imagen */
-    cursor: pointer; /* Cambia el cursor al pasar sobre la imagen */
+    width: 100%; 
+    height: auto; 
+    cursor: pointer; 
 
 }
 
 .image-container img:hover {
-    transform: scale(2.5); /* Opción de agrandamiento al pasar el mouse */
+    transform: scale(2.5); 
 }
 
-/* Estilos para pantallas móviles */
 @media (max-width: 768px) {
-    /* Evitar que los videos se expandan en móviles */
     p {
             display: flex;
             text-align: center;
@@ -530,7 +520,6 @@
         }
     
     
-    /* Fijar el mix-screen en móviles */
     #mix-screen {
         position: fixed !important;
         top: 0 !important;
@@ -539,37 +528,33 @@
         height: 100% !important;
         cursor: default !important;
         resize: none !important;
-        pointer-events: none; /* Evita que la pantalla se mueva en móviles */
+        pointer-events: none; 
     }
 
  
 
-    /* Asegurar que los controles no se expandan ni se arrastren */
     .control-group input[type="range"] {
-        width: 70% !important; /* Mantén el tamaño pequeño de los controles en móviles */
+        width: 70% !important; 
     }
 
-    /* Evitar que el contenido general de la pantalla se mueva */
   
 }
 @media (max-width: 768px) {
-    /* Asegura que los videos no se expandan ni muestren controles en móviles */
     .gallery-item video {
-        width: 100% !important; /* Ajusta el video al 100% del ancho */
+        width: 100% !important; 
         height: auto !important;
-        pointer-events: none !important; /* Desactiva la interacción en móviles */
-        object-fit: contain !important; /* Evita que se estiren */
-        controls: false !important; /* Asegura que no se muestren los controles */
-        display: none; /* Oculta el video en la galería */
-    visibility: hidden; /* Asegura que no sea visible ni accesible */
+        pointer-events: none !important; 
+        object-fit: contain !important;
+        controls: false !important; 
+        display: none; 
+    visibility: hidden; 
     pointer-events: none
     }
 
-    /* Ocultar controles predeterminados en todos los navegadores */
     .gallery-item video::-webkit-media-controls,
     .gallery-item video::-moz-media-controls,
     .gallery-item video::-media-controls {
-        display: none !important; /* Asegura que los controles estén ocultos en todos los navegadores */
+        display: none !important; 
     }
 
    
@@ -577,22 +562,20 @@
 
 
 .gallery-item img {
-    width: 100%; /* Ajusta la imagen al 100% del contenedor */
+    width: 100%; 
     height: 100%;
     cursor: pointer;
     transition: all 0.3s ease;
-    object-fit: cover; /* Asegura que la imagen siempre llene el contenedor sin distorsión */
+    object-fit: cover; 
 }
 
 .gallery-item img:hover {
-    transform: scale(1.1); /* Efecto de zoom ligero al pasar el ratón */
+    transform: scale(1.1); 
 }
 
-/* Ajustes para pantallas móviles */
 @media (max-width: 768px) {
-    /* Ajuste el tamaño de las imágenes y cambie el diseño de la galería a una columna para pantallas móviles */
     .gallery-container {
-        grid-template-columns: repeat(2, 1fr); /* Cambia a dos columnas en pantallas más pequeñas */
+        grid-template-columns: repeat(2, 1fr); 
     }
 
     footer {
@@ -602,50 +585,49 @@
             top: 300px;
         }
     .gallery-item img {
-        width: 100%; /* Ajusta la imagen al 100% del contenedor */
+        width: 100%; 
     height: 100%;
     cursor: pointer;
     transition: all 0.3s ease;
-    object-fit: cover; /* Asegura que la imagen siempre llene el contenedor sin distorsión */
-}/* Asegura que las imágenes mantengan la proporción dentro de su contenedor */
+    object-fit: cover; 
+}
     }
 
     .gallery-item img:hover {
-        transform: none; /* Deshabilitar el efecto de zoom en pantallas táctiles */
+        transform: none; 
     }
 
     #toggleGalleryBtn {
-    background-color: #dfdcdc00; /* Color de fondo transparente */
+    background-color: #dfdcdc00; 
     border: none;
-    color: white; /* Color del texto */
+    color: white; 
     padding: 5px 8px;
     text-align: center;
-    font-size: 8px; /* Tamaño del texto */
+    font-size: 8px;
     cursor: pointer;
-    border-radius: 12px; /* Bordes redondeados */
+    border-radius: 12px;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    outline: none; /* Eliminar el borde azul */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* Luz tenue */
+    outline: none; 
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); 
     display: inline-block;
 }
 
 #toggleGalleryBtn:hover {
-    background-color: #a1a0a050; /* Color al hacer hover */
-    transform: scale(1.05); /* Efecto de escala suave al hacer hover */
+    background-color: #a1a0a050; 
+    transform: scale(1.05); 
 }
 
 #toggleGalleryBtn:focus {
-    outline: none; /* También elimina el borde en el foco */
+    outline: none; 
 }
 
 #toggleGalleryBtn:active {
-    transform: scale(0.58); /* Efecto de "presionado" */
+    transform: scale(0.58); 
 }
-/* Ocultar controles de video en todos los dispositivos */
 .gallery-item video::-webkit-media-controls,
 .gallery-item video::-moz-media-controls,
 .gallery-item video::-media-controls {
-    display: none !important; /* Asegura que los controles no aparezcan en ningún navegador */
+    display: none !important; 
 }
 #mix-screen video {
     position: absolute;
@@ -656,16 +638,16 @@
     object-fit: cover;
     opacity: 0.6;
     transition: opacity 0.5s ease, filter 0.5s ease, transform 0.5s ease;
-    pointer-events: none; /* Permite que los eventos pasen al contenedor */
+    pointer-events: none;
 }
 
 @media (max-width: 768px) {
     #controls-panel {
-        display: none !important; /* Ocultar el panel de controles en móviles */
+        display: none !important; 
     }
 
     #toggleGalleryBtn {
-        display: none !important; /* Ocultar el botón de mostrar/ocultar panel en móviles */
+        display: none !important; 
     }
 }
 
@@ -700,7 +682,6 @@
         <h2 id="title2" onclick="mostrarContenido('game')"></h2>
         <h2 id="title6" onclick="mostrarContenido('soundFilm')"></h2>
 
-        <!-- Nuevas secciones -->
      
     </div>
     
@@ -719,7 +700,6 @@
     <video id="expanded-video" autoplay loop></video>
 </div>
 
-<!-- Panel de controles movible y redimensionable -->
 <div id="controls-panel">
 
     <a  style="color:#ffffff ; font-size:8px; text-shadow: 0 0 10px rgba( 100, 175, 186, 0.5);
@@ -758,13 +738,11 @@
         <input type="range" id="volume-video6" min="0" max="1" step="0.01" value="0.9">
     </div>
 
-    <!-- Switch y botones existentes -->
     <div class="switch-group">
         <label for="mix-mode">Mx Scrn</label>
         <input type="checkbox" id="mix-mode">
     </div>
 
-    <!-- Nuevo Switch para alternar entre Volumen y Zoom -->
     <div class="switch-group">
         <label for="control-mode">Zoom M</label>
         <input type="checkbox" id="control-mode">
@@ -791,11 +769,9 @@
 <div class="container">
    
 
-<!-- Modal oculto inicialmente -->
 
 
 
-<!-- Pantalla de mezcla grande -->
 <div id="mix-screen">
     <video id="mix-video1" src="1.mp4" loop></video>
     <video id="mix-video2" src="3.1.mp4" loop></video>
@@ -851,14 +827,11 @@
                    
                 </div>`;
 
-            // Seleccionar el contenedor de la galería dinámicamente
             const galleryContainer = document.querySelector('.grid-container');
             const toggleGalleryBtn = document.getElementById('toggleGalleryBtn');
             
-            // Estado para determinar si el contenedor está visible o no
             let isGalleryVisible = true;
 
-            // Añadir el evento click al botón
             toggleGalleryBtn.addEventListener('click', function () {
                 if (isGalleryVisible) {
                     galleryContainer.style.display = 'none';
