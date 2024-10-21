@@ -653,6 +653,9 @@
 
 
 
+   
+
+
     </style>
 </head>
 
@@ -680,8 +683,10 @@
         <h2 id="title5" onclick="mostrarContenido('soundIllustration')"></h2>
         <h2 id="title3" onclick="mostrarContenido('therapeutic')"></h2>
         <h2 id="title2" onclick="mostrarContenido('game')"></h2>
+        <h2 id="title7" onclick="mostrarContenido('Virtual Instrument')"></h2>
         <h2 id="title6" onclick="mostrarContenido('soundFilm')"></h2>
 
+        <!-- Nuevas secciones -->
      
     </div>
     
@@ -700,6 +705,7 @@
     <video id="expanded-video" autoplay loop></video>
 </div>
 
+<!-- Panel de controles movible y redimensionable -->
 <div id="controls-panel">
 
     <a  style="color:#ffffff ; font-size:8px; text-shadow: 0 0 10px rgba( 100, 175, 186, 0.5);
@@ -738,11 +744,13 @@
         <input type="range" id="volume-video6" min="0" max="1" step="0.01" value="0.9">
     </div>
 
+    <!-- Switch y botones existentes -->
     <div class="switch-group">
         <label for="mix-mode">Mx Scrn</label>
         <input type="checkbox" id="mix-mode">
     </div>
 
+    <!-- Nuevo Switch para alternar entre Volumen y Zoom -->
     <div class="switch-group">
         <label for="control-mode">Zoom M</label>
         <input type="checkbox" id="control-mode">
@@ -769,9 +777,11 @@
 <div class="container">
    
 
+<!-- Modal oculto inicialmente -->
 
 
 
+<!-- Pantalla de mezcla grande -->
 <div id="mix-screen">
     <video id="mix-video1" src="1.mp4" loop></video>
     <video id="mix-video2" src="3.1.mp4" loop></video>
@@ -827,11 +837,14 @@
                    
                 </div>`;
 
+            // Seleccionar el contenedor de la galería dinámicamente
             const galleryContainer = document.querySelector('.grid-container');
             const toggleGalleryBtn = document.getElementById('toggleGalleryBtn');
             
+            // Estado para determinar si el contenedor está visible o no
             let isGalleryVisible = true;
 
+            // Añadir el evento click al botón
             toggleGalleryBtn.addEventListener('click', function () {
                 if (isGalleryVisible) {
                     galleryContainer.style.display = 'none';
@@ -943,6 +956,13 @@
                 }
     
 
+                if (tipo === 'Virtual Instrument') {
+        contentArea.innerHTML = `
+            
+        <iframe id="interactive-iframe" src="https://thereminaprtlt.netlify.app/" width="100%" height="600" frameborder="0"></iframe>
+
+                    `;
+                }
 
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -1298,7 +1318,10 @@ function expandImage(img) {
         { id: 'title5', text: 'Stone Oracle' },
         { id: 'title2', text: 'Interactive Sound Game' },
         { id: 'title3', text: 'Sound Frequencies PsychoTherapy' },
+        { id: 'title7', text: 'Virtual Instrument' },
+
         { id: 'title6', text: 'Sound Film' },
+
 
 
 
@@ -1538,7 +1561,6 @@ function dragMoveGrid(e) {
         clientY = e.clientY;
     }
 
-    // Actualizar la posición del contenedor
     gridContainer.style.left = (clientX - offsetXGrid) + 'px';
     gridContainer.style.top = (clientY - offsetYGrid) + 'px';
 }
@@ -1567,8 +1589,6 @@ videos.forEach(video => {
         e.stopPropagation(); // Detiene la propagación en pantallas táctiles
     });
 
-    // Funcionalidad para hacer el panel de controles y el mix-screen no arrastrables en móviles
-// Detectar si estamos en un dispositivo móvil
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
 if (isMobile) {
@@ -1627,7 +1647,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Asegurar que los videos en mix-screen se reproduzcan sin abrirse
 const mixVideos = document.querySelectorAll('#mix-screen video');
 mixVideos.forEach(video => {
     video.play(); // Mantener la reproducción en la pantalla de mezcla
@@ -1636,9 +1655,6 @@ mixVideos.forEach(video => {
 });
 
 
-// Activar solo la pantalla de mezcla y desactivar la interacción con videos en la galería
-
-// Iniciar reproducción de los videos en `mix-screen`
 
 document.addEventListener('DOMContentLoaded', function() {
     const galleryVideos = document.querySelectorAll('.gallery-item video');
@@ -1650,7 +1666,6 @@ document.addEventListener('DOMContentLoaded', function() {
         video.style.pointerEvents = 'none'; 
     });
 
-    // Iniciar reproducción de los videos en mix-screen si está en modo mix
     const mixMode = document.getElementById('mix-mode');
     if (mixMode.checked) {
         const mixVideos = document.querySelectorAll('#mix-screen video');
@@ -1714,6 +1729,14 @@ document.addEventListener('keydown', function (e) {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
 
 
 
